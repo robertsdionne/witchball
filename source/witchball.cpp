@@ -82,6 +82,14 @@ b2Vec2 WitchBall::Box2dVector(ofVec2f vector) {
   return b2Vec2(vector.x, vector.y);
 }
 
+b2Vec2 WitchBall::Lerp(b2Vec2 from, b2Vec2 to, float t) {
+  return (1.0 - t) * from + t * to;
+}
+
+ofVec2f WitchBall::Lerp(ofVec2f from, ofVec2f to, float t) {
+  return (1.0 - t) * from + t * to;
+}
+
 ofVec2f WitchBall::OpenFrameworksVector(b2Vec2 vector) {
   return ofVec2f(vector.x, vector.y);
 }
@@ -120,9 +128,14 @@ void WitchBall::CreateBorder() {
 }
 
 void WitchBall::Gravity() {
-  if (ball_body->GetPosition().y > 0.0) {
+  const float y = ball_body->GetPosition().y;
+  if (y > kBallRadius) {
     ball_body->ApplyForceToCenter(kGravity);
-  } else if (ball_body->GetPosition().y < 0.0) {
+  }  else if (0 < y && y <= kBallRadius) {
+    ball_body->ApplyForceToCenter(Lerp(b2Vec2(), kGravity, y / kBallRadius));
+  } else if (-kBallRadius <= y && y < 0) {
+    ball_body->ApplyForceToCenter(Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
+  } else if (y < -kBallRadius) {
     ball_body->ApplyForceToCenter(kAntiGravity);
   }
 }

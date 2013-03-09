@@ -40,6 +40,10 @@ public:
 private:
   static b2Vec2 Box2dVector(ofVec2f vector);
   
+  static b2Vec2 Lerp(b2Vec2 from, b2Vec2 to, float t);
+  
+  static ofVec2f Lerp(ofVec2f from, ofVec2f to, float t);
+  
   static ofVec2f OpenFrameworksVector(b2Vec2 vector);
 
   
