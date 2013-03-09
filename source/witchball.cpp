@@ -18,7 +18,9 @@ void WitchBall::update() {
   Gravity();
   if (buttons[0]) {
     const ofVec2f force = mouse_position - OpenFrameworksVector(ball_body->GetPosition());
-    ball_body->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
+    ball_body->ApplyForce(Box2dVector(force.lengthSquared() * force.normalized()),
+                          ball_body->GetWorldCenter() + kBallRadius * b2Vec2(
+                          cos(ball_body->GetAngle()), sin(ball_body->GetAngle())));
   }
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
   previous_buttons = buttons;
@@ -30,18 +32,19 @@ void WitchBall::draw() {
   ofMultMatrix(kViewMatrix);
   const ofPoint ball_position = OpenFrameworksVector(ball_body->GetPosition());
   const float angle = ball_body->GetAngle();
+  const ofVec2f b = ofVec2f(cos(angle), sin(angle));
   ofSetColor(ofColor::white);
-  ofLine(-kHalfCourtWidth, 0.0, kHalfCourtWidth, 0.0);
+  ofLine(ofPoint(-kHalfCourtWidth, 0.0), ofPoint(kHalfCourtWidth, 0.0));
   if (buttons[0]) {
     ofSetColor(ofColor::black);
-    ofLine(ball_position, mouse_position);
+    ofLine(ball_position + kBallRadius * b, mouse_position);
   }
   ofSetColor(ofColor::white);
   ofCircle(ball_position, kBallRadius);
   ofSetColor(ofColor::black);
   const ofVec2f a = ofVec2f(sin(angle), -cos(angle));
   ofLine(ball_position + kBallRadius * a, ball_position - kBallRadius * a);
-  const ofVec2f b = ofVec2f(cos(angle), sin(angle));
+//  const ofVec2f b = ofVec2f(cos(angle), sin(angle));
   ofLine(ball_position + kBallRadius * b, ball_position - kBallRadius * b);
 }
 
