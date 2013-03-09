@@ -1,16 +1,12 @@
-#include "ofMain.h"
-#include "testApp.h"
 #include "ofAppGlutWindow.h"
+#include "ofMain.h"
+#include "witchball.h"
 
-//========================================================================
+constexpr int kWidth = 1024;
+constexpr int kHeight = 768;
+
 int main( ){
-  
   ofAppGlutWindow window;
-  ofSetupOpenGL(&window, 1024,768, OF_WINDOW);			// <-------- setup the GL context
-  
-  // this kicks off the running of my app
-  // can be OF_WINDOW or OF_FULLSCREEN
-  // pass in width and height too:
-  ofRunApp( new testApp());
-  
+  ofSetupOpenGL(&window, kWidth, kHeight, OF_WINDOW);
+  ofRunApp(new WitchBall());
 }

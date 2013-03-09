@@ -1,8 +1,9 @@
-#pragma once
+#ifndef WITCHBALL_WITCHBALL_H_
+#define WITCHBALL_WITCHBALL_H_
 
 #include "ofMain.h"
 
-class testApp : public ofBaseApp {
+class WitchBall : public ofBaseApp {
 public:
   void setup();
   
@@ -29,3 +30,5 @@ public:
   
   void gotMessage(ofMessage msg);
 };
+
+#endif  // WITCHBALL_WITCHBALL
