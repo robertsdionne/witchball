@@ -2,6 +2,7 @@
 #define WITCHBALL_WITCHBALL_H_
 
 #include <Box2D/Box2D.h>
+#include <map>
 
 #include "ofMain.h"
 
@@ -46,6 +47,8 @@ private:
   
   void CreateBorder();
   
+  void Gravity();
+  
 private:
   b2World world;
   
@@ -56,6 +59,11 @@ private:
   b2ChainShape border_shape;
   
   b2Fixture *ball_fixture, *border_fixture;
+  
+  ofPoint mouse_position;
+  
+  std::map<int, bool> buttons, previous_buttons;
+  std::map<int, bool> keys, previous_keys;
 };
 
 #endif  // WITCHBALL_WITCHBALL

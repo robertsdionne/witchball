@@ -1,41 +1,72 @@
 #include <Box2D/Box2D.h>
+#include <iostream>
 
 #include "constants.h"
 #include "witchball.h"
 
 WitchBall::WitchBall()
-: world(kGravity) {}
+: world(kZeroGravity) {}
 
 void WitchBall::setup() {
   ofSetFrameRate(60);
-  CreateBall(ofPoint(100.0, 100.0));
+  ofSetVerticalSync(true);
+  CreateBall();
   CreateBorder();
 }
 
 void WitchBall::update() {
+  Gravity();
+  if (buttons[0]) {
+    const ofVec2f force = mouse_position - OpenFrameworksVector(ball_body->GetPosition());
+    ball_body->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
+  }
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
+  previous_buttons = buttons;
+  previous_keys = keys;
 }
 
 void WitchBall::draw() {
-  ofCircle(OpenFrameworksVector(ball_body->GetPosition()), kBallRadius);
+  ofDrawBitmapString(ofToString(ofGetFrameRate()), ofPoint(0, 10));
+  ofMultMatrix(kViewMatrix);
+  const ofPoint ball_position = OpenFrameworksVector(ball_body->GetPosition());
+  const float angle = ball_body->GetAngle();
+  ofSetColor(ofColor::white);
+  ofLine(-kHalfCourtWidth, 0.0, kHalfCourtWidth, 0.0);
+  if (buttons[0]) {
+    ofSetColor(ofColor::black);
+    ofLine(ball_position, mouse_position);
+  }
+  ofSetColor(ofColor::white);
+  ofCircle(ball_position, kBallRadius);
+  ofSetColor(ofColor::black);
+  const ofVec2f a = ofVec2f(sin(angle), -cos(angle));
+  ofLine(ball_position + kBallRadius * a, ball_position - kBallRadius * a);
+  const ofVec2f b = ofVec2f(cos(angle), sin(angle));
+  ofLine(ball_position + kBallRadius * b, ball_position - kBallRadius * b);
 }
 
 void WitchBall::keyPressed(int key) {
+  keys[key] = true;
 }
 
 void WitchBall::keyReleased(int key) {
+  keys[key] = false;
 }
 
 void WitchBall::mouseMoved(int x, int y) {
+  mouse_position = ofVec3f(x, y) * kViewMatrixInverse;
 }
 
 void WitchBall::mouseDragged(int x, int y, int button) {
+  mouseMoved(x, y);
 }
 
 void WitchBall::mousePressed(int x, int y, int button) {
+  buttons[button] = true;
 }
 
 void WitchBall::mouseReleased(int x, int y, int button) {
+  buttons[button] = false;
 }
 
 void WitchBall::windowResized(int w, int h) {
@@ -77,12 +108,21 @@ void WitchBall::CreateBorder() {
   border_body_definition.position.Set(0.0, 0.0);
   border_body = world.CreateBody(&border_body_definition);
   b2Vec2 vertex[4];
-  vertex[0].Set(0.0, 0.0);
-  vertex[1].Set(ofGetWidth(), 0.0);
-  vertex[2].Set(ofGetWidth(), ofGetHeight());
-  vertex[3].Set(0.0, ofGetHeight());
+  vertex[0].Set(-kHalfCourtWidth, -kHalfCourtHeight);
+  vertex[1].Set(kHalfCourtWidth, -kHalfCourtHeight);
+  vertex[2].Set(kHalfCourtWidth, kHalfCourtHeight);
+  vertex[3].Set(-kHalfCourtWidth, kHalfCourtHeight);
   border_shape.CreateLoop(vertex, 4);
   b2FixtureDef border_fixture_definition;
   border_fixture_definition.shape = &border_shape;
+  border_fixture_definition.friction = kFriction;
   border_fixture = border_body->CreateFixture(&border_fixture_definition);
+}
+
+void WitchBall::Gravity() {
+  if (ball_body->GetPosition().y > 0.0) {
+    ball_body->ApplyForceToCenter(kGravity);
+  } else if (ball_body->GetPosition().y < 0.0) {
+    ball_body->ApplyForceToCenter(kAntiGravity);
+  }
 }
