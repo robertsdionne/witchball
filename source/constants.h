@@ -5,9 +5,9 @@
 
 #include "ofMain.h"
 
-constexpr int kHeight = 768; // pixels
+constexpr int kHeight = 600; // pixels
 
-constexpr int kWidth = 1024; // pixels
+constexpr int kWidth = 1200; // pixels
 
 constexpr float kAngularDamping = 0.1;
 
@@ -15,13 +15,13 @@ const b2Vec2 kAntiGravity = b2Vec2(0.0, 9.81); // m/s^2
 
 constexpr float kAspectRatio = static_cast<float>(kWidth) / static_cast<float>(kHeight);
 
-constexpr float kBallRadius = 0.5;
-
 constexpr int kBox2dPositionIterations = 3;
 
 constexpr int kBox2dVelocityIterations = 8;
 
 constexpr float kCourtWidth = 20.0;
+
+constexpr float kBallRadius = 11.0 * kCourtWidth / kWidth;
 
 constexpr float kHalfCourtWidth = kCourtWidth / 2.0;
 

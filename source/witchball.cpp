@@ -133,12 +133,12 @@ void WitchBall::CreateBorder() {
 void WitchBall::Gravity() {
   const float y = ball_body->GetPosition().y;
   if (y > kBallRadius) {
-    ball_body->ApplyForceToCenter(kGravity);
+    ball_body->ApplyForceToCenter(ball_body->GetMass() * kGravity);
   }  else if (0 < y && y <= kBallRadius) {
-    ball_body->ApplyForceToCenter(Lerp(b2Vec2(), kGravity, y / kBallRadius));
+    ball_body->ApplyForceToCenter(ball_body->GetMass() * Lerp(b2Vec2(), kGravity, y / kBallRadius));
   } else if (-kBallRadius <= y && y < 0) {
-    ball_body->ApplyForceToCenter(Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
+    ball_body->ApplyForceToCenter(ball_body->GetMass() * Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
   } else if (y < -kBallRadius) {
-    ball_body->ApplyForceToCenter(kAntiGravity);
+    ball_body->ApplyForceToCenter(ball_body->GetMass() * kAntiGravity);
   }
 }
