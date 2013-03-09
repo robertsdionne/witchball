@@ -1,10 +1,16 @@
 #ifndef WITCHBALL_WITCHBALL_H_
 #define WITCHBALL_WITCHBALL_H_
 
+#include <Box2D/Box2D.h>
+
 #include "ofMain.h"
 
 class WitchBall : public ofBaseApp {
 public:
+  WitchBall();
+  
+  virtual ~WitchBall() {}
+  
   void setup();
   
   void update();
@@ -29,6 +35,9 @@ public:
   void dragEvent(ofDragInfo dragInfo);
   
   void gotMessage(ofMessage msg);
+  
+private:
+  b2World world;
 };
 
 #endif  // WITCHBALL_WITCHBALL

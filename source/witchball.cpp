@@ -1,9 +1,14 @@
+#include "constants.h"
 #include "witchball.h"
+
+WitchBall::WitchBall()
+: world(kGravity) {}
 
 void WitchBall::setup() {
 }
 
 void WitchBall::update() {
+  world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
 }
 
 void WitchBall::draw() {
