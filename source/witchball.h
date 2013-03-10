@@ -7,6 +7,7 @@
 #include "collisionplayer.h"
 #include "model.h"
 #include "ofMain.h"
+#include "view.h"
 
 class WitchBall : public ofBaseApp {
 public:
@@ -41,6 +42,7 @@ public:
   
 private:
   Model model;
+  View view;
   
   CollisionPlayer collision;
   

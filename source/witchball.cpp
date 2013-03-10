@@ -6,7 +6,7 @@
 #include "witchball.h"
 
 WitchBall::WitchBall()
-: model(), collision() {}
+: model(), view(), collision() {}
 
 void WitchBall::setup() {
   ofSetFrameRate(60);
@@ -23,9 +23,7 @@ void WitchBall::setup() {
 void WitchBall::update() {
   if (buttons[0]) {
     const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball_body->GetPosition());
-    model.ball_body->ApplyForce(Box2dVector(force.lengthSquared() * force.normalized()),
-                          model.ball_body->GetWorldCenter() + kBallRadius * b2Vec2(
-                          cos(model.ball_body->GetAngle()), sin(model.ball_body->GetAngle())));
+    model.ball_body->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
   model.Update();
   previous_buttons = buttons;
@@ -33,23 +31,7 @@ void WitchBall::update() {
 }
 
 void WitchBall::draw() {
-  ofDrawBitmapString(ofToString(ofGetFrameRate()), ofPoint(0, 10));
-  ofMultMatrix(kViewMatrix);
-  const ofPoint ball_position = OpenFrameworksVector(model.ball_body->GetPosition());
-  const float angle = model.ball_body->GetAngle();
-  const ofVec2f b = ofVec2f(cos(angle), sin(angle));
-  ofSetColor(ofColor::white);
-  ofLine(ofPoint(-kHalfCourtWidth, 0.0), ofPoint(kHalfCourtWidth, 0.0));
-  if (buttons[0]) {
-    ofSetColor(ofColor::black);
-    ofLine(ball_position + kBallRadius * b, model.mouse_position);
-  }
-  ofSetColor(ofColor::white);
-  ofCircle(ball_position, kBallRadius);
-  ofSetColor(ofColor::black);
-  const ofVec2f a = ofVec2f(sin(angle), -cos(angle));
-  ofLine(ball_position + kBallRadius * a, ball_position - kBallRadius * a);
-  ofLine(ball_position + kBallRadius * b, ball_position - kBallRadius * b);
+  view.Draw(model);
 }
 
 void WitchBall::keyPressed(int key) {
