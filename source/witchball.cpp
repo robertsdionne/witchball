@@ -1,12 +1,12 @@
 #include <Box2D/Box2D.h>
-#include <iostream>
 
 #include "constants.h"
+#include "controller.h"
 #include "utilities.h"
 #include "witchball.h"
 
 WitchBall::WitchBall()
-: model(), view(), collision() {}
+: model(), view(), controller(model), collision() {}
 
 void WitchBall::setup() {
   ofSetFrameRate(60);
@@ -21,13 +21,8 @@ void WitchBall::setup() {
 }
 
 void WitchBall::update() {
-  if (buttons[0]) {
-    const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball_body->GetPosition());
-    model.ball_body->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
-  }
+  controller.Update();
   model.Update();
-  previous_buttons = buttons;
-  previous_keys = keys;
 }
 
 void WitchBall::draw() {
@@ -35,34 +30,25 @@ void WitchBall::draw() {
 }
 
 void WitchBall::keyPressed(int key) {
-  keys[key] = true;
+  controller.OnKeyPressed(key);
 }
 
 void WitchBall::keyReleased(int key) {
-  keys[key] = false;
+  controller.OnKeyReleased(key);
 }
 
 void WitchBall::mouseMoved(int x, int y) {
-  model.mouse_position = ofVec3f(x, y) * kViewMatrixInverse;
+  controller.OnMouseMoved(x, y);
 }
 
 void WitchBall::mouseDragged(int x, int y, int button) {
-  mouseMoved(x, y);
+  controller.OnMouseDragged(x, y, button);
 }
 
 void WitchBall::mousePressed(int x, int y, int button) {
-  buttons[button] = true;
+  controller.OnMousePressed(x, y, button);
 }
 
 void WitchBall::mouseReleased(int x, int y, int button) {
-  buttons[button] = false;
-}
-
-void WitchBall::windowResized(int w, int h) {
-}
-
-void WitchBall::gotMessage(ofMessage msg) {
-}
-
-void WitchBall::dragEvent(ofDragInfo dragInfo) {
+  controller.OnMouseReleased(x, y, button);
 }

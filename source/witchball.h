@@ -5,6 +5,7 @@
 #include <map>
 
 #include "collisionplayer.h"
+#include "controller.h"
 #include "model.h"
 #include "ofMain.h"
 #include "view.h"
@@ -22,7 +23,7 @@ public:
   void draw();
 
   
-  void keyPressed  (int key);
+  void keyPressed(int key);
   
   void keyReleased(int key);
   
@@ -34,22 +35,20 @@ public:
   
   void mouseReleased(int x, int y, int button);
   
-  void windowResized(int w, int h);
+  void windowResized(int w, int h) {}
   
-  void dragEvent(ofDragInfo dragInfo);
+  void dragEvent(ofDragInfo dragInfo) {}
   
-  void gotMessage(ofMessage msg);
+  void gotMessage(ofMessage msg) {}
   
 private:
   Model model;
   View view;
+  Controller controller;
   
   CollisionPlayer collision;
   
   ofSoundPlayer sound_background_music, sound_background_music_2;
-  
-  std::map<int, bool> buttons, previous_buttons;
-  std::map<int, bool> keys, previous_keys;
 };
 
 #endif  // WITCHBALL_WITCHBALL
