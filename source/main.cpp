@@ -5,7 +5,7 @@
 
 int main(const int argument_count, const char *arguments[]) {
   ofAppGlutWindow window;
-  window.setGlutDisplayString("rgba double depth alpha samples>=4");
+  window.setGlutDisplayString(kGlutDisplayString);
   ofSetupOpenGL(&window, kWidth, kHeight, OF_WINDOW);
   ofRunApp(new WitchBall());
 }

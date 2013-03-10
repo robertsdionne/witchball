@@ -19,6 +19,7 @@ constexpr const char *kWallBounceFilename = "../../assets/wallbounce.wav";
  */
 constexpr int kHeight = 600; // pixels
 constexpr int kWidth = 1200; // pixels
+constexpr const char *kGlutDisplayString = "rgba double depth alpha samples>=4";
 constexpr float kHalfHeight = kHeight / 2; // pixels
 constexpr float kHalfWidth = kWidth / 2; // pixels
 constexpr float kAspectRatio = static_cast<float>(kWidth) / static_cast<float>(kHeight);
