@@ -50,7 +50,6 @@ void WitchBall::draw() {
   ofSetColor(ofColor::black);
   const ofVec2f a = ofVec2f(sin(angle), -cos(angle));
   ofLine(ball_position + kBallRadius * a, ball_position - kBallRadius * a);
-//  const ofVec2f b = ofVec2f(cos(angle), sin(angle));
   ofLine(ball_position + kBallRadius * b, ball_position - kBallRadius * b);
 }
 
