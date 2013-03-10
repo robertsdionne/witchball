@@ -5,6 +5,8 @@
 
 #include "ofMain.h"
 
+constexpr int kConcurrentSounds = 10;
+
 constexpr int kHeight = 600; // pixels
 
 constexpr int kWidth = 1200; // pixels
@@ -48,6 +50,8 @@ const ofMatrix4x4 kViewMatrix =
         ofMatrix4x4::newTranslationMatrix(kHalfWidth, kHalfHeight, 0.0);
 
 const ofMatrix4x4 kViewMatrixInverse = ofMatrix4x4::getInverseOf(kViewMatrix);
+
+constexpr const char *kWallBounceFilename = "../../assets/wallbounce.wav";
 
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 

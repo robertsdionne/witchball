@@ -4,6 +4,7 @@
 #include <Box2D/Box2D.h>
 #include <map>
 
+#include "collisionplayer.h";
 #include "ofMain.h"
 
 class WitchBall : public ofBaseApp {
@@ -63,6 +64,8 @@ private:
   b2ChainShape border_shape;
   
   b2Fixture *ball_fixture, *border_fixture;
+  
+  CollisionPlayer collision;
   
   ofPoint mouse_position;
   

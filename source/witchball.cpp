@@ -5,13 +5,14 @@
 #include "witchball.h"
 
 WitchBall::WitchBall()
-: world(kZeroGravity) {}
+: world(kZeroGravity), collision() {}
 
 void WitchBall::setup() {
   ofSetFrameRate(60);
   ofSetVerticalSync(true);
   CreateBall();
   CreateBorder();
+  world.SetContactListener(&collision);
 }
 
 void WitchBall::update() {
