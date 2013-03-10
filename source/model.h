@@ -3,7 +3,6 @@
 
 #include <Box2D/Box2D.h>
 
-#include "collisionplayer.h"
 #include "ofMain.h"
 
 class Model {

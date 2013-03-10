@@ -4,7 +4,7 @@
 #include <Box2D/Box2D.h>
 #include <map>
 
-#include "collisionplayer.h"
+#include "collisionsoundplayer.h"
 #include "controller.h"
 #include "model.h"
 #include "ofMain.h"
@@ -45,7 +45,7 @@ private:
   Model model;
   View view;
   Controller controller;
-  CollisionPlayer collision;
+  CollisionSoundPlayer collision;
   ofSoundPlayer sound_background_music, sound_background_music_2;
 };
 

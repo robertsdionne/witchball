@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <list>
 
-#include "collisionplayer.h"
+#include "collisionsoundplayer.h"
 #include "constants.h"
 #include "ofMain.h"
 
-CollisionPlayer::CollisionPlayer()
+CollisionSoundPlayer::CollisionSoundPlayer()
 : sound_wallbounce(), play_next_index(0) {
   for (int i = 0; i < kConcurrentSounds; ++i) {
     ofSoundPlayer bounce;
@@ -16,7 +16,7 @@ CollisionPlayer::CollisionPlayer()
   }
 }
 
-void CollisionPlayer::BeginContact(b2Contact *contact) {
+void CollisionSoundPlayer::BeginContact(b2Contact *contact) {
   const b2Body *const body = contact->GetFixtureA()->GetBody()->GetType() == b2_dynamicBody ?
   contact->GetFixtureA()->GetBody() : contact->GetFixtureB()->GetBody();
   const float speed = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.1f, 2.0f);

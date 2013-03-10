@@ -52,11 +52,11 @@
 		4672394016EAC9BF00FFB9D9 /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4672390F16EAC9BF00FFB9D9 /* b2WeldJoint.cpp */; };
 		4672394116EAC9BF00FFB9D9 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4672391116EAC9BF00FFB9D9 /* b2WheelJoint.cpp */; };
 		4672394216EAC9BF00FFB9D9 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4672391416EAC9BF00FFB9D9 /* b2Rope.cpp */; };
-		46770FE616EBF96F0038E6E5 /* collisionplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FE416EBF96F0038E6E5 /* collisionplayer.cpp */; };
 		46770FEF16EC20630038E6E5 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FED16EC20630038E6E5 /* model.cpp */; };
 		46770FF516EC27430038E6E5 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FF416EC27430038E6E5 /* utilities.cpp */; };
 		46770FF816EC29C10038E6E5 /* view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FF616EC29C10038E6E5 /* view.cpp */; };
 		46770FFB16EC2E250038E6E5 /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FF916EC2E240038E6E5 /* controller.cpp */; };
+		46770FFE16EC34340038E6E5 /* collisionsoundplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FFC16EC34340038E6E5 /* collisionsoundplayer.cpp */; };
 		4678D80A16EAC7BD00193429 /* witchball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4678D80916EAC7BD00193429 /* witchball.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -203,8 +203,6 @@
 		4672391216EAC9BF00FFB9D9 /* b2WheelJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WheelJoint.h; sourceTree = "<group>"; };
 		4672391416EAC9BF00FFB9D9 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		4672391516EAC9BF00FFB9D9 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
-		46770FE416EBF96F0038E6E5 /* collisionplayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisionplayer.cpp; sourceTree = "<group>"; };
-		46770FE516EBF96F0038E6E5 /* collisionplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisionplayer.h; sourceTree = "<group>"; };
 		46770FE816EC14A70038E6E5 /* wallbounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wallbounce.wav; sourceTree = "<group>"; };
 		46770FEB16EC1D140038E6E5 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
 		46770FEC16EC1D140038E6E5 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
@@ -216,6 +214,8 @@
 		46770FF716EC29C10038E6E5 /* view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view.h; sourceTree = "<group>"; };
 		46770FF916EC2E240038E6E5 /* controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = controller.cpp; sourceTree = "<group>"; };
 		46770FFA16EC2E240038E6E5 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
+		46770FFC16EC34340038E6E5 /* collisionsoundplayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisionsoundplayer.cpp; sourceTree = "<group>"; };
+		46770FFD16EC34340038E6E5 /* collisionsoundplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisionsoundplayer.h; sourceTree = "<group>"; };
 		4678D80816EAC7BD00193429 /* witchball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = witchball.h; sourceTree = "<group>"; };
 		4678D80916EAC7BD00193429 /* witchball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = witchball.cpp; sourceTree = "<group>"; };
 		46E8E13116EAD5EF0091B111 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
@@ -517,8 +517,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				46770FE416EBF96F0038E6E5 /* collisionplayer.cpp */,
-				46770FE516EBF96F0038E6E5 /* collisionplayer.h */,
+				46770FFC16EC34340038E6E5 /* collisionsoundplayer.cpp */,
+				46770FFD16EC34340038E6E5 /* collisionsoundplayer.h */,
 				46E8E13116EAD5EF0091B111 /* constants.h */,
 				46770FF916EC2E240038E6E5 /* controller.cpp */,
 				46770FFA16EC2E240038E6E5 /* controller.h */,
@@ -675,11 +675,11 @@
 				4672394016EAC9BF00FFB9D9 /* b2WeldJoint.cpp in Sources */,
 				4672394116EAC9BF00FFB9D9 /* b2WheelJoint.cpp in Sources */,
 				4672394216EAC9BF00FFB9D9 /* b2Rope.cpp in Sources */,
-				46770FE616EBF96F0038E6E5 /* collisionplayer.cpp in Sources */,
 				46770FEF16EC20630038E6E5 /* model.cpp in Sources */,
 				46770FF516EC27430038E6E5 /* utilities.cpp in Sources */,
 				46770FF816EC29C10038E6E5 /* view.cpp in Sources */,
 				46770FFB16EC2E250038E6E5 /* controller.cpp in Sources */,
+				46770FFE16EC34340038E6E5 /* collisionsoundplayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
