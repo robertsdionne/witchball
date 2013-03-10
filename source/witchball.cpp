@@ -13,17 +13,20 @@ void WitchBall::setup() {
   CreateBall();
   CreateBorder();
   world.SetContactListener(&collision);
+  sound_whir.loadSound(kWhirFilename);
+  sound_whir.setLoop(true);
+  sound_whir.setVolume(0.0);
+  sound_whir.play();
 }
 
 void WitchBall::update() {
   Gravity();
   if (buttons[0]) {
     const ofVec2f force = mouse_position - OpenFrameworksVector(ball_body->GetPosition());
-    ball_body->ApplyForce(Box2dVector(force.lengthSquared() * force.normalized()),
-                          ball_body->GetWorldCenter() + kBallRadius * b2Vec2(
-                          cos(ball_body->GetAngle()), sin(ball_body->GetAngle())));
+    ball_body->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
+  Whir();
   previous_buttons = buttons;
   previous_keys = keys;
 }
@@ -142,4 +145,11 @@ void WitchBall::Gravity() {
   } else if (y < -kBallRadius) {
     ball_body->ApplyForceToCenter(ball_body->GetMass() * kAntiGravity);
   }
+}
+void WitchBall::Whir() {
+  const float speed = ofClamp(pow(abs(ball_body->GetLinearVelocity().Length() / 100.0), 0.5), 0.0, 10.0);
+  const float volume = ofClamp(abs(ball_body->GetAngularVelocity() / 100.0), 0.0, 1.0);
+  sound_whir.setSpeed(speed);
+  sound_whir.setVolume(volume);
+  sound_whir.setPan(ball_body->GetPosition().x / kHalfCourtWidth);
 }

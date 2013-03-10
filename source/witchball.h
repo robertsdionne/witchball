@@ -54,6 +54,8 @@ private:
   
   void Gravity();
   
+  void Whir();
+  
 private:
   b2World world;
   
@@ -68,6 +70,8 @@ private:
   CollisionPlayer collision;
   
   ofPoint mouse_position;
+  
+  ofSoundPlayer sound_whir;
   
   std::map<int, bool> buttons, previous_buttons;
   std::map<int, bool> keys, previous_keys;

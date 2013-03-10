@@ -53,6 +53,8 @@ const ofMatrix4x4 kViewMatrixInverse = ofMatrix4x4::getInverseOf(kViewMatrix);
 
 constexpr const char *kWallBounceFilename = "../../assets/wallbounce.wav";
 
+constexpr const char *kWhirFilename = "../../assets/whir.wav";
+
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
 #endif  // WITCHBALL_CONSTANTS_H_
