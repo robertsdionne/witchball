@@ -5,6 +5,10 @@
 
 #include "ofMain.h"
 
+constexpr const char *kBackgroundMusicFilename = "../../assets/bgm.wav";
+
+constexpr const char *kBackgroundMusicTwoFilename = "../../assets/bgm2.wav";
+
 constexpr int kConcurrentSounds = 10;
 
 constexpr int kHeight = 600; // pixels

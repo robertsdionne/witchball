@@ -202,6 +202,8 @@
 		46770FE416EBF96F0038E6E5 /* collisionplayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisionplayer.cpp; sourceTree = "<group>"; };
 		46770FE516EBF96F0038E6E5 /* collisionplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisionplayer.h; sourceTree = "<group>"; };
 		46770FE816EC14A70038E6E5 /* wallbounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wallbounce.wav; sourceTree = "<group>"; };
+		46770FEB16EC1D140038E6E5 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
+		46770FEC16EC1D140038E6E5 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
 		4678D80816EAC7BD00193429 /* witchball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = witchball.h; sourceTree = "<group>"; };
 		4678D80916EAC7BD00193429 /* witchball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = witchball.cpp; sourceTree = "<group>"; };
 		46E8E13116EAD5EF0091B111 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
@@ -424,6 +426,8 @@
 		46770FE716EC14A70038E6E5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				46770FEB16EC1D140038E6E5 /* bgm.wav */,
+				46770FEC16EC1D140038E6E5 /* bgm2.wav */,
 				46770FE816EC14A70038E6E5 /* wallbounce.wav */,
 			);
 			path = assets;

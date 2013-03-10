@@ -13,6 +13,11 @@ void WitchBall::setup() {
   CreateBall();
   CreateBorder();
   world.SetContactListener(&collision);
+  sound_background_music.loadSound(kBackgroundMusicFilename);
+  sound_background_music_2.loadSound(kBackgroundMusicTwoFilename);
+  sound_background_music.play();
+  sound_background_music_2.setLoop(true);
+  sound_background_music_2.play();
 }
 
 void WitchBall::update() {

@@ -69,6 +69,8 @@ private:
   
   ofPoint mouse_position;
   
+  ofSoundPlayer sound_background_music, sound_background_music_2;
+  
   std::map<int, bool> buttons, previous_buttons;
   std::map<int, bool> keys, previous_keys;
 };
