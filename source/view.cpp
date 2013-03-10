@@ -13,6 +13,11 @@ void View::Draw(const Model &model) const {
   DrawBall(model.ball_body);
 }
 
+void View::Setup() const {
+  ofSetFrameRate(60);
+  ofSetVerticalSync(true);
+}
+
 void View::DrawBall(const b2Body *ball) const {
   ofPushStyle();
   ofPushMatrix();

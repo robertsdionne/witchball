@@ -6,13 +6,13 @@
 #include "witchball.h"
 
 WitchBall::WitchBall()
-: model(), view(), controller(model), collision() {}
+: model(), view(), controller(model), collision(),
+  sound_background_music(), sound_background_music_2() {}
 
 void WitchBall::setup() {
-  ofSetFrameRate(60);
-  ofSetVerticalSync(true);
   model.Setup();
   model.world.SetContactListener(&collision);
+  view.Setup();
   sound_background_music.loadSound(kBackgroundMusicFilename);
   sound_background_music_2.loadSound(kBackgroundMusicTwoFilename);
   sound_background_music.play();

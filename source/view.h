@@ -12,6 +12,8 @@ public:
   
   void Draw(const Model &model) const;
   
+  void Setup() const;
+  
 private:
   void DrawBall(const b2Body *ball) const;
   

@@ -45,9 +45,7 @@ private:
   Model model;
   View view;
   Controller controller;
-  
   CollisionPlayer collision;
-  
   ofSoundPlayer sound_background_music, sound_background_music_2;
 };
 
