@@ -58,6 +58,10 @@
 		46770FFB16EC2E250038E6E5 /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FF916EC2E240038E6E5 /* controller.cpp */; };
 		46770FFE16EC34340038E6E5 /* collisionsoundplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FFC16EC34340038E6E5 /* collisionsoundplayer.cpp */; };
 		4678D80A16EAC7BD00193429 /* witchball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4678D80916EAC7BD00193429 /* witchball.cpp */; };
+		46F7223116EFBE6700DBA67D /* CollageTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222916EFBE6700DBA67D /* CollageTexture.cpp */; };
+		46F7223216EFBE6700DBA67D /* LinearTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222B16EFBE6700DBA67D /* LinearTexture.cpp */; };
+		46F7223316EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222D16EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp */; };
+		46F7223416EFBE6700DBA67D /* PixelTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222F16EFBE6700DBA67D /* PixelTexture.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -443,6 +447,14 @@
 		46F7222316EFB9B200DBA67D /* wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wrap.hpp; sourceTree = "<group>"; };
 		46F7222416EFB9B200DBA67D /* wrap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrap.inl; sourceTree = "<group>"; };
 		46F7222616EFB9B200DBA67D /* xstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xstream.hpp; sourceTree = "<group>"; };
+		46F7222916EFBE6700DBA67D /* CollageTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollageTexture.cpp; sourceTree = "<group>"; };
+		46F7222A16EFBE6700DBA67D /* CollageTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollageTexture.h; sourceTree = "<group>"; };
+		46F7222B16EFBE6700DBA67D /* LinearTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearTexture.cpp; sourceTree = "<group>"; };
+		46F7222C16EFBE6700DBA67D /* LinearTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearTexture.h; sourceTree = "<group>"; };
+		46F7222D16EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSpriteSheetRenderer.cpp; sourceTree = "<group>"; };
+		46F7222E16EFBE6700DBA67D /* ofxSpriteSheetRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSpriteSheetRenderer.h; sourceTree = "<group>"; };
+		46F7222F16EFBE6700DBA67D /* PixelTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelTexture.cpp; sourceTree = "<group>"; };
+		46F7223016EFBE6700DBA67D /* PixelTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelTexture.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../Documents/of_v0073_osx_release/libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../Documents/of_v0073_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -498,6 +510,7 @@
 		467238B016EAC9BF00FFB9D9 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				46F7222816EFBE6700DBA67D /* ofxSpriteSheetRenderer */,
 				46F7214116EFB9B200DBA67D /* glm */,
 				467238B116EAC9BF00FFB9D9 /* Box2D */,
 			);
@@ -933,6 +946,21 @@
 			path = virtrev;
 			sourceTree = "<group>";
 		};
+		46F7222816EFBE6700DBA67D /* ofxSpriteSheetRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				46F7222916EFBE6700DBA67D /* CollageTexture.cpp */,
+				46F7222A16EFBE6700DBA67D /* CollageTexture.h */,
+				46F7222B16EFBE6700DBA67D /* LinearTexture.cpp */,
+				46F7222C16EFBE6700DBA67D /* LinearTexture.h */,
+				46F7222D16EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp */,
+				46F7222E16EFBE6700DBA67D /* ofxSpriteSheetRenderer.h */,
+				46F7222F16EFBE6700DBA67D /* PixelTexture.cpp */,
+				46F7223016EFBE6700DBA67D /* PixelTexture.h */,
+			);
+			path = ofxSpriteSheetRenderer;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1168,6 +1196,10 @@
 				46770FF816EC29C10038E6E5 /* view.cpp in Sources */,
 				46770FFB16EC2E250038E6E5 /* controller.cpp in Sources */,
 				46770FFE16EC34340038E6E5 /* collisionsoundplayer.cpp in Sources */,
+				46F7223116EFBE6700DBA67D /* CollageTexture.cpp in Sources */,
+				46F7223216EFBE6700DBA67D /* LinearTexture.cpp in Sources */,
+				46F7223316EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp in Sources */,
+				46F7223416EFBE6700DBA67D /* PixelTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
