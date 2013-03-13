@@ -10,6 +10,7 @@ void View::Draw(const Model &model) const {
   DrawFramesPerSecond();
   SetupViewpoint();
   DrawCourt();
+  DrawPlayers(model);
   DrawBall(model.ball_body);
 }
 
@@ -44,6 +45,24 @@ void View::DrawFramesPerSecond() const {
   ofPushStyle();
   ofDrawBitmapString(ofToString(ofGetFrameRate()), ofPoint(0, 10));
   ofPopStyle();
+}
+
+void View::DrawPlayer(const b2Body *player) const {
+  ofPushStyle();
+  ofPushMatrix();
+  ofTranslate(player->GetPosition().x, player->GetPosition().y);
+  ofScale(kBallRadius, kBallRadius);
+  ofSetColor(ofColor::white);
+  ofCircle(ofPoint(), 1.0);
+  ofPopMatrix();
+  ofPopStyle();
+}
+
+void View::DrawPlayers(const Model &model) const {
+  DrawPlayer(model.player1_top_body);
+  DrawPlayer(model.player1_bottom_body);
+  DrawPlayer(model.player2_top_body);
+  DrawPlayer(model.player2_bottom_body);
 }
 
 void View::SetupViewpoint() const {

@@ -8,6 +8,7 @@ Model::Model()
 void Model::Setup() {
   CreateBall();
   CreateBorder();
+  CreatePlayers();
 }
 
 void Model::Update() {
@@ -48,6 +49,26 @@ void Model::CreateBorder() {
   border_fixture_definition.shape = &border_shape;
   border_fixture_definition.friction = kFriction;
   border_body->CreateFixture(&border_fixture_definition);
+}
+
+b2Body *Model::CreatePlayer(ofPoint position) {
+  b2BodyDef player_body_definition;
+  player_body_definition.position.Set(position.x, position.y);
+  b2Body *player_body = world.CreateBody(&player_body_definition);
+  b2CircleShape player_shape;
+  player_shape.m_radius = kBallRadius;
+  b2FixtureDef player_fixture_definition;
+  player_fixture_definition.shape = &player_shape;
+  player_fixture_definition.friction = kFriction;
+  player_body->CreateFixture(&player_fixture_definition);
+  return player_body;
+}
+
+void Model::CreatePlayers() {
+  player1_top_body = CreatePlayer(ofPoint(-9, 1));
+  player1_bottom_body = CreatePlayer(ofPoint(9, -1));
+  player2_top_body = CreatePlayer(ofPoint(9, 1));
+  player2_bottom_body = CreatePlayer(ofPoint(-9, -1));
 }
 
 void Model::Gravity() {

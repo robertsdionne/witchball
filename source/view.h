@@ -21,6 +21,10 @@ private:
   
   void DrawFramesPerSecond() const;
   
+  void DrawPlayer(const b2Body *player) const;
+  
+  void DrawPlayers(const Model &model) const;
+  
   void SetupViewpoint() const;
 };
 
