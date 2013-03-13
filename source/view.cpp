@@ -11,7 +11,7 @@ void View::Draw(const Model &model) const {
   SetupViewpoint();
   DrawCourt();
   DrawPlayers(model);
-  DrawBall(model.ball_body);
+  DrawBall(model.ball);
 }
 
 void View::Setup() const {
@@ -59,10 +59,10 @@ void View::DrawPlayer(const b2Body *player) const {
 }
 
 void View::DrawPlayers(const Model &model) const {
-  DrawPlayer(model.player1_top_body);
-  DrawPlayer(model.player1_bottom_body);
-  DrawPlayer(model.player2_top_body);
-  DrawPlayer(model.player2_bottom_body);
+  DrawPlayer(model.player1_top);
+  DrawPlayer(model.player1_bottom);
+  DrawPlayer(model.player2_top);
+  DrawPlayer(model.player2_bottom);
 }
 
 void View::SetupViewpoint() const {

@@ -17,13 +17,13 @@ void Model::Update() {
 }
 
 void Model::CreateBall(ofPoint position, ofVec2f velocity) {
-  b2BodyDef ball_body_definition;
-  ball_body_definition.type = b2_dynamicBody;
-  ball_body_definition.position = Box2dVector(position);
-  ball_body_definition.linearVelocity = Box2dVector(velocity);
-  ball_body_definition.linearDamping = kLinearDamping;
-  ball_body_definition.angularDamping = kAngularDamping;
-  ball_body = world.CreateBody(&ball_body_definition);
+  b2BodyDef ball_definition;
+  ball_definition.type = b2_dynamicBody;
+  ball_definition.position = Box2dVector(position);
+  ball_definition.linearVelocity = Box2dVector(velocity);
+  ball_definition.linearDamping = kLinearDamping;
+  ball_definition.angularDamping = kAngularDamping;
+  ball = world.CreateBody(&ball_definition);
   b2CircleShape ball_shape;
   ball_shape.m_radius = kBallRadius;
   b2FixtureDef ball_fixture_definition;
@@ -31,13 +31,13 @@ void Model::CreateBall(ofPoint position, ofVec2f velocity) {
   ball_fixture_definition.density = kDensity;
   ball_fixture_definition.friction = kFriction;
   ball_fixture_definition.restitution = kRestitution;
-  ball_body->CreateFixture(&ball_fixture_definition);
+  ball->CreateFixture(&ball_fixture_definition);
 }
 
 void Model::CreateBorder() {
-  b2BodyDef border_body_definition;
-  border_body_definition.position.Set(0.0, 0.0);
-  border_body = world.CreateBody(&border_body_definition);
+  b2BodyDef border_definition;
+  border_definition.position.Set(0.0, 0.0);
+  border = world.CreateBody(&border_definition);
   b2Vec2 vertex[4];
   vertex[0].Set(-kHalfCourtWidth, -kHalfCourtHeight);
   vertex[1].Set(kHalfCourtWidth, -kHalfCourtHeight);
@@ -48,38 +48,38 @@ void Model::CreateBorder() {
   b2FixtureDef border_fixture_definition;
   border_fixture_definition.shape = &border_shape;
   border_fixture_definition.friction = kFriction;
-  border_body->CreateFixture(&border_fixture_definition);
+  border->CreateFixture(&border_fixture_definition);
 }
 
 b2Body *Model::CreatePlayer(ofPoint position) {
-  b2BodyDef player_body_definition;
-  player_body_definition.position.Set(position.x, position.y);
-  b2Body *player_body = world.CreateBody(&player_body_definition);
+  b2BodyDef player_definition;
+  player_definition.position.Set(position.x, position.y);
+  b2Body *player = world.CreateBody(&player_definition);
   b2CircleShape player_shape;
   player_shape.m_radius = kBallRadius;
   b2FixtureDef player_fixture_definition;
   player_fixture_definition.shape = &player_shape;
   player_fixture_definition.friction = kFriction;
-  player_body->CreateFixture(&player_fixture_definition);
-  return player_body;
+  player->CreateFixture(&player_fixture_definition);
+  return player;
 }
 
 void Model::CreatePlayers() {
-  player1_top_body = CreatePlayer(ofPoint(-9, 1));
-  player1_bottom_body = CreatePlayer(ofPoint(9, -1));
-  player2_top_body = CreatePlayer(ofPoint(9, 1));
-  player2_bottom_body = CreatePlayer(ofPoint(-9, -1));
+  player1_top = CreatePlayer(ofPoint(-9, 1));
+  player1_bottom = CreatePlayer(ofPoint(9, -1));
+  player2_top = CreatePlayer(ofPoint(9, 1));
+  player2_bottom = CreatePlayer(ofPoint(-9, -1));
 }
 
 void Model::Gravity() {
-  const float y = ball_body->GetPosition().y;
+  const float y = ball->GetPosition().y;
   if (y > kBallRadius) {
-    ball_body->ApplyForceToCenter(ball_body->GetMass() * kGravity);
+    ball->ApplyForceToCenter(ball->GetMass() * kGravity);
   }  else if (0 < y && y <= kBallRadius) {
-    ball_body->ApplyForceToCenter(ball_body->GetMass() * Lerp(b2Vec2(), kGravity, y / kBallRadius));
+    ball->ApplyForceToCenter(ball->GetMass() * Lerp(b2Vec2(), kGravity, y / kBallRadius));
   } else if (-kBallRadius <= y && y < 0) {
-    ball_body->ApplyForceToCenter(ball_body->GetMass() * Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
+    ball->ApplyForceToCenter(ball->GetMass() * Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
   } else if (y < -kBallRadius) {
-    ball_body->ApplyForceToCenter(ball_body->GetMass() * kAntiGravity);
+    ball->ApplyForceToCenter(ball->GetMass() * kAntiGravity);
   }
 }

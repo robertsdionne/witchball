@@ -33,8 +33,8 @@ void Controller::OnMouseReleased(int x, int y, int button) {
 
 void Controller::Update() {
   if (MouseButtonIsPressed(0)) {
-    const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball_body->GetPosition());
-    model.ball_body->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
+    const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball->GetPosition());
+    model.ball->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
   previous_buttons = buttons;
   previous_keys = keys;

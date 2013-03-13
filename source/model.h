@@ -41,9 +41,9 @@ public:
   
   b2World world;
   
-  b2Body *ball_body, *border_body;
+  b2Body *ball, *border;
   
-  b2Body *player1_top_body, *player1_bottom_body, *player2_top_body, *player2_bottom_body;
+  b2Body *player1_top, *player1_bottom, *player2_top, *player2_bottom;
   
   ofPoint mouse_position;
 };
