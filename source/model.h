@@ -27,11 +27,6 @@ private:
   void Gravity();
   
 public:
-  enum class PlayerCopy {
-    TOP,
-    BOTTOM
-  };
-  
   enum class CourtPosition {
     POSITION_1,
     POSITION_2,
@@ -46,6 +41,8 @@ public:
   b2Body *player1_top, *player1_bottom, *player2_top, *player2_bottom;
   
   ofPoint mouse_position;
+  
+  CourtPosition court_position;
 };
 
 #endif  // WITCHBALL_MODEL_H_

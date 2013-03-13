@@ -50,6 +50,63 @@ constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
 /**
+ * Controller properties.
+ */
+constexpr float kControllerRate = 1.0 / 40.0;
+
+const ofPoint kPlayer1TopBack[] = {
+  ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius),
+  ofPoint(kHalfCourtWidth - kPlayerRadius, kPlayerRadius),
+  ofPoint(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
+  ofPoint(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius)
+};
+const ofPoint kPlayer1TopForward[] = {
+  ofPoint(-kPlayerRadius, kPlayerRadius),
+  ofPoint(kPlayerRadius, kPlayerRadius),
+  ofPoint(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
+  ofPoint(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius)
+};
+
+const ofPoint kPlayer2TopBack[] = {
+  ofPoint(kHalfCourtWidth - kPlayerRadius, kPlayerRadius),
+  ofPoint(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
+  ofPoint(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
+  ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius)
+};
+const ofPoint kPlayer2TopForward[] = {
+  ofPoint(kPlayerRadius, kPlayerRadius),
+  ofPoint(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
+  ofPoint(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
+  ofPoint(-kPlayerRadius, kPlayerRadius)
+};
+
+const ofPoint kPlayer1BottomBack[] = {
+  -kPlayer1TopBack[0],
+  -kPlayer1TopBack[1],
+  -kPlayer1TopBack[2],
+  -kPlayer1TopBack[3]
+};
+const ofPoint kPlayer1BottomForward[] = {
+  -kPlayer1TopForward[0],
+  -kPlayer1TopForward[1],
+  -kPlayer1TopForward[2],
+  -kPlayer1TopForward[3]
+};
+
+const ofPoint kPlayer2BottomBack[] = {
+  -kPlayer2TopBack[0],
+  -kPlayer2TopBack[1],
+  -kPlayer2TopBack[2],
+  -kPlayer2TopBack[3]
+};
+const ofPoint kPlayer2BottomForward[] = {
+  -kPlayer2TopForward[0],
+  -kPlayer2TopForward[1],
+  -kPlayer2TopForward[2],
+  -kPlayer2TopForward[3]
+};
+
+/**
  * View properties.
  */
 const ofMatrix4x4 kViewMatrix =

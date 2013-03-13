@@ -3,6 +3,7 @@
 
 #include <map>
 
+class b2Body;
 class Model;
 
 class Controller {
@@ -27,6 +28,8 @@ public:
   
 private:
   bool MouseButtonIsPressed(int button);
+  
+  void UpdatePlayerPosition(b2Body *player, ofPoint target);
   
 private:
   Model &model;

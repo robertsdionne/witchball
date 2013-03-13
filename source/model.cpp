@@ -3,7 +3,9 @@
 #include "model.h"
 
 Model::Model()
-: world(kZeroGravity) {}
+: world(kZeroGravity), ball(nullptr), border(nullptr),
+  player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
+  mouse_position(), court_position(CourtPosition::POSITION_1) {}
 
 void Model::Setup() {
   CreateBall();
@@ -53,18 +55,13 @@ void Model::CreateBorder() {
 
 b2Body *Model::CreatePlayer(ofPoint position) {
   b2BodyDef player_definition;
-  player_definition.type = b2_dynamicBody;
   player_definition.position.Set(position.x, position.y);
-  player_definition.linearDamping = kLinearDamping;
-  player_definition.angularDamping = kAngularDamping;
   b2Body *player = world.CreateBody(&player_definition);
   b2CircleShape player_shape;
   player_shape.m_radius = kPlayerRadius;
   b2FixtureDef player_fixture_definition;
   player_fixture_definition.shape = &player_shape;
-  player_fixture_definition.density = kDensity;
   player_fixture_definition.friction = kFriction;
-  player_fixture_definition.restitution = kRestitution;
   player->CreateFixture(&player_fixture_definition);
   return player;
 }
