@@ -32,10 +32,28 @@ void Controller::OnMouseReleased(int x, int y, int button) {
 }
 
 void Controller::Update() {
+	ofVec2f force = ofVec2f();
   if (MouseButtonIsPressed(0)) {
-    const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball->GetPosition());
+    force = model.mouse_position - OpenFrameworksVector(model.ball->GetPosition());
     model.ball->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
+   
+    
+  if(keys[113] == true) {
+		force = OpenFrameworksVector(model.player1_bottom->GetLinearVelocity() + kPlayerMovementImpulse);
+		printf("force x:%f y:%f",force.x,force.y);
+		model.player1_top->ApplyForceToCenter(Box2dVector(-force));
+  }
+	else {
+  }
+    
+  if(keys[112] == true) {
+      
+  }
+  else {
+		
+  }
+    
   previous_buttons = buttons;
   previous_keys = keys;
 }

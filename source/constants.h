@@ -49,6 +49,12 @@ constexpr float kRestitution = 0.7;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
+/*
+ * Impulse properties
+ */
+
+const b2Vec2 kPlayerMovementImpulse = b2Vec2(600, 0);
+
 /**
  * View properties.
  */
