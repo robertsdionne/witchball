@@ -29,7 +29,6 @@ void View::DrawBall(const b2Body *ball) const {
   ofCircle(ofPoint(), 1.0);
   ofSetColor(ofColor::black);
   ofLine(ofPoint(-1.0, 0.0), ofPoint(1.0, 0.0));
-  ofLine(ofPoint(0.0, -1.0), ofPoint(0.0, 1.0));
   ofPopMatrix();
   ofPopStyle();
 }
