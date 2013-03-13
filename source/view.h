@@ -21,7 +21,7 @@ private:
   
   void DrawFramesPerSecond() const;
   
-  void DrawPlayer(const b2Body *player) const;
+  void DrawPlayer(const b2Body *player, ofColor color) const;
   
   void DrawPlayers(const Model &model) const;
   

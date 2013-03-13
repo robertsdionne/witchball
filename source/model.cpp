@@ -56,7 +56,7 @@ b2Body *Model::CreatePlayer(ofPoint position) {
   player_definition.position.Set(position.x, position.y);
   b2Body *player = world.CreateBody(&player_definition);
   b2CircleShape player_shape;
-  player_shape.m_radius = kBallRadius;
+  player_shape.m_radius = kPlayerRadius;
   b2FixtureDef player_fixture_definition;
   player_fixture_definition.shape = &player_shape;
   player_fixture_definition.friction = kFriction;
@@ -65,10 +65,10 @@ b2Body *Model::CreatePlayer(ofPoint position) {
 }
 
 void Model::CreatePlayers() {
-  player1_top = CreatePlayer(ofPoint(-9, 1));
-  player1_bottom = CreatePlayer(ofPoint(9, -1));
-  player2_top = CreatePlayer(ofPoint(9, 1));
-  player2_bottom = CreatePlayer(ofPoint(-9, -1));
+  player1_top = CreatePlayer(ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius));
+  player1_bottom = CreatePlayer(ofPoint(kHalfCourtWidth - kPlayerRadius, -kPlayerRadius));
+  player2_top = CreatePlayer(ofPoint(kHalfCourtWidth - kPlayerRadius, kPlayerRadius));
+  player2_bottom = CreatePlayer(ofPoint(-kHalfCourtWidth + kPlayerRadius, -kPlayerRadius));
 }
 
 void Model::Gravity() {

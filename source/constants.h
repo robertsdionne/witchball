@@ -44,6 +44,7 @@ constexpr float kDensity = 1.0; // kg/m^2
 constexpr float kFriction = 0.3;
 const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
 constexpr float kLinearDamping = 0.1;
+constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
 constexpr float kRestitution = 0.7;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2

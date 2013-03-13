@@ -47,22 +47,22 @@ void View::DrawFramesPerSecond() const {
   ofPopStyle();
 }
 
-void View::DrawPlayer(const b2Body *player) const {
+void View::DrawPlayer(const b2Body *player, ofColor color) const {
   ofPushStyle();
   ofPushMatrix();
   ofTranslate(player->GetPosition().x, player->GetPosition().y);
-  ofScale(kBallRadius, kBallRadius);
-  ofSetColor(ofColor::white);
+  ofScale(kPlayerRadius, kPlayerRadius);
+  ofSetColor(color);
   ofCircle(ofPoint(), 1.0);
   ofPopMatrix();
   ofPopStyle();
 }
 
 void View::DrawPlayers(const Model &model) const {
-  DrawPlayer(model.player1_top);
-  DrawPlayer(model.player1_bottom);
-  DrawPlayer(model.player2_top);
-  DrawPlayer(model.player2_bottom);
+  DrawPlayer(model.player1_top, ofColor::red);
+  DrawPlayer(model.player1_bottom, ofColor::red);
+  DrawPlayer(model.player2_top, ofColor::blue);
+  DrawPlayer(model.player2_bottom, ofColor::blue);
 }
 
 void View::SetupViewpoint() const {
