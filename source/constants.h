@@ -88,7 +88,7 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
 /**
  * Model Properties
  */
-constexpr float kPlayerMoveDelta = 0.01;
+constexpr float kPlayerMoveDelta = 0.015;
 constexpr int kPointsToWin = 7;
 constexpr float kPlayerBallCollisionMultiplier = 10;
 
