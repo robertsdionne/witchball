@@ -27,8 +27,8 @@ private:
   
   void SetupViewpoint() const;
     
-    ofColor color_p1;
-    ofColor color_p2;
+  ofColor color_p1;
+  ofColor color_p2;
         
 };
 

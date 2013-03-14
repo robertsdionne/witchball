@@ -17,10 +17,9 @@ void View::Draw(const Model &model) const {
 void View::Setup() {
   ofSetFrameRate(60);
   ofSetVerticalSync(true);
-    
-    color_p1 = ofColor(ofRandom(150,255), 0, ofRandom(150,255));
-    color_p2 = ofColor(0, ofRandom(150,255), ofRandom(150,255));
-    
+  
+  color_p1 = ofColor(ofRandom(150,255), 0, ofRandom(150,255));
+  color_p2 = ofColor(0, ofRandom(150,255), ofRandom(150,255));
 }
 
 void View::DrawBall(const b2Body *ball) const {
@@ -38,7 +37,7 @@ void View::DrawBall(const b2Body *ball) const {
 }
 
 void View::DrawCourt() const {
-    ofBackground(ofColor::black);
+  ofBackground(ofColor::black);
   ofPushStyle();
   ofSetColor(ofColor::white);
   ofLine(ofPoint(-kHalfCourtWidth, 0.0), ofPoint(kHalfCourtWidth, 0.0));
