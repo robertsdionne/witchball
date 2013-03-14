@@ -12,7 +12,7 @@ public:
   
   void Draw(const Model &model) const;
   
-  void Setup() const;
+  void Setup();
   
 private:
   void DrawBall(const b2Body *ball) const;
@@ -26,6 +26,12 @@ private:
   void DrawPlayers(const Model &model) const;
   
   void SetupViewpoint() const;
+    
+  ofColor color_p1;
+  ofColor color_p2;
+        
 };
+
+
 
 #endif  // WITCHBALL_VIEW_H_
