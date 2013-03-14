@@ -26,7 +26,7 @@ void Model::CreateBall(ofPoint position, ofVec2f velocity) {
   ball_definition.linearDamping = kLinearDamping;
   ball_definition.angularDamping = kAngularDamping;
   ball = world.CreateBody(&ball_definition);
-	ball->SetUserData(this);
+  ball->SetUserData(this);
   b2CircleShape ball_shape;
   ball_shape.m_radius = kBallRadius;
   b2FixtureDef ball_fixture_definition;
@@ -41,8 +41,8 @@ void Model::CreateBorder() {
   b2BodyDef border_definition;
   border_definition.position.Set(0.0, 0.0);
   border = world.CreateBody(&border_definition);
-	border->SetUserData(this);
-	b2Vec2 vertex[4];
+  border->SetUserData(this);
+  b2Vec2 vertex[4];
   vertex[0].Set(-kHalfCourtWidth, -kHalfCourtHeight);
   vertex[1].Set(kHalfCourtWidth, -kHalfCourtHeight);
   vertex[2].Set(kHalfCourtWidth, kHalfCourtHeight);
@@ -59,7 +59,7 @@ b2Body *Model::CreatePlayer(ofPoint position) {
   b2BodyDef player_definition;
   player_definition.position.Set(position.x, position.y);
   b2Body *player = world.CreateBody(&player_definition);
-	player->SetUserData(this);
+  player->SetUserData(this);
   b2CircleShape player_shape;
   player_shape.m_radius = kPlayerRadius;
   b2FixtureDef player_fixture_definition;

@@ -17,7 +17,7 @@ void collisionscorekeeper::BeginContact(b2Contact *contact) {
 	b2Body *bodyA = contact->GetFixtureA()->GetBody();
 	b2Body *bodyB = contact->GetFixtureB()->GetBody();
 	
-	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+	void *bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
 	
 	if ( bodyUserData ) {
 		Model *model = static_cast<Model*>( bodyUserData );
@@ -25,17 +25,9 @@ void collisionscorekeeper::BeginContact(b2Contact *contact) {
 		if(((bodyA == model->player1_bottom || bodyA == model->player1_top) && (bodyB == model->ball)) ||
 			 ((bodyB == model->player1_bottom || bodyB == model->player1_top) && (bodyA == model->ball))) {
 			model->IncrementPlayerOneCount();
-			
-			b2Vec2 ballVelocity = model->ball->GetLinearVelocity();
-			ballVelocity *= -1;
-			//model->ball->ApplyLinearImpulse(ballVelocity, model->ball->GetPosition());
-		}
-		else if(((bodyA == model->player2_bottom || bodyA == model->player2_top) && (bodyB == model->ball)) ||
+		} else if(((bodyA == model->player2_bottom || bodyA == model->player2_top) && (bodyB == model->ball)) ||
 						((bodyB == model->player2_bottom || bodyB == model->player2_top) && (bodyA == model->ball))) {
 			model->IncrementPlayerTwoCount();
-			b2Vec2 ballVelocity = model->ball->GetLinearVelocity();
-			ballVelocity *= -1;
-			//model->ball->ApplyForceToCenter(ballVelocity);
 		}
 	}
 }
@@ -52,13 +44,13 @@ void collisionscorekeeper::EndContact(b2Contact *contact) {
 		if(((bodyA == model->player1_bottom || bodyA == model->player1_top) && (bodyB == model->ball)) ||
 			 ((bodyB == model->player1_bottom || bodyB == model->player1_top) && (bodyA == model->ball))) {
 			b2Vec2 ballVelocity = model->ball->GetLinearVelocity();
-			ballVelocity *= kPlayerBallColMultiplier;
+			ballVelocity *= kPlayerBallCollisionMultiplier;
 			model->ball->ApplyForceToCenter(ballVelocity);
 		}
 		else if(((bodyA == model->player2_bottom || bodyA == model->player2_top) && (bodyB == model->ball)) ||
 						((bodyB == model->player2_bottom || bodyB == model->player2_top) && (bodyA == model->ball))) {
 			b2Vec2 ballVelocity = model->ball->GetLinearVelocity();
-			ballVelocity *= kPlayerBallColMultiplier;
+			ballVelocity *= kPlayerBallCollisionMultiplier;
 			model->ball->ApplyForceToCenter(ballVelocity);
 		}
 	}
