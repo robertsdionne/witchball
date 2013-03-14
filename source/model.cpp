@@ -119,14 +119,57 @@ void Model::RotateCounterClockwise() {
 }
 
 void Model::Gravity() {
+  const float x = ball->GetPosition().x;
   const float y = ball->GetPosition().y;
+  b2Vec2 gravity = kZeroGravity;
   if (y > kBallRadius) {
-    ball->ApplyForceToCenter(ball->GetMass() * kGravity);
+    if (x > kBallRadius) {
+      gravity = kTopRightQuadrantGravity[EnumValue(court_position)];
+    } else if (0 < x && x <= kBallRadius) {
+      gravity = Lerp(kZeroGravity, kTopRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius);
+    } else if (-kBallRadius <= x && x < 0) {
+      gravity = Lerp(kZeroGravity, kTopLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius);
+    } else {
+      gravity = kTopLeftQuadrantGravity[EnumValue(court_position)];
+    }
   }  else if (0 < y && y <= kBallRadius) {
-    ball->ApplyForceToCenter(ball->GetMass() * Lerp(b2Vec2(), kGravity, y / kBallRadius));
+    if (x > kBallRadius) {
+      gravity = Lerp(kZeroGravity, kTopRightQuadrantGravity[EnumValue(court_position)], y / kBallRadius);
+    } else if (0 < x && x <= kBallRadius) {
+      gravity = Lerp(kZeroGravity,
+                     Lerp(kZeroGravity, kTopRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius),
+                     y / kBallRadius);
+    } else if (-kBallRadius <= x && x < 0) {
+      gravity = Lerp(kZeroGravity,
+                     Lerp(kZeroGravity, kTopLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius),
+                     y / kBallRadius);
+    } else {
+      gravity = Lerp(kZeroGravity, kTopLeftQuadrantGravity[EnumValue(court_position)], y / kBallRadius);
+    }
   } else if (-kBallRadius <= y && y < 0) {
-    ball->ApplyForceToCenter(ball->GetMass() * Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
+    if (x > kBallRadius) {
+      gravity = Lerp(kZeroGravity, kBottomRightQuadrantGravity[EnumValue(court_position)], -y / kBallRadius);
+    } else if (0 < x && x <= kBallRadius) {
+      gravity = Lerp(kZeroGravity,
+                     Lerp(kZeroGravity, kBottomRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius),
+                     -y / kBallRadius);
+    } else if (-kBallRadius <= x && x < 0) {
+      gravity = Lerp(kZeroGravity,
+                     Lerp(kZeroGravity, kBottomLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius),
+                     -y / kBallRadius);
+    } else {
+      gravity = Lerp(kZeroGravity, kBottomLeftQuadrantGravity[EnumValue(court_position)], -y / kBallRadius);
+    }
   } else if (y < -kBallRadius) {
-    ball->ApplyForceToCenter(ball->GetMass() * kAntiGravity);
+    if (x > kBallRadius) {
+      gravity = kBottomRightQuadrantGravity[EnumValue(court_position)];
+    } else if (0 < x && x <= kBallRadius) {
+      gravity = Lerp(kZeroGravity, kBottomRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius);
+    } else if (-kBallRadius <= x && x < 0) {
+      gravity = Lerp(kZeroGravity, kBottomLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius);
+    } else {
+      gravity = kBottomLeftQuadrantGravity[EnumValue(court_position)];
+    }
   }
+  ball->ApplyForceToCenter(ball->GetMass() * gravity);
 }

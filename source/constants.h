@@ -49,6 +49,34 @@ constexpr float kRestitution = 0.7;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
+const b2Vec2 kTopLeftQuadrantGravity[] = {
+  kGravity,
+  kAntiGravity,
+  kAntiGravity,
+  kGravity
+};
+
+const b2Vec2 kTopRightQuadrantGravity[] = {
+  kGravity,
+  kGravity,
+  kAntiGravity,
+  kAntiGravity
+};
+
+const b2Vec2 kBottomLeftQuadrantGravity[] = {
+  kAntiGravity,
+  kAntiGravity,
+  kGravity,
+  kGravity
+};
+
+const b2Vec2 kBottomRightQuadrantGravity[] = {
+  kAntiGravity,
+  kGravity,
+  kGravity,
+  kAntiGravity
+};
+
 /**
  * Model Properties
  */
