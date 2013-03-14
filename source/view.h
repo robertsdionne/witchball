@@ -17,13 +17,19 @@ public:
 private:
   void DrawBall(const b2Body *ball) const;
   
-  void DrawCourt() const;
+  void DrawCourt(const Model &model) const;
   
   void DrawFramesPerSecond() const;
+  
+  void DrawGravity(const Model &model) const;
+  
+  void DrawGravityAt(ofPoint position, const Model &model) const;
   
   void DrawPlayer(const b2Body *player, ofColor color) const;
   
   void DrawPlayers(const Model &model) const;
+  
+  void DrawScore(const Model &model) const;
   
   void SetupViewpoint() const;
 

@@ -1,5 +1,4 @@
 *.swp
 .DS_Store
-bin/
-!bin/data/
+bin/*.app
 xcuserdata/

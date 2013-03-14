@@ -14,6 +14,8 @@ public:
   void Setup();
   
   void Update();
+  
+  b2Vec2 GravityAt(b2Vec2 position) const;
 	
   void IncrementPlayerOneCount();
   
@@ -31,15 +33,20 @@ private:
   b2Body *CreatePlayer(ofPoint position = ofPoint());
   
   void CreatePlayers();
-  
-  void Gravity();
-  
+    
 public:
   enum class CourtPosition {
     POSITION_1,
     POSITION_2,
     POSITION_3,
     POSITION_4
+  };
+  
+  enum class GravityVisual {
+    NONE,
+    BALL,
+    QUADRANT,
+    BALL_AND_QUADRANT
   };
   
   b2World world;
@@ -52,11 +59,13 @@ public:
   
   CourtPosition court_position;
 	
-	int player1_score = 0;
-	int player2_score = 0;
-	
-	int player1_increment_count = 0;
-	int player2_increment_count = 0;
+  int player1_score = 0;
+  int player2_score = 0;
+  
+  int player1_increment_count = 0;
+  int player2_increment_count = 0;
+  
+  GravityVisual draw_gravity;
 };
 
 #endif  // WITCHBALL_MODEL_H_

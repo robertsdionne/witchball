@@ -36,11 +36,8 @@ void Controller::Update() {
     const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball->GetPosition());
     model.ball->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
-  if (keys[' '] && !previous_keys[' ']) {
-    model.RotateClockwise();
-  }
   if (keys[OF_KEY_BACKSPACE] && !previous_keys[OF_KEY_BACKSPACE]) {
-    model.RotateCounterClockwise();
+    model.draw_gravity = Model::GravityVisual((EnumValue(model.draw_gravity) + 1) % 4);
   }
   if (keys['q']) {
     UpdatePlayerPosition(model.player1_top, kPlayer1TopForward[EnumValue(model.court_position)]);

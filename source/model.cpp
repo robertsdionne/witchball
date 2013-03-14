@@ -5,7 +5,7 @@
 Model::Model()
 : world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
-  mouse_position(), court_position(CourtPosition::POSITION_1) {}
+  mouse_position(), court_position(CourtPosition::POSITION_1), draw_gravity(GravityVisual::BALL) {}
 
 void Model::Setup() {
   CreateBall();
@@ -14,7 +14,7 @@ void Model::Setup() {
 }
 
 void Model::Update() {
-  Gravity();
+  ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
 }
 
@@ -118,15 +118,11 @@ void Model::RotateCounterClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
 }
 
-void Model::Gravity() {
-  const float y = ball->GetPosition().y;
-  if (y > kBallRadius) {
-    ball->ApplyForceToCenter(ball->GetMass() * kGravity);
-  }  else if (0 < y && y <= kBallRadius) {
-    ball->ApplyForceToCenter(ball->GetMass() * Lerp(b2Vec2(), kGravity, y / kBallRadius));
-  } else if (-kBallRadius <= y && y < 0) {
-    ball->ApplyForceToCenter(ball->GetMass() * Lerp(b2Vec2(), kAntiGravity, -y / kBallRadius));
-  } else if (y < -kBallRadius) {
-    ball->ApplyForceToCenter(ball->GetMass() * kAntiGravity);
-  }
+b2Vec2 Model::GravityAt(b2Vec2 position) const {
+  const float xt = (ofClamp(position.x, -kBallRadius, kBallRadius) / kBallRadius + 1.0) / 2.0;
+  const float yt = (ofClamp(position.y, -kBallRadius, kBallRadius) / kBallRadius + 1.0) / 2.0;
+  return Lerp(Lerp(kBottomLeftQuadrantGravity[EnumValue(court_position)],
+                   kBottomRightQuadrantGravity[EnumValue(court_position)], xt),
+              Lerp(kTopLeftQuadrantGravity[EnumValue(court_position)],
+                   kTopRightQuadrantGravity[EnumValue(court_position)], xt), yt);
 }
