@@ -52,11 +52,11 @@ public:
   
   CourtPosition court_position;
 	
-	int player1_score = 0;
-	int player2_score = 0;
-	
-	int player1_increment_count = 0;
-	int player2_increment_count = 0;
+  int player1_score = 0;
+  int player2_score = 0;
+  
+  int player1_increment_count = 0;
+  int player2_increment_count = 0;
 };
 
 #endif  // WITCHBALL_MODEL_H_
