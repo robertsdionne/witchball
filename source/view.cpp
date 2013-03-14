@@ -41,12 +41,14 @@ void View::DrawBall(const b2Body *ball) const {
 
 void View::DrawCourt(const Model &model) const {
   ofPushStyle();
+  // Draw a horizontal or vertical court line depending on the current gravity configuration.
   ofSetColor(ofColor::white);
   if (EnumValue(model.court_position) % 2 == 0) {
     ofLine(ofPoint(-kHalfCourtWidth, 0.0), ofPoint(kHalfCourtWidth, 0.0));
   } else {
     ofLine(ofPoint(0.0, -kHalfCourtHeight), ofPoint(0.0, kHalfCourtHeight));
   }
+  // Draw connectors between the players and their nearest vertical walls.
   ofSetColor(color_p1 / 2.0);
   ofLine(OpenFrameworksVector(model.player1_top->GetPosition()),
          ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y));
@@ -67,6 +69,8 @@ void View::DrawFramesPerSecond() const {
 }
 
 void View::DrawGravity(const Model &model) const {
+  // Draw arrows indicating the strength and direction of gravity, either at the ball or in each
+  // quadrant.
   if (EnumValue(model.draw_gravity) & 1) {
     DrawGravityAt(OpenFrameworksVector(model.ball->GetPosition()), model);
   }
@@ -110,6 +114,7 @@ void View::DrawPlayers(const Model &model) const {
 
 void View::DrawScore(const Model &model) const {
   ofPushStyle();
+  // Draw a number of rectangles for each player's score.
   ofSetColor(color_p1 / 3.0);
   for (int i = 0; i < model.player1_score; ++i) {
     ofPushMatrix();
