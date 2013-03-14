@@ -200,9 +200,6 @@
 		4672391216EAC9BF00FFB9D9 /* b2WheelJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WheelJoint.h; sourceTree = "<group>"; };
 		4672391416EAC9BF00FFB9D9 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		4672391516EAC9BF00FFB9D9 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
-		46770FE816EC14A70038E6E5 /* wallbounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wallbounce.wav; sourceTree = "<group>"; };
-		46770FEB16EC1D140038E6E5 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
-		46770FEC16EC1D140038E6E5 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
 		46770FED16EC20630038E6E5 /* model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		46770FEE16EC20630038E6E5 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
 		46770FF316EC27430038E6E5 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
@@ -215,6 +212,9 @@
 		46770FFD16EC34340038E6E5 /* collisionsoundplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisionsoundplayer.h; sourceTree = "<group>"; };
 		4678D80816EAC7BD00193429 /* witchball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = witchball.h; sourceTree = "<group>"; };
 		4678D80916EAC7BD00193429 /* witchball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = witchball.cpp; sourceTree = "<group>"; };
+		46BB227A16F1726100DF63F4 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
+		46BB227B16F1726100DF63F4 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
+		46BB227C16F1726100DF63F4 /* wallbounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wallbounce.wav; sourceTree = "<group>"; };
 		46E8E13116EAD5EF0091B111 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		46F7214216EFB9B200DBA67D /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		46F7214416EFB9B200DBA67D /* _detail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _detail.hpp; sourceTree = "<group>"; };
@@ -666,14 +666,15 @@
 			path = Rope;
 			sourceTree = "<group>";
 		};
-		46770FE716EC14A70038E6E5 /* assets */ = {
+		46BB227916F1726100DF63F4 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				46770FEB16EC1D140038E6E5 /* bgm.wav */,
-				46770FEC16EC1D140038E6E5 /* bgm2.wav */,
-				46770FE816EC14A70038E6E5 /* wallbounce.wav */,
+				46BB227A16F1726100DF63F4 /* bgm.wav */,
+				46BB227B16F1726100DF63F4 /* bgm2.wav */,
+				46BB227C16F1726100DF63F4 /* wallbounce.wav */,
 			);
-			path = assets;
+			name = data;
+			path = bin/data;
 			sourceTree = "<group>";
 		};
 		46F7214116EFB9B200DBA67D /* glm */ = {
@@ -1011,7 +1012,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				46770FE716EC14A70038E6E5 /* assets */,
+				46BB227916F1726100DF63F4 /* data */,
 				467238B016EAC9BF00FFB9D9 /* libraries */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,

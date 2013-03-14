@@ -10,9 +10,9 @@
  */
 constexpr int kConcurrentSounds = 10;
 
-constexpr const char *kBackgroundMusicFilename = "../../assets/bgm.wav";
-constexpr const char *kBackgroundMusicTwoFilename = "../../assets/bgm2.wav";
-constexpr const char *kWallBounceFilename = "../../assets/wallbounce.wav";
+constexpr const char *kBackgroundMusicFilename = "bgm.wav";
+constexpr const char *kBackgroundMusicTwoFilename = "bgm2.wav";
+constexpr const char *kWallBounceFilename = "wallbounce.wav";
 
 /**
  * Video properties.
