@@ -26,6 +26,7 @@ void Model::CreateBall(ofPoint position, ofVec2f velocity) {
   ball_definition.linearDamping = kLinearDamping;
   ball_definition.angularDamping = kAngularDamping;
   ball = world.CreateBody(&ball_definition);
+	ball->SetUserData(this);
   b2CircleShape ball_shape;
   ball_shape.m_radius = kBallRadius;
   b2FixtureDef ball_fixture_definition;
@@ -40,7 +41,8 @@ void Model::CreateBorder() {
   b2BodyDef border_definition;
   border_definition.position.Set(0.0, 0.0);
   border = world.CreateBody(&border_definition);
-  b2Vec2 vertex[4];
+	border->SetUserData(this);
+	b2Vec2 vertex[4];
   vertex[0].Set(-kHalfCourtWidth, -kHalfCourtHeight);
   vertex[1].Set(kHalfCourtWidth, -kHalfCourtHeight);
   vertex[2].Set(kHalfCourtWidth, kHalfCourtHeight);
@@ -57,6 +59,7 @@ b2Body *Model::CreatePlayer(ofPoint position) {
   b2BodyDef player_definition;
   player_definition.position.Set(position.x, position.y);
   b2Body *player = world.CreateBody(&player_definition);
+	player->SetUserData(this);
   b2CircleShape player_shape;
   player_shape.m_radius = kPlayerRadius;
   b2FixtureDef player_fixture_definition;
@@ -71,6 +74,40 @@ void Model::CreatePlayers() {
   player1_bottom = CreatePlayer(kPlayer1BottomBack[EnumValue(CourtPosition::POSITION_1)]);
   player2_top = CreatePlayer(kPlayer2TopBack[EnumValue(CourtPosition::POSITION_1)]);
   player2_bottom = CreatePlayer(kPlayer2BottomBack[EnumValue(CourtPosition::POSITION_1)]);
+}
+
+void Model::IncrementPlayerOneCount() {
+	if(player1_increment_count == 3) {
+		player1_score++;
+		
+		if(player1_score == kPointsToWin) {
+			printf("P1 Wins\n");
+			player1_score = 0;
+			player1_increment_count = 0;
+		}
+	}
+	else {
+		player1_increment_count++;
+	}
+	player2_increment_count = 0;
+	
+	printf("P1 Score: %d\n",player1_score);
+}
+
+void Model::IncrementPlayerTwoCount() {
+	if(player2_increment_count == 3) {
+		player2_score++;
+		if(player2_score == kPointsToWin) {
+			printf("P2 Wins\n");
+			player2_score = 0;
+			player2_increment_count = 0;
+		}
+	}
+	else {
+		player2_increment_count++;
+	}
+	player1_increment_count = 0;
+	printf("P2 Score: %d\n",player2_score);
 }
 
 void Model::Gravity() {

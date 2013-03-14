@@ -14,6 +14,9 @@ public:
   void Setup();
   
   void Update();
+	
+	void IncrementPlayerOneCount();
+	void IncrementPlayerTwoCount();
   
 private:
   void CreateBall(ofPoint position = ofPoint(), ofVec2f velocity = ofVec2f());
@@ -23,6 +26,8 @@ private:
   b2Body *CreatePlayer(ofPoint position = ofPoint());
   
   void CreatePlayers();
+	
+	
   
   void Gravity();
   
@@ -43,6 +48,12 @@ public:
   ofPoint mouse_position;
   
   CourtPosition court_position;
+	
+	int player1_score = 0;
+	int player2_score = 0;
+	
+	int player1_increment_count = 0;
+	int player2_increment_count = 0;
 };
 
 #endif  // WITCHBALL_MODEL_H_
