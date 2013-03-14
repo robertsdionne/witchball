@@ -214,6 +214,14 @@
 		46770FFD16EC34340038E6E5 /* collisionsoundplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisionsoundplayer.h; sourceTree = "<group>"; };
 		4678D80816EAC7BD00193429 /* witchball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = witchball.h; sourceTree = "<group>"; };
 		4678D80916EAC7BD00193429 /* witchball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = witchball.cpp; sourceTree = "<group>"; };
+		46AB34D816F1B3A0006BE062 /* backhit4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backhit4.wav; sourceTree = "<group>"; };
+		46AB34D916F1B3A0006BE062 /* backhit3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backhit3.wav; sourceTree = "<group>"; };
+		46AB34DA16F1B3A0006BE062 /* backhit2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backhit2.wav; sourceTree = "<group>"; };
+		46AB34DB16F1B3A0006BE062 /* backhit1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backhit1.wav; sourceTree = "<group>"; };
+		46AB34DC16F1B3A0006BE062 /* hit4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit4.wav; sourceTree = "<group>"; };
+		46AB34DD16F1B3A0006BE062 /* hit3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit3.wav; sourceTree = "<group>"; };
+		46AB34DE16F1B3A0006BE062 /* hit2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit2.wav; sourceTree = "<group>"; };
+		46AB34DF16F1B3A0006BE062 /* hit1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit1.wav; sourceTree = "<group>"; };
 		46BB227A16F1726100DF63F4 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
 		46BB227B16F1726100DF63F4 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
 		46BB227C16F1726100DF63F4 /* wallbounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wallbounce.wav; sourceTree = "<group>"; };
@@ -675,8 +683,16 @@
 		46BB227916F1726100DF63F4 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				46AB34DB16F1B3A0006BE062 /* backhit1.wav */,
+				46AB34DA16F1B3A0006BE062 /* backhit2.wav */,
+				46AB34D916F1B3A0006BE062 /* backhit3.wav */,
+				46AB34D816F1B3A0006BE062 /* backhit4.wav */,
 				46BB227A16F1726100DF63F4 /* bgm.wav */,
 				46BB227B16F1726100DF63F4 /* bgm2.wav */,
+				46AB34DF16F1B3A0006BE062 /* hit1.wav */,
+				46AB34DE16F1B3A0006BE062 /* hit2.wav */,
+				46AB34DD16F1B3A0006BE062 /* hit3.wav */,
+				46AB34DC16F1B3A0006BE062 /* hit4.wav */,
 				46BB227C16F1726100DF63F4 /* wallbounce.wav */,
 			);
 			name = data;
