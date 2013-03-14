@@ -77,37 +77,45 @@ void Model::CreatePlayers() {
 }
 
 void Model::IncrementPlayerOneCount() {
-	if(player1_increment_count == 3) {
-		player1_score++;
-		
-		if(player1_score == kPointsToWin) {
-			printf("P1 Wins\n");
-			player1_score = 0;
-			player1_increment_count = 0;
-		}
-	}
-	else {
-		player1_increment_count++;
-	}
-	player2_increment_count = 0;
-	
-	printf("P1 Score: %d\n",player1_score);
+  if(player1_increment_count == 3) {
+    player1_score++;
+
+    if(player1_score == kPointsToWin) {
+      printf("P1 Wins\n");
+      player1_score = 0;
+      player1_increment_count = 0;
+    }
+  }
+  else {
+    player1_increment_count++;
+  }
+  player2_increment_count = 0;
+
+  printf("P1 Score: %d\n",player1_score);
 }
 
 void Model::IncrementPlayerTwoCount() {
-	if(player2_increment_count == 3) {
-		player2_score++;
-		if(player2_score == kPointsToWin) {
-			printf("P2 Wins\n");
-			player2_score = 0;
-			player2_increment_count = 0;
-		}
-	}
-	else {
-		player2_increment_count++;
-	}
-	player1_increment_count = 0;
-	printf("P2 Score: %d\n",player2_score);
+  if(player2_increment_count == 3) {
+    player2_score++;
+    if(player2_score == kPointsToWin) {
+      printf("P2 Wins\n");
+      player2_score = 0;
+      player2_increment_count = 0;
+    }
+  }
+  else {
+    player2_increment_count++;
+  }
+  player1_increment_count = 0;
+  printf("P2 Score: %d\n",player2_score);
+}
+
+void Model::RotateClockwise() {
+  court_position = Model::CourtPosition((EnumValue(court_position) + 1) % 4);
+}
+
+void Model::RotateCounterClockwise() {
+  court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
 }
 
 void Model::Gravity() {

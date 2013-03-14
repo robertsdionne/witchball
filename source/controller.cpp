@@ -37,10 +37,10 @@ void Controller::Update() {
     model.ball->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
   if (keys[' '] && !previous_keys[' ']) {
-    model.court_position = Model::CourtPosition((EnumValue(model.court_position) + 1) % 4);
+    model.RotateClockwise();
   }
   if (keys[OF_KEY_BACKSPACE] && !previous_keys[OF_KEY_BACKSPACE]) {
-    model.court_position = Model::CourtPosition((EnumValue(model.court_position) + 3) % 4);
+    model.RotateCounterClockwise();
   }
   if (keys['q']) {
     UpdatePlayerPosition(model.player1_top, kPlayer1TopForward[EnumValue(model.court_position)]);
