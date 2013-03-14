@@ -37,24 +37,24 @@ void Controller::Update() {
     model.ball->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
   }
   if (keys[' '] && !previous_keys[' ']) {
-    model.court_position = static_cast<Model::CourtPosition>((static_cast<int>(model.court_position) + 1) % 4);
+    model.court_position = Model::CourtPosition((EnumValue(model.court_position) + 1) % 4);
   }
   if (keys[OF_KEY_BACKSPACE] && !previous_keys[OF_KEY_BACKSPACE]) {
-    model.court_position = static_cast<Model::CourtPosition>((static_cast<int>(model.court_position) + 3) % 4);
+    model.court_position = Model::CourtPosition((EnumValue(model.court_position) + 3) % 4);
   }
   if (keys['q']) {
-    UpdatePlayerPosition(model.player1_top, kPlayer1TopForward[static_cast<int>(model.court_position)]);
-    UpdatePlayerPosition(model.player1_bottom, kPlayer1BottomForward[static_cast<int>(model.court_position)]);
+    UpdatePlayerPosition(model.player1_top, kPlayer1TopForward[EnumValue(model.court_position)]);
+    UpdatePlayerPosition(model.player1_bottom, kPlayer1BottomForward[EnumValue(model.court_position)]);
   } else {
-    UpdatePlayerPosition(model.player1_top, kPlayer1TopBack[static_cast<int>(model.court_position)]);
-    UpdatePlayerPosition(model.player1_bottom, kPlayer1BottomBack[static_cast<int>(model.court_position)]);
+    UpdatePlayerPosition(model.player1_top, kPlayer1TopBack[EnumValue(model.court_position)]);
+    UpdatePlayerPosition(model.player1_bottom, kPlayer1BottomBack[EnumValue(model.court_position)]);
   }
   if (keys['p']) {
-    UpdatePlayerPosition(model.player2_top, kPlayer2TopForward[static_cast<int>(model.court_position)]);
-    UpdatePlayerPosition(model.player2_bottom, kPlayer2BottomForward[static_cast<int>(model.court_position)]);
+    UpdatePlayerPosition(model.player2_top, kPlayer2TopForward[EnumValue(model.court_position)]);
+    UpdatePlayerPosition(model.player2_bottom, kPlayer2BottomForward[EnumValue(model.court_position)]);
   } else {
-    UpdatePlayerPosition(model.player2_top, kPlayer2TopBack[static_cast<int>(model.court_position)]);
-    UpdatePlayerPosition(model.player2_bottom, kPlayer2BottomBack[static_cast<int>(model.court_position)]);
+    UpdatePlayerPosition(model.player2_top, kPlayer2TopBack[EnumValue(model.court_position)]);
+    UpdatePlayerPosition(model.player2_bottom, kPlayer2BottomBack[EnumValue(model.court_position)]);
   }
   previous_buttons = buttons;
   previous_keys = keys;

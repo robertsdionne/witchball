@@ -70,10 +70,10 @@ b2Body *Model::CreatePlayer(ofPoint position) {
 }
 
 void Model::CreatePlayers() {
-  player1_top = CreatePlayer(ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius));
-  player1_bottom = CreatePlayer(ofPoint(kHalfCourtWidth - kPlayerRadius, -kPlayerRadius));
-  player2_top = CreatePlayer(ofPoint(kHalfCourtWidth - kPlayerRadius, kPlayerRadius));
-  player2_bottom = CreatePlayer(ofPoint(-kHalfCourtWidth + kPlayerRadius, -kPlayerRadius));
+  player1_top = CreatePlayer(kPlayer1TopBack[EnumValue(CourtPosition::POSITION_1)]);
+  player1_bottom = CreatePlayer(kPlayer1BottomBack[EnumValue(CourtPosition::POSITION_1)]);
+  player2_top = CreatePlayer(kPlayer2TopBack[EnumValue(CourtPosition::POSITION_1)]);
+  player2_bottom = CreatePlayer(kPlayer2BottomBack[EnumValue(CourtPosition::POSITION_1)]);
 }
 
 void Model::IncrementPlayerOneCount() {
