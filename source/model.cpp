@@ -5,7 +5,7 @@
 Model::Model()
 : world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
-  mouse_position(), court_position(CourtPosition::POSITION_1) {}
+  mouse_position(), court_position(CourtPosition::POSITION_1), draw_gravity(GravityVisual::BALL) {}
 
 void Model::Setup() {
   CreateBall();
@@ -14,7 +14,7 @@ void Model::Setup() {
 }
 
 void Model::Update() {
-  Gravity();
+  ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
 }
 
@@ -118,58 +118,11 @@ void Model::RotateCounterClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
 }
 
-void Model::Gravity() {
-  const float x = ball->GetPosition().x;
-  const float y = ball->GetPosition().y;
-  b2Vec2 gravity = kZeroGravity;
-  if (y > kBallRadius) {
-    if (x > kBallRadius) {
-      gravity = kTopRightQuadrantGravity[EnumValue(court_position)];
-    } else if (0 < x && x <= kBallRadius) {
-      gravity = Lerp(kZeroGravity, kTopRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius);
-    } else if (-kBallRadius <= x && x < 0) {
-      gravity = Lerp(kZeroGravity, kTopLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius);
-    } else {
-      gravity = kTopLeftQuadrantGravity[EnumValue(court_position)];
-    }
-  }  else if (0 < y && y <= kBallRadius) {
-    if (x > kBallRadius) {
-      gravity = Lerp(kZeroGravity, kTopRightQuadrantGravity[EnumValue(court_position)], y / kBallRadius);
-    } else if (0 < x && x <= kBallRadius) {
-      gravity = Lerp(kZeroGravity,
-                     Lerp(kZeroGravity, kTopRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius),
-                     y / kBallRadius);
-    } else if (-kBallRadius <= x && x < 0) {
-      gravity = Lerp(kZeroGravity,
-                     Lerp(kZeroGravity, kTopLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius),
-                     y / kBallRadius);
-    } else {
-      gravity = Lerp(kZeroGravity, kTopLeftQuadrantGravity[EnumValue(court_position)], y / kBallRadius);
-    }
-  } else if (-kBallRadius <= y && y < 0) {
-    if (x > kBallRadius) {
-      gravity = Lerp(kZeroGravity, kBottomRightQuadrantGravity[EnumValue(court_position)], -y / kBallRadius);
-    } else if (0 < x && x <= kBallRadius) {
-      gravity = Lerp(kZeroGravity,
-                     Lerp(kZeroGravity, kBottomRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius),
-                     -y / kBallRadius);
-    } else if (-kBallRadius <= x && x < 0) {
-      gravity = Lerp(kZeroGravity,
-                     Lerp(kZeroGravity, kBottomLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius),
-                     -y / kBallRadius);
-    } else {
-      gravity = Lerp(kZeroGravity, kBottomLeftQuadrantGravity[EnumValue(court_position)], -y / kBallRadius);
-    }
-  } else if (y < -kBallRadius) {
-    if (x > kBallRadius) {
-      gravity = kBottomRightQuadrantGravity[EnumValue(court_position)];
-    } else if (0 < x && x <= kBallRadius) {
-      gravity = Lerp(kZeroGravity, kBottomRightQuadrantGravity[EnumValue(court_position)], x / kBallRadius);
-    } else if (-kBallRadius <= x && x < 0) {
-      gravity = Lerp(kZeroGravity, kBottomLeftQuadrantGravity[EnumValue(court_position)], -x / kBallRadius);
-    } else {
-      gravity = kBottomLeftQuadrantGravity[EnumValue(court_position)];
-    }
-  }
-  ball->ApplyForceToCenter(ball->GetMass() * gravity);
+b2Vec2 Model::GravityAt(b2Vec2 position) const {
+  const float xt = (ofClamp(position.x, -kBallRadius, kBallRadius) / kBallRadius + 1.0) / 2.0;
+  const float yt = (ofClamp(position.y, -kBallRadius, kBallRadius) / kBallRadius + 1.0) / 2.0;
+  return Lerp(Lerp(kBottomLeftQuadrantGravity[EnumValue(court_position)],
+                   kBottomRightQuadrantGravity[EnumValue(court_position)], xt),
+              Lerp(kTopLeftQuadrantGravity[EnumValue(court_position)],
+                   kTopRightQuadrantGravity[EnumValue(court_position)], xt), yt);
 }
