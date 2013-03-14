@@ -62,8 +62,8 @@
 		46F7223216EFBE6700DBA67D /* LinearTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222B16EFBE6700DBA67D /* LinearTexture.cpp */; };
 		46F7223316EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222D16EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp */; };
 		46F7223416EFBE6700DBA67D /* PixelTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222F16EFBE6700DBA67D /* PixelTexture.cpp */; };
+		A9745B3016F0CC3700428157 /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9745B2F16F0CBCE00428157 /* openFrameworksDebug.a */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
-		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
 		E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9730E8CC7DD009D7055 /* AudioToolbox.framework */; };
@@ -84,18 +84,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E4328147138ABC890047C5CB /* PBXContainerItemProxy */ = {
+		A9745B2E16F0CBCE00428157 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E4B27C1510CBEB8E00536013;
-			remoteInfo = openFrameworks;
-		};
-		E4EEB9AB138B136A00A80321 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E4B27C1410CBEB8E00536013;
 			remoteInfo = openFrameworks;
 		};
 /* End PBXContainerItemProxy section */
@@ -455,8 +448,8 @@
 		46F7222E16EFBE6700DBA67D /* ofxSpriteSheetRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSpriteSheetRenderer.h; sourceTree = "<group>"; };
 		46F7222F16EFBE6700DBA67D /* PixelTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelTexture.cpp; sourceTree = "<group>"; };
 		46F7223016EFBE6700DBA67D /* PixelTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelTexture.h; sourceTree = "<group>"; };
-		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../Documents/of_v0073_osx_release/libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
-		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../Documents/of_v0073_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../Documents/of_v0.7.4_osx_release/libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../Documents/of_v0.7.4_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		E45BE9730E8CC7DD009D7055 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -472,7 +465,7 @@
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		E4C2424610CC5A17004149E2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../Documents/of_v0073_osx_release/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
+		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../Documents/of_v0.7.4_osx_release/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
@@ -484,10 +477,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9745B3016F0CC3700428157 /* openFrameworksDebug.a in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
-				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
@@ -961,6 +954,14 @@
 			path = ofxSpriteSheetRenderer;
 			sourceTree = "<group>";
 		};
+		A9745B2B16F0CBCE00428157 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9745B2F16F0CBCE00428157 /* openFrameworksDebug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,14 +997,6 @@
 				BBAB23BE13894E4700AA2426 /* GLUT.framework */,
 			);
 			name = "3rd party frameworks";
-			sourceTree = "<group>";
-		};
-		E4328144138ABC890047C5CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E4328148138ABC890047C5CB /* openFrameworksDebug.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E45BE5980E8CC70C009D7055 /* frameworks */ = {
@@ -1075,7 +1068,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
 			);
 			name = witchball;
 			productName = myOFApp;
@@ -1102,7 +1094,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E4328144138ABC890047C5CB /* Products */;
+					ProductGroup = A9745B2B16F0CBCE00428157 /* Products */;
 					ProjectRef = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
 				},
 			);
@@ -1114,11 +1106,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E4328148138ABC890047C5CB /* openFrameworksDebug.a */ = {
+		A9745B2F16F0CBCE00428157 /* openFrameworksDebug.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = openFrameworksDebug.a;
-			remoteRef = E4328147138ABC890047C5CB /* PBXContainerItemProxy */;
+			remoteRef = A9745B2E16F0CBCE00428157 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1135,7 +1127,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -f ../../Documents/of_v0073_osx_release/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";";
+			shellScript = "cp -f ../../Documents/of_v0.7.4_osx_release/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1204,14 +1196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E4EEB9AC138B136A00A80321 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = openFrameworks;
-			targetProxy = E4EEB9AB138B136A00A80321 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E4B69B4E0A3A1720003C02F2 /* Debug */ = {
@@ -1284,7 +1268,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../Documents/of_v0073_osx_release/libs/glut/lib/osx\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../Documents/of_v0.7.4_osx_release/libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1373,7 +1357,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../Documents/of_v0073_osx_release/libs/glut/lib/osx\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../Documents/of_v0.7.4_osx_release/libs/glut/lib/osx\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
