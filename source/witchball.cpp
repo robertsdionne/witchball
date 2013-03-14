@@ -6,13 +6,14 @@
 #include "witchball.h"
 
 WitchBall::WitchBall()
-: model(), view(), controller(model), soundCollision(),
-  scoreKeeperCollision(), sound_background_music(), sound_background_music_2() {}
+: model(), view(), controller(model), sound_collision(), score_keeper_collision(),
+  contact_listener(), sound_background_music(), sound_background_music_2() {}
 
 void WitchBall::setup() {
   model.Setup();
-  model.world.SetContactListener(&soundCollision);
-  model.world.SetContactListener(&scoreKeeperCollision);
+  contact_listener.AddContactListener(&sound_collision);
+  contact_listener.AddContactListener(&score_keeper_collision);
+  model.world.SetContactListener(&contact_listener);
   view.Setup();
   sound_background_music.loadSound(kBackgroundMusicFilename);
   sound_background_music_2.loadSound(kBackgroundMusicTwoFilename);

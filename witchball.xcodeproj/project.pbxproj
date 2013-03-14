@@ -58,6 +58,7 @@
 		46770FFB16EC2E250038E6E5 /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FF916EC2E240038E6E5 /* controller.cpp */; };
 		46770FFE16EC34340038E6E5 /* collisionsoundplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46770FFC16EC34340038E6E5 /* collisionsoundplayer.cpp */; };
 		4678D80A16EAC7BD00193429 /* witchball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4678D80916EAC7BD00193429 /* witchball.cpp */; };
+		46D033F716F1821200E6A152 /* compositecontactlistener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46D033F516F1821200E6A152 /* compositecontactlistener.cpp */; };
 		46F7223116EFBE6700DBA67D /* CollageTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222916EFBE6700DBA67D /* CollageTexture.cpp */; };
 		46F7223216EFBE6700DBA67D /* LinearTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222B16EFBE6700DBA67D /* LinearTexture.cpp */; };
 		46F7223316EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7222D16EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp */; };
@@ -216,6 +217,8 @@
 		46BB227A16F1726100DF63F4 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
 		46BB227B16F1726100DF63F4 /* bgm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm2.wav; sourceTree = "<group>"; };
 		46BB227C16F1726100DF63F4 /* wallbounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wallbounce.wav; sourceTree = "<group>"; };
+		46D033F516F1821200E6A152 /* compositecontactlistener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compositecontactlistener.cpp; sourceTree = "<group>"; };
+		46D033F616F1821200E6A152 /* compositecontactlistener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compositecontactlistener.h; sourceTree = "<group>"; };
 		46E8E13116EAD5EF0091B111 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		46F7214216EFB9B200DBA67D /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		46F7214416EFB9B200DBA67D /* _detail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _detail.hpp; sourceTree = "<group>"; };
@@ -1030,22 +1033,24 @@
 		E4B69E1C0A3A1BDC003C02F2 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				46770FED16EC20630038E6E5 /* model.cpp */,
-				46770FEE16EC20630038E6E5 /* model.h */,
+				A9718FB316F120F600980A18 /* collisionscorekeeper.cpp */,
+				A9718FB416F120F600980A18 /* collisionscorekeeper.h */,
 				46770FFC16EC34340038E6E5 /* collisionsoundplayer.cpp */,
 				46770FFD16EC34340038E6E5 /* collisionsoundplayer.h */,
+				46D033F516F1821200E6A152 /* compositecontactlistener.cpp */,
+				46D033F616F1821200E6A152 /* compositecontactlistener.h */,
 				46E8E13116EAD5EF0091B111 /* constants.h */,
 				46770FF916EC2E240038E6E5 /* controller.cpp */,
 				46770FFA16EC2E240038E6E5 /* controller.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
+				46770FED16EC20630038E6E5 /* model.cpp */,
+				46770FEE16EC20630038E6E5 /* model.h */,
 				46770FF416EC27430038E6E5 /* utilities.cpp */,
 				46770FF316EC27430038E6E5 /* utilities.h */,
 				46770FF616EC29C10038E6E5 /* view.cpp */,
 				46770FF716EC29C10038E6E5 /* view.h */,
 				4678D80916EAC7BD00193429 /* witchball.cpp */,
 				4678D80816EAC7BD00193429 /* witchball.h */,
-				A9718FB316F120F600980A18 /* collisionscorekeeper.cpp */,
-				A9718FB416F120F600980A18 /* collisionscorekeeper.h */,
 			);
 			path = source;
 			sourceTree = SOURCE_ROOT;
@@ -1199,6 +1204,7 @@
 				46F7223316EFBE6700DBA67D /* ofxSpriteSheetRenderer.cpp in Sources */,
 				46F7223416EFBE6700DBA67D /* PixelTexture.cpp in Sources */,
 				A9718FB516F120F600980A18 /* collisionscorekeeper.cpp in Sources */,
+				46D033F716F1821200E6A152 /* compositecontactlistener.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

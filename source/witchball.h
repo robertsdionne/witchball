@@ -6,6 +6,7 @@
 
 #include "collisionsoundplayer.h"
 #include "collisionscorekeeper.h"
+#include "compositecontactlistener.h"
 #include "controller.h"
 #include "model.h"
 #include "ofMain.h"
@@ -46,9 +47,10 @@ private:
   Model model;
   View view;
   Controller controller;
-  CollisionSoundPlayer soundCollision;
-  collisionscorekeeper scoreKeeperCollision;
-	ofSoundPlayer sound_background_music, sound_background_music_2;
+  CollisionSoundPlayer sound_collision;
+  collisionscorekeeper score_keeper_collision;
+  CompositeContactListener contact_listener;
+  ofSoundPlayer sound_background_music, sound_background_music_2;
 };
 
 #endif  // WITCHBALL_WITCHBALL
