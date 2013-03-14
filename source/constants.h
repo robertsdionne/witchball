@@ -50,6 +50,11 @@ constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
 /**
+ * Model Properties
+ */
+constexpr int kPointsToWin = 7;
+
+/**
  * Controller properties.
  */
 constexpr float kControllerRate = 1.0 / 40.0;
