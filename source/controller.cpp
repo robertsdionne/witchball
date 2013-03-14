@@ -40,18 +40,14 @@ void Controller::Update() {
     model.draw_gravity = Model::GravityVisual((EnumValue(model.draw_gravity) + 1) % 4);
   }
   if (keys['q']) {
-    UpdatePlayerPosition(model.player1_top, kPlayer1TopForward[EnumValue(model.court_position)]);
-    UpdatePlayerPosition(model.player1_bottom, kPlayer1BottomForward[EnumValue(model.court_position)]);
+    model.player1_position = ofClamp(model.player1_position + kPlayerMoveDelta, 0.0, 1.0);
   } else {
-    UpdatePlayerPosition(model.player1_top, kPlayer1TopBack[EnumValue(model.court_position)]);
-    UpdatePlayerPosition(model.player1_bottom, kPlayer1BottomBack[EnumValue(model.court_position)]);
+    model.player1_position = ofClamp(model.player1_position - kPlayerMoveDelta, 0.0, 1.0);
   }
   if (keys['p']) {
-    UpdatePlayerPosition(model.player2_top, kPlayer2TopForward[EnumValue(model.court_position)]);
-    UpdatePlayerPosition(model.player2_bottom, kPlayer2BottomForward[EnumValue(model.court_position)]);
+    model.player2_position = ofClamp(model.player2_position + kPlayerMoveDelta, 0.0, 1.0);
   } else {
-    UpdatePlayerPosition(model.player2_top, kPlayer2TopBack[EnumValue(model.court_position)]);
-    UpdatePlayerPosition(model.player2_bottom, kPlayer2BottomBack[EnumValue(model.court_position)]);
+    model.player2_position = ofClamp(model.player2_position - kPlayerMoveDelta, 0.0, 1.0);
   }
   previous_buttons = buttons;
   previous_keys = keys;
@@ -59,11 +55,4 @@ void Controller::Update() {
 
 bool Controller::MouseButtonIsPressed(int button) {
   return buttons[button];
-}
-
-void Controller::UpdatePlayerPosition(b2Body *player, ofPoint target) {
-  const ofVec2f position = OpenFrameworksVector(player->GetPosition());
-  const ofVec2f delta = (target - position) * kControllerRate;
-  const ofVec2f new_position = position + delta;
-  player->SetTransform(Box2dVector(new_position), 0.0);
 }

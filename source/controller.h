@@ -29,8 +29,6 @@ public:
 private:
   bool MouseButtonIsPressed(int button);
   
-  void UpdatePlayerPosition(b2Body *player, ofPoint target);
-  
 private:
   Model &model;
   std::map<int, bool> buttons, keys, previous_buttons, previous_keys;

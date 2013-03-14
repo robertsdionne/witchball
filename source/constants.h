@@ -88,13 +88,15 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
 /**
  * Model Properties
  */
+constexpr float kPlayerMoveDelta = 0.01;
 constexpr int kPointsToWin = 7;
-const float kPlayerBallCollisionMultiplier = 10;
+constexpr float kPlayerBallCollisionMultiplier = 10;
 
 /**
  * Controller properties.
  */
-constexpr float kControllerRate = 1.0 / 40.0;
+constexpr float kControllerRateX = 1.0 / 5.0;
+constexpr float kControllerRateY = 1.0 / 40.0;
 
 const ofPoint kPlayer1TopBack[] = {
   ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius),

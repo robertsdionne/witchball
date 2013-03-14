@@ -5,7 +5,8 @@
 Model::Model()
 : world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
-  mouse_position(), court_position(CourtPosition::POSITION_1), draw_gravity(GravityVisual::BALL) {}
+  mouse_position(), court_position(CourtPosition::POSITION_1),
+  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::BALL) {}
 
 void Model::Setup() {
   CreateBall();
@@ -15,6 +16,18 @@ void Model::Setup() {
 
 void Model::Update() {
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
+  UpdatePlayerPosition(player1_top,
+                       Lerp(kPlayer1TopBack[EnumValue(court_position)],
+                            kPlayer1TopForward[EnumValue(court_position)], player1_position));
+  UpdatePlayerPosition(player1_bottom,
+                       Lerp(kPlayer1BottomBack[EnumValue(court_position)],
+                            kPlayer1BottomForward[EnumValue(court_position)], player1_position));
+  UpdatePlayerPosition(player2_top,
+                       Lerp(kPlayer2TopBack[EnumValue(court_position)],
+                            kPlayer2TopForward[EnumValue(court_position)], player2_position));
+  UpdatePlayerPosition(player2_bottom,
+                       Lerp(kPlayer2BottomBack[EnumValue(court_position)],
+                            kPlayer2BottomForward[EnumValue(court_position)], player2_position));
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
 }
 
@@ -125,4 +138,11 @@ b2Vec2 Model::GravityAt(b2Vec2 position) const {
                    kBottomRightQuadrantGravity[EnumValue(court_position)], xt),
               Lerp(kTopLeftQuadrantGravity[EnumValue(court_position)],
                    kTopRightQuadrantGravity[EnumValue(court_position)], xt), yt);
+}
+
+void Model::UpdatePlayerPosition(b2Body *player, ofPoint target) {
+  const ofVec2f position = OpenFrameworksVector(player->GetPosition());
+  const ofVec2f delta = (target - position) * ofVec2f(kControllerRateX, kControllerRateY);
+  const ofVec2f new_position = position + delta;
+  player->SetTransform(Box2dVector(new_position), 0.0);
 }

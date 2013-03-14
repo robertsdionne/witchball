@@ -33,6 +33,8 @@ private:
   b2Body *CreatePlayer(ofPoint position = ofPoint());
   
   void CreatePlayers();
+  
+  void UpdatePlayerPosition(b2Body *player, ofPoint target);
     
 public:
   enum class CourtPosition {
@@ -64,6 +66,9 @@ public:
   
   int player1_increment_count = 0;
   int player2_increment_count = 0;
+  
+  float player1_position;
+  float player2_position;
   
   GravityVisual draw_gravity;
 };
