@@ -6,6 +6,14 @@
 #include "ofMain.h"
 
 /**
+ * Gets the int value of a C++11 enum class.
+ */
+template <typename T>
+int EnumValue(T enum_value) {
+  return static_cast<int>(enum_value);
+}
+
+/**
  * Creates a b2Vec2 from an ofVec2f.
  */
 b2Vec2 Box2dVector(ofVec2f openframeworks_vector);
