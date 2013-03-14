@@ -53,7 +53,7 @@ const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
  * Model Properties
  */
 constexpr int kPointsToWin = 7;
-const float kPlayerBallColMultiplier = 10;
+const float kPlayerBallCollisionMultiplier = 10;
 
 /**
  * Controller properties.

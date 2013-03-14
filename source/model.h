@@ -15,9 +15,14 @@ public:
   
   void Update();
 	
-	void IncrementPlayerOneCount();
-	void IncrementPlayerTwoCount();
+  void IncrementPlayerOneCount();
   
+  void IncrementPlayerTwoCount();
+
+  void RotateClockwise();
+
+  void RotateCounterClockwise();
+
 private:
   void CreateBall(ofPoint position = ofPoint(), ofVec2f velocity = ofVec2f());
   
@@ -26,8 +31,6 @@ private:
   b2Body *CreatePlayer(ofPoint position = ofPoint());
   
   void CreatePlayers();
-	
-	
   
   void Gravity();
   
