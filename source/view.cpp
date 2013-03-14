@@ -10,6 +10,7 @@ void View::Draw(const Model &model) const {
   DrawFramesPerSecond();
   SetupViewpoint();
   ofBackground(ofColor::black);
+  DrawScore(model);
   DrawGravity(model);
   DrawCourt(model);
   DrawPlayers(model);
@@ -105,6 +106,23 @@ void View::DrawPlayers(const Model &model) const {
   DrawPlayer(model.player1_bottom, color_p1);
   DrawPlayer(model.player2_top, color_p2);
   DrawPlayer(model.player2_bottom, color_p2);
+}
+
+void View::DrawScore(const Model &model) const {
+  ofPushStyle();
+  ofSetColor(color_p1 / 3.0);
+  for (int i = 0; i < model.player1_score; ++i) {
+    ofPushMatrix();
+    ofRect(-kHalfCourtWidth + i * 1.1, -kHalfCourtHeight, 1.0, kCourtHeight);
+    ofPopMatrix();
+  }
+  ofSetColor(color_p2 / 3.0);
+  for (int i = 0 ; i < model.player2_score; ++i) {
+    ofPushMatrix();
+    ofRect(kHalfCourtWidth - i * 1.1, -kHalfCourtHeight, -1.0, kCourtHeight);
+    ofPopMatrix();
+  }
+  ofPopStyle();
 }
 
 void View::SetupViewpoint() const {

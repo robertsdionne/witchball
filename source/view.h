@@ -29,6 +29,8 @@ private:
   
   void DrawPlayers(const Model &model) const;
   
+  void DrawScore(const Model &model) const;
+  
   void SetupViewpoint() const;
 
   ofColor color_p1;
