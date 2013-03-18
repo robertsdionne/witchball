@@ -1,6 +1,7 @@
 #include <Box2D/Box2D.h>
 #include <list>
 
+#include "collisionscorekeeper.h";
 #include "constants.h"
 #include "model.h"
 #include "ofMain.h"
@@ -34,11 +35,7 @@ void View::DrawBall(const b2Body *ball) const {
   ofTranslate(ball->GetPosition().x, ball->GetPosition().y);
   ofRotateZ(ofRadToDeg(ball->GetAngle()));
   ofScale(kBallRadius, kBallRadius);
-  if (ball->GetLinearDamping() == kLinearDamping) {
-    ofSetColor(ofColor::red);
-  } else {
-    ofSetColor(ofColor::white);
-  }
+  ofSetColor(ofColor::white);
   ofCircle(ofPoint(), 1.0);
   if (!kFixedRotation) {
     ofSetColor(ofColor::black);
@@ -81,6 +78,9 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   temp_model.mouse_position = model.mouse_position;
   temp_model.mouse_pressed = model.mouse_pressed;
   temp_model.court_position = model.court_position;
+  temp_model.gravity_angle = model.gravity_angle;
+  collisionscorekeeper keeper;
+  temp_model.world.SetContactListener(&keeper);
   for (int i = 0; i < kBallTrailLength * kBallTrailSpacing; ++i) {
     temp_model.Update();
     if ((ofGetFrameNum() + i) % kBallTrailSpacing == 0) {
