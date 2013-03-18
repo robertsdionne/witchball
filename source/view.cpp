@@ -78,7 +78,6 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   temp_model.mouse_position = model.mouse_position;
   temp_model.mouse_pressed = model.mouse_pressed;
   temp_model.court_position = model.court_position;
-  temp_model.gravity_angle = model.gravity_angle;
   collisionscorekeeper keeper;
   temp_model.world.SetContactListener(&keeper);
   for (int i = 0; i < kBallTrailLength * kBallTrailSpacing; ++i) {
