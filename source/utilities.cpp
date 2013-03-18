@@ -8,11 +8,13 @@ b2Vec2 Box2dVector(ofVec2f openframeworks_vector) {
 }
 
 b2Vec2 Lerp(b2Vec2 from, b2Vec2 to, float t) {
-  return (1.0 - t) * from + t * to;
+  const float clamped_t = ofClamp(t, 0.0, 1.0);
+  return (1.0 - clamped_t) * from + clamped_t * to;
 }
 
 ofVec2f Lerp(ofVec2f from, ofVec2f to, float t) {
-  return (1.0 - t) * from + t * to;
+  float clamped_t = ofClamp(t, 0.0, 1.0);
+  return (1.0 - clamped_t) * from + clamped_t * to;
 }
 
 ofVec2f OpenFrameworksVector(b2Vec2 box2d_vector) {

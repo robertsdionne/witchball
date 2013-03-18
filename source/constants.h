@@ -55,6 +55,8 @@ const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
 constexpr float kLinearDamping = 0.001;
 constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
 constexpr float kRestitution = 0.99;
+constexpr float kSmoothGravityDiscontinuityXRange = 10.0 * kBallRadius;
+constexpr float kSmoothGravityDiscontinuityYRange = 10.0 * kBallRadius;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
@@ -89,6 +91,7 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
 /**
  * Model Properties
  */
+constexpr float kGravityMixerRate = 0.05;
 constexpr float kPlayerMoveDelta = 0.015;
 constexpr int kPointsToWin = 7;
 constexpr float kPlayerBallCollisionMultiplier = 0.1;

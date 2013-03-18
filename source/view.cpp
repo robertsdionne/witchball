@@ -10,8 +10,8 @@ void View::Draw(const Model &model) const {
   DrawFramesPerSecond();
   SetupViewpoint();
   ofBackground(ofColor::black);
-  DrawScore(model);
   DrawGravity(model);
+  DrawScore(model);
   DrawCourt(model);
   DrawPlayers(model);
   DrawBall(model.ball);
@@ -20,6 +20,7 @@ void View::Draw(const Model &model) const {
 void View::Setup() {
   ofSetFrameRate(60);
   ofSetVerticalSync(true);
+  ofEnableAlphaBlending();
   
   color_p1 = ofColor(ofRandom(150,255), 0, ofRandom(150,255));
   color_p2 = ofColor(0, ofRandom(150,255), ofRandom(150,255));
@@ -45,11 +46,6 @@ void View::DrawCourt(const Model &model) const {
   ofPushStyle();
   // Draw a horizontal or vertical court line depending on the current gravity configuration.
   ofSetColor(ofColor::white);
-  if (EnumValue(model.court_position) % 2 == 0) {
-    ofLine(ofPoint(-kHalfCourtWidth, 0.0), ofPoint(kHalfCourtWidth, 0.0));
-  } else {
-    ofLine(ofPoint(0.0, -kHalfCourtHeight), ofPoint(0.0, kHalfCourtHeight));
-  }
   // Draw connectors between the players and their nearest vertical walls.
   ofSetColor(color_p1 / 2.0);
   ofLine(OpenFrameworksVector(model.player1_top->GetPosition()),
@@ -71,16 +67,13 @@ void View::DrawFramesPerSecond() const {
 }
 
 void View::DrawGravity(const Model &model) const {
-  // Draw arrows indicating the strength and direction of gravity, either at the ball or in each
-  // quadrant.
-  if (EnumValue(model.draw_gravity) & 1) {
-    DrawGravityAt(OpenFrameworksVector(model.ball->GetPosition()), model);
-  }
-  if (EnumValue(model.draw_gravity) & 2) {
-    DrawGravityAt(ofPoint(-kHalfCourtWidth / 2.0, -kHalfCourtHeight / 2.0), model);
-    DrawGravityAt(ofPoint(-kHalfCourtWidth / 2.0, kHalfCourtHeight / 2.0), model);
-    DrawGravityAt(ofPoint(kHalfCourtWidth / 2.0, -kHalfCourtHeight / 2.0), model);
-    DrawGravityAt(ofPoint(kHalfCourtWidth / 2.0, kHalfCourtHeight / 2.0), model);
+  // Draw arrows indicating the strength and direction of gravity, in each quadrant.
+  if (model.draw_gravity == Model::GravityVisual::QUADRANT) {
+    for (float i = -kHalfCourtWidth; i <= kHalfCourtWidth; i += 1.0) {
+      for (float j = -kHalfCourtHeight; j <= kHalfCourtHeight; j += 1.0) {
+        DrawGravityAt(ofPoint(i, j), model);
+      }
+    }
   }
 }
 
@@ -89,7 +82,8 @@ void View::DrawGravityAt(ofPoint position, const Model &model) const {
   ofPushStyle();
   ofPushMatrix();
   ofTranslate(position.x, position.y);
-  ofSetColor(ofColor::slateGrey);
+  ofScale(0.5, 0.5);
+  ofSetColor(ofColor::slateGrey, 128.0);
   const ofVec2f arrowhead = gravity / 9.81;
   ofTriangle(arrowhead, ofVec2f(kBallRadius, 0), -ofVec2f(kBallRadius, 0));
   ofPopMatrix();
@@ -117,13 +111,13 @@ void View::DrawPlayers(const Model &model) const {
 void View::DrawScore(const Model &model) const {
   ofPushStyle();
   // Draw a number of rectangles for each player's score.
-  ofSetColor(color_p1 / 3.0);
+  ofSetColor(color_p1 / 3.0, 127.0);
   for (int i = 0; i < model.player1_score; ++i) {
     ofPushMatrix();
     ofRect(-kHalfCourtWidth + i * 1.1, -kHalfCourtHeight, 1.0, kCourtHeight);
     ofPopMatrix();
   }
-  ofSetColor(color_p2 / 3.0);
+  ofSetColor(color_p2 / 3.0, 127.0);
   for (int i = 0 ; i < model.player2_score; ++i) {
     ofPushMatrix();
     ofRect(kHalfCourtWidth - i * 1.1, -kHalfCourtHeight, -1.0, kCourtHeight);

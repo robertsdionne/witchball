@@ -15,6 +15,8 @@ public:
   
   void Update();
   
+  void UpdateGravities();
+
   b2Vec2 GravityAt(b2Vec2 position) const;
 	
   void IncrementPlayerOneCount();
@@ -46,9 +48,7 @@ public:
   
   enum class GravityVisual {
     NONE,
-    BALL,
-    QUADRANT,
-    BALL_AND_QUADRANT
+    QUADRANT
   };
   
   b2World world;
@@ -58,7 +58,10 @@ public:
   b2Body *player1_top, *player1_bottom, *player2_top, *player2_bottom;
   
   ofPoint mouse_position;
-  
+
+  b2Vec2 top_left_quadrant_gravity, top_right_quadrant_gravity;
+  b2Vec2 bottom_left_quadrant_gravity, bottom_right_quadrant_gravity;
+
   CourtPosition court_position;
 	
   int player1_score = 0;

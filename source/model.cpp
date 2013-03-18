@@ -5,8 +5,13 @@
 Model::Model()
 : world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
-  mouse_position(), court_position(CourtPosition::POSITION_1),
-  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::BALL) {}
+  mouse_position(),
+  top_left_quadrant_gravity(kTopLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
+  top_right_quadrant_gravity(kTopRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
+  bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
+  bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
+  court_position(CourtPosition::POSITION_1),
+  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT) {}
 
 void Model::Setup() {
   CreateBall();
@@ -28,7 +33,19 @@ void Model::Update() {
   UpdatePlayerPosition(player2_bottom,
                        Lerp(kPlayer2BottomBack[EnumValue(court_position)],
                             kPlayer2BottomForward[EnumValue(court_position)], player2_position));
+  UpdateGravities();
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
+}
+
+void Model::UpdateGravities() {
+  top_left_quadrant_gravity = (1.0 - kGravityMixerRate) * top_left_quadrant_gravity +
+      kGravityMixerRate * kTopLeftQuadrantGravity[EnumValue(court_position)];
+  top_right_quadrant_gravity = (1.0 - kGravityMixerRate) * top_right_quadrant_gravity +
+      kGravityMixerRate * kTopRightQuadrantGravity[EnumValue(court_position)];
+  bottom_left_quadrant_gravity = (1.0 - kGravityMixerRate) * bottom_left_quadrant_gravity +
+      kGravityMixerRate * kBottomLeftQuadrantGravity[EnumValue(court_position)];
+  bottom_right_quadrant_gravity = (1.0 - kGravityMixerRate) * bottom_right_quadrant_gravity +
+      kGravityMixerRate * kBottomRightQuadrantGravity[EnumValue(court_position)];
 }
 
 void Model::CreateBall(ofPoint position, ofVec2f velocity) {
@@ -90,6 +107,15 @@ void Model::CreatePlayers() {
   player2_bottom = CreatePlayer(kPlayer2BottomBack[EnumValue(CourtPosition::POSITION_1)]);
 }
 
+b2Vec2 Model::GravityAt(b2Vec2 position) const {
+  constexpr float x_range = kSmoothGravityDiscontinuityXRange;
+  constexpr float y_range = kSmoothGravityDiscontinuityYRange;
+  const float xt = (ofClamp(position.x, -x_range, x_range) / x_range + 1.0) / 2.0;
+  const float yt = (ofClamp(position.y, -y_range, y_range) / y_range + 1.0) / 2.0;
+  return Lerp(Lerp(bottom_left_quadrant_gravity, bottom_right_quadrant_gravity, xt),
+              Lerp(top_left_quadrant_gravity, top_right_quadrant_gravity, xt), yt);
+}
+
 void Model::IncrementPlayerOneCount() {
   if(player1_increment_count == 3) {
     player1_score++;
@@ -130,15 +156,6 @@ void Model::RotateClockwise() {
 
 void Model::RotateCounterClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
-}
-
-b2Vec2 Model::GravityAt(b2Vec2 position) const {
-  const float xt = (ofClamp(position.x, -kBallRadius, kBallRadius) / kBallRadius + 1.0) / 2.0;
-  const float yt = (ofClamp(position.y, -kBallRadius, kBallRadius) / kBallRadius + 1.0) / 2.0;
-  return Lerp(Lerp(kBottomLeftQuadrantGravity[EnumValue(court_position)],
-                   kBottomRightQuadrantGravity[EnumValue(court_position)], xt),
-              Lerp(kTopLeftQuadrantGravity[EnumValue(court_position)],
-                   kTopRightQuadrantGravity[EnumValue(court_position)], xt), yt);
 }
 
 void Model::UpdatePlayerPosition(b2Body *player, ofPoint target) {
