@@ -32,6 +32,14 @@ void Controller::OnMouseReleased(int x, int y, int button) {
 }
 
 void Controller::Update() {
+  if (buttons[0] && !previous_buttons[0]) {
+    model.mouse_gravity_position = model.mouse_position;
+  }
+  if (MouseButtonIsPressed(0)) {
+    model.mouse_pressed = true;
+  } else {
+    model.mouse_pressed = false;
+  }
   if (keys[OF_KEY_BACKSPACE] && !previous_keys[OF_KEY_BACKSPACE]) {
     model.draw_gravity = Model::GravityVisual((EnumValue(model.draw_gravity) + 1) % 2);
   }

@@ -45,19 +45,21 @@ void View::DrawBall(const b2Body *ball) const {
 void View::DrawCourt(const Model &model) const {
   ofPushStyle();
   // Draw a horizontal or vertical court line depending on the current gravity configuration.
+  ofSetLineWidth(2.0);
   ofSetColor(ofColor::white);
   // Draw connectors between the players and their nearest vertical walls.
   ofSetColor(color_p1 / 2.0);
-  ofLine(OpenFrameworksVector(model.player1_top->GetPosition()),
+  ofLine(ofPoint(kPlayer1TopForward[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y),
          ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y));
-  ofLine(OpenFrameworksVector(model.player1_bottom->GetPosition()),
+  ofLine(ofPoint(kPlayer1BottomForward[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y),
          ofPoint(kPlayer1BottomBack[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y));
   ofSetColor(color_p2 / 2.0);
-  ofLine(OpenFrameworksVector(model.player2_top->GetPosition()),
+  ofLine(ofPoint(kPlayer2TopForward[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y),
          ofPoint(kPlayer2TopBack[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y));
-  ofLine(OpenFrameworksVector(model.player2_bottom->GetPosition()),
+  ofLine(ofPoint(kPlayer2BottomForward[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y),
          ofPoint(kPlayer2BottomBack[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y));
   ofPopStyle();
+  ofSetLineWidth(1.0);
 }
 
 void View::DrawFramesPerSecond() const {
@@ -75,6 +77,16 @@ void View::DrawGravity(const Model &model) const {
       }
     }
   }
+  // Draw the source of mouse gravity.
+  ofPushStyle();
+  ofPushMatrix();
+  ofTranslate(model.mouse_gravity_position.x, model.mouse_gravity_position.y);
+  const float radius = sqrt(model.mouse_mass_scale * kMouseMass / M_PI / kMouseDensity);
+  ofScale(radius, radius);
+  ofSetColor(ofColor::slateGrey, 128.0);
+  ofCircle(ofPoint(), 1.0);
+  ofPopMatrix();
+  ofPopStyle();
 }
 
 void View::DrawGravityAt(ofPoint position, const Model &model) const {
@@ -85,7 +97,8 @@ void View::DrawGravityAt(ofPoint position, const Model &model) const {
   ofScale(0.5, 0.5);
   ofSetColor(ofColor::slateGrey, 128.0);
   const ofVec2f arrowhead = gravity / 9.81;
-  ofTriangle(arrowhead, ofVec2f(kBallRadius, 0), -ofVec2f(kBallRadius, 0));
+  ofTriangle(arrowhead, kBallRadius * arrowhead.perpendiculared(),
+             -kBallRadius * arrowhead.perpendiculared());
   ofPopMatrix();
   ofPopStyle();
 }

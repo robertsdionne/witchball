@@ -57,8 +57,11 @@ public:
   
   b2Body *player1_top, *player1_bottom, *player2_top, *player2_bottom;
   
+  bool mouse_pressed;
   ofPoint mouse_position;
+  ofPoint mouse_gravity_position;
 
+  float mouse_mass_scale;
   b2Vec2 top_left_quadrant_gravity, top_right_quadrant_gravity;
   b2Vec2 bottom_left_quadrant_gravity, bottom_right_quadrant_gravity;
 
