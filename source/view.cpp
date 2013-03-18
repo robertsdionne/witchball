@@ -15,7 +15,7 @@ void View::Draw(const Model &model) const {
   DrawScore(model);
   DrawCourt(model);
   DrawPlayers(model);
-  DrawBallTrail(model.ball_trail);
+  DrawBallTrail(model, model.ball_trail);
   DrawBall(model.ball);
 }
 
@@ -44,7 +44,7 @@ void View::DrawBall(const b2Body *ball) const {
   ofPopStyle();
 }
 
-void View::DrawBallTrail(const std::list<ofVec2f> ball_trail) const {
+void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail) const {
   float alpha = kBallTrailAlphaStart;
   ofPushStyle();
   for (const ofVec2f ball : ball_trail) {
@@ -55,6 +55,39 @@ void View::DrawBallTrail(const std::list<ofVec2f> ball_trail) const {
     ofCircle(ofPoint(), 1.0);
     ofPopMatrix();
     alpha *= kBallTrailFadeCoefficient;
+  }
+  alpha = kBallTrailAlphaStart;
+  Model temp_model;
+  temp_model.Setup();
+  temp_model.ball->SetTransform(model.ball->GetPosition(), model.ball->GetAngle());
+  temp_model.ball->SetLinearVelocity(model.ball->GetLinearVelocity());
+  temp_model.ball->SetAngularVelocity(model.ball->GetAngularVelocity());
+  temp_model.player1_position = model.player1_position;
+  temp_model.player2_position = model.player2_position;
+  temp_model.player1_top->SetTransform(model.player1_top->GetPosition(), 0.0);
+  temp_model.player1_bottom->SetTransform(model.player1_bottom->GetPosition(), 0.0);
+  temp_model.player2_top->SetTransform(model.player2_top->GetPosition(), 0.0);
+  temp_model.player2_bottom->SetTransform(model.player2_bottom->GetPosition(), 0.0);
+  temp_model.top_left_quadrant_gravity = model.top_left_quadrant_gravity;
+  temp_model.top_right_quadrant_gravity = model.top_right_quadrant_gravity;
+  temp_model.bottom_left_quadrant_gravity = model.bottom_left_quadrant_gravity;
+  temp_model.bottom_right_quadrant_gravity = model.bottom_right_quadrant_gravity;
+  temp_model.mouse_gravity_position = model.mouse_gravity_position;
+  temp_model.mouse_mass_scale = model.mouse_mass_scale;
+  temp_model.mouse_position = model.mouse_position;
+  temp_model.mouse_pressed = model.mouse_pressed;
+  temp_model.court_position = model.court_position;
+  for (int i = 0; i < kBallTrailLength * kBallTrailSpacing; ++i) {
+    temp_model.Update();
+    if ((ofGetFrameNum() + i) % kBallTrailSpacing == 0) {
+      ofPushMatrix();
+      ofTranslate(temp_model.ball->GetPosition().x, temp_model.ball->GetPosition().y);
+      ofScale(kBallRadius, kBallRadius);
+      ofSetColor(ofColor::white, alpha);
+      ofCircle(ofPoint(), 1.0);
+      ofPopMatrix();
+      alpha *= kBallTrailFadeCoefficient;
+    }
   }
   ofPopStyle();
 }

@@ -21,7 +21,7 @@ public:
 private:
   void DrawBall(const b2Body *ball) const;
   
-  void DrawBallTrail(const std::list<ofVec2f> ball_trail) const;
+  void DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail) const;
 
   void DrawCourt(const Model &model) const;
   
