@@ -47,17 +47,20 @@ void View::DrawBall(const b2Body *ball) const {
 
 void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail) const {
   float alpha = kBallTrailAlphaStart;
+  float scale = 1.0;
   ofPushStyle();
   for (const ofVec2f ball : ball_trail) {
     ofPushMatrix();
     ofTranslate(ball.x, ball.y);
-    ofScale(kBallRadius, kBallRadius);
+    ofScale(scale * kBallRadius, scale * kBallRadius);
     ofSetColor(ofColor::white, alpha);
     ofCircle(ofPoint(), 1.0);
     ofPopMatrix();
+    scale *= 1.05;
     alpha *= kBallTrailFadeCoefficient;
   }
   alpha = kBallTrailAlphaStart;
+  scale = 1.0;
   Model temp_model;
   temp_model.Setup();
   temp_model.ball->SetTransform(model.ball->GetPosition(), model.ball->GetAngle());
@@ -86,10 +89,11 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
     if ((ofGetFrameNum() + i) % kBallTrailSpacing == 0) {
       ofPushMatrix();
       ofTranslate(temp_model.ball->GetPosition().x, temp_model.ball->GetPosition().y);
-      ofScale(kBallRadius, kBallRadius);
+      ofScale(scale * kBallRadius, scale * kBallRadius);
       ofSetColor(ofColor::white, alpha);
       ofCircle(ofPoint(), 1.0);
       ofPopMatrix();
+      scale *= 1.05;
       alpha *= kBallTrailFadeCoefficient;
     }
   }
