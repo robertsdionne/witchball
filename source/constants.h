@@ -108,9 +108,9 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
  * Model Properties
  */
 constexpr float kBallTrailAlphaStart = 128.0;
-constexpr float kBallTrailFadeCoefficient = 0.8;
+constexpr float kBallTrailFadeCoefficient = 0.9;
 constexpr int kBallTrailLength = 30;
-constexpr int kBallTrailSpacing = 3;
+constexpr int kBallTrailSpacing = 1;
 
 constexpr float kGravityMixerRate = 0.05;
 constexpr float kPlayerMoveDelta = 0.015;
