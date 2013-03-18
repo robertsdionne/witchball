@@ -13,7 +13,8 @@ Model::Model()
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   court_position(CourtPosition::POSITION_1),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT),
-  ball_trail() {}
+  ball_trail(), player1_top_trail(), player1_bottom_trail(),
+  player2_top_trail(), player2_bottom_trail() {}
 
 void Model::Setup() {
   CreateBall();
@@ -37,10 +38,30 @@ void Model::Update() {
                             kPlayer2BottomForward[EnumValue(court_position)], player2_position));
   UpdateGravities();
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
+  UpdateTrails();
+}
+
+void Model::UpdateTrails() {
   if (ofGetFrameNum() % kBallTrailSpacing == 0) {
     ball_trail.push_front(OpenFrameworksVector(ball->GetPosition()));
+    player1_top_trail.push_front(OpenFrameworksVector(player1_top->GetPosition()));
+    player1_bottom_trail.push_front(OpenFrameworksVector(player1_bottom->GetPosition()));
+    player2_top_trail.push_front(OpenFrameworksVector(player2_top->GetPosition()));
+    player2_bottom_trail.push_front(OpenFrameworksVector(player2_bottom->GetPosition()));
     if (ball_trail.size() > kBallTrailLength) {
       ball_trail.pop_back();
+    }
+    if (player1_top_trail.size() > kPlayerTrailLength) {
+      player1_top_trail.pop_back();
+    }
+    if (player1_bottom_trail.size() > kPlayerTrailLength) {
+      player1_bottom_trail.pop_back();
+    }
+    if (player2_top_trail.size() > kPlayerTrailLength) {
+      player2_top_trail.pop_back();
+    }
+    if (player2_bottom_trail.size() > kPlayerTrailLength) {
+      player2_bottom_trail.pop_back();
     }
   }
 }

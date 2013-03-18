@@ -33,6 +33,8 @@ private:
   
   void DrawPlayer(const b2Body *player, ofColor color) const;
   
+  void DrawPlayerTrail(const std::list<ofVec2f> player_trail, ofColor color) const;
+  
   void DrawPlayers(const Model &model) const;
   
   void DrawScore(const Model &model) const;

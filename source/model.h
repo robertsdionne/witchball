@@ -38,6 +38,8 @@ private:
   void CreatePlayers();
   
   void UpdatePlayerPosition(b2Body *player, ofPoint target);
+  
+  void UpdateTrails();
     
 public:
   enum class CourtPosition {
@@ -80,6 +82,8 @@ public:
   GravityVisual draw_gravity;
 
   std::list<ofVec2f> ball_trail;
+  std::list<ofVec2f> player1_top_trail, player1_bottom_trail;
+  std::list<ofVec2f> player2_top_trail, player2_bottom_trail;
 };
 
 #endif  // WITCHBALL_MODEL_H_

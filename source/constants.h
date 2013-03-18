@@ -101,6 +101,10 @@ constexpr float kGravityMixerRate = 0.05;
 constexpr float kPlayerMoveDelta = 0.015;
 constexpr int kPointsToWin = 7;
 constexpr float kPlayerBallCollisionMultiplier = 0.1;
+constexpr float kPlayerTrailAlphaStart = 128.0;
+constexpr float kPlayerTrailFadeCoefficient = 0.65;
+constexpr int kPlayerTrailLength = 10;
+constexpr int kPlayerTrailSpacing = 1;
 
 /**
  * Controller properties.

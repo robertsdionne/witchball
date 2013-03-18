@@ -131,7 +131,26 @@ void View::DrawPlayer(const b2Body *player, ofColor color) const {
   ofPopStyle();
 }
 
+void View::DrawPlayerTrail(const std::list<ofVec2f> player_trail, ofColor color) const {
+  float alpha = kPlayerTrailAlphaStart;
+  ofPushStyle();
+  for (const ofVec2f player : player_trail) {
+    ofPushMatrix();
+    ofTranslate(player.x, player.y);
+    ofScale(kPlayerRadius, kPlayerRadius);
+    ofSetColor(color, alpha);
+    ofCircle(ofPoint(), 1.0);
+    ofPopMatrix();
+    alpha *= kPlayerTrailFadeCoefficient;
+  }
+  ofPopStyle();
+}
+
 void View::DrawPlayers(const Model &model) const {
+  DrawPlayerTrail(model.player1_top_trail, color_p1);
+  DrawPlayerTrail(model.player1_bottom_trail, color_p1);
+  DrawPlayerTrail(model.player2_top_trail, color_p2);
+  DrawPlayerTrail(model.player2_bottom_trail, color_p2);
   DrawPlayer(model.player1_top, color_p1);
   DrawPlayer(model.player1_bottom, color_p1);
   DrawPlayer(model.player2_top, color_p2);
