@@ -1,7 +1,7 @@
 #include <Box2D/Box2D.h>
 #include <list>
 
-#include "collisionscorekeeper.h";
+#include "collisionscorekeeper.h"
 #include "constants.h"
 #include "model.h"
 #include "ofMain.h"
