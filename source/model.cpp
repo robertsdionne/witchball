@@ -12,7 +12,8 @@ Model::Model()
   bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   court_position(CourtPosition::POSITION_1),
-  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT) {}
+  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT),
+  ball_trail() {}
 
 void Model::Setup() {
   CreateBall();
@@ -36,6 +37,12 @@ void Model::Update() {
                             kPlayer2BottomForward[EnumValue(court_position)], player2_position));
   UpdateGravities();
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
+  if (ofGetFrameNum() % kBallTrailSpacing == 0) {
+    ball_trail.push_front(OpenFrameworksVector(ball->GetPosition()));
+    if (ball_trail.size() > kBallTrailLength) {
+      ball_trail.pop_back();
+    }
+  }
 }
 
 void Model::UpdateGravities() {

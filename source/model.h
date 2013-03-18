@@ -2,6 +2,7 @@
 #define WITCHBALL_MODEL_H_
 
 #include <Box2D/Box2D.h>
+#include <list>
 
 #include "ofMain.h"
 
@@ -77,6 +78,8 @@ public:
   float player2_position;
   
   GravityVisual draw_gravity;
+
+  std::list<ofVec2f> ball_trail;
 };
 
 #endif  // WITCHBALL_MODEL_H_

@@ -1,4 +1,5 @@
 #include <Box2D/Box2D.h>
+#include <list>
 
 #include "constants.h"
 #include "model.h"
@@ -14,6 +15,7 @@ void View::Draw(const Model &model) const {
   DrawScore(model);
   DrawCourt(model);
   DrawPlayers(model);
+  DrawBallTrail(model.ball_trail);
   DrawBall(model.ball);
 }
 
@@ -39,6 +41,21 @@ void View::DrawBall(const b2Body *ball) const {
     ofLine(ofPoint(-1.0, 0.0), ofPoint(1.0, 0.0));
   }
   ofPopMatrix();
+  ofPopStyle();
+}
+
+void View::DrawBallTrail(const std::list<ofVec2f> ball_trail) const {
+  float alpha = kBallTrailAlphaStart;
+  ofPushStyle();
+  for (const ofVec2f ball : ball_trail) {
+    ofPushMatrix();
+    ofTranslate(ball.x, ball.y);
+    ofScale(kBallRadius, kBallRadius);
+    ofSetColor(ofColor::white, alpha);
+    ofCircle(ofPoint(), 1.0);
+    ofPopMatrix();
+    alpha *= kBallTrailFadeCoefficient;
+  }
   ofPopStyle();
 }
 

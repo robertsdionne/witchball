@@ -16,15 +16,14 @@ void Controller::OnKeyReleased(int key) {
 }
 
 void Controller::OnMouseDragged(int x, int y, int button) {
-  OnMouseMoved(x, y);
-}
-
-void Controller::OnMouseMoved(int x, int y) {
   model.mouse_position = ofVec3f(x, y) * kViewMatrixInverse;
 }
 
+void Controller::OnMouseMoved(int x, int y) {}
+
 void Controller::OnMousePressed(int x, int y, int button) {
   buttons[button] = true;
+  OnMouseDragged(x, y, button);
 }
 
 void Controller::OnMouseReleased(int x, int y, int button) {

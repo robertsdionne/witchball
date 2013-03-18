@@ -1,6 +1,10 @@
 #ifndef WITCHBALL_VIEW_H_
 #define WITCHBALL_VIEW_H_
 
+#include <list>
+
+#include "ofMain.h"
+
 class Model;
 class b2Body;
 
@@ -17,6 +21,8 @@ public:
 private:
   void DrawBall(const b2Body *ball) const;
   
+  void DrawBallTrail(const std::list<ofVec2f> ball_trail) const;
+
   void DrawCourt(const Model &model) const;
   
   void DrawFramesPerSecond() const;
