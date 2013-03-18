@@ -4,6 +4,7 @@
 #include <Box2D/Box2D.h>
 
 #include "ofMain.h"
+#include "utilities.h"
 
 /**
  * Audio properties.
@@ -52,7 +53,7 @@ constexpr float kDensity = 1.0; // kg/m^2
 constexpr bool kFixedRotation = true;
 constexpr float kFriction = 0.0;
 const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
-constexpr float kLinearDamping = 0.001;
+constexpr float kLinearDamping = 0.01;
 constexpr float kMouseDensity = 10.0;
 constexpr float kMouseMass = 50.0;
 constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
@@ -62,32 +63,44 @@ constexpr float kSmoothGravityDiscontinuityYRange = 10.0 * kBallRadius;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
+const b2Vec2 kTopLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, 1.0).normalized());
+const b2Vec2 kTopRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, 1.0).normalized());
+const b2Vec2 kBottomLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, -1.0).normalized());
+const b2Vec2 kBottomRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, -1.0).normalized());
+
+const float kGravityAngle[] = {
+  0.0,
+  90.0,
+  180.0,
+  270.0
+};
+
 const b2Vec2 kTopLeftQuadrantGravity[] = {
-  kGravity,
-  kAntiGravity,
-  kAntiGravity,
-  kGravity
+  kTopLeftGravity,
+  kTopRightGravity,
+  kBottomRightGravity,
+  kBottomLeftGravity
 };
 
 const b2Vec2 kTopRightQuadrantGravity[] = {
-  kGravity,
-  kGravity,
-  kAntiGravity,
-  kAntiGravity
+  kTopRightGravity,
+  kBottomRightGravity,
+  kBottomLeftGravity,
+  kTopLeftGravity
 };
 
 const b2Vec2 kBottomLeftQuadrantGravity[] = {
-  kAntiGravity,
-  kAntiGravity,
-  kGravity,
-  kGravity
+  kBottomLeftGravity,
+  kTopLeftGravity,
+  kTopRightGravity,
+  kBottomRightGravity
 };
 
 const b2Vec2 kBottomRightQuadrantGravity[] = {
-  kAntiGravity,
-  kGravity,
-  kGravity,
-  kAntiGravity
+  kBottomRightGravity,
+  kBottomLeftGravity,
+  kTopLeftGravity,
+  kTopRightGravity
 };
 
 /**

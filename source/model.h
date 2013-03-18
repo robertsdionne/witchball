@@ -29,7 +29,7 @@ public:
   void RotateCounterClockwise();
 
 private:
-  void CreateBall(ofPoint position = ofPoint(), ofVec2f velocity = ofVec2f(-3.0, 0.0));
+  void CreateBall(ofPoint position = ofPoint(1, 0), ofVec2f velocity = ofVec2f(0.0, 3.0));
   
   void CreateBorder();
   
@@ -67,6 +67,8 @@ public:
   float mouse_mass_scale;
   b2Vec2 top_left_quadrant_gravity, top_right_quadrant_gravity;
   b2Vec2 bottom_left_quadrant_gravity, bottom_right_quadrant_gravity;
+  
+  float gravity_angle;
 
   CourtPosition court_position;
 	
