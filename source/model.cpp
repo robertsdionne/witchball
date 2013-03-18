@@ -49,13 +49,15 @@ void Model::Update() {
 void Model::UpdateTrails() {
   if (ofGetFrameNum() % kBallTrailSpacing == 0) {
     ball_trail.push_front(OpenFrameworksVector(ball->GetPosition()));
+    if (ball_trail.size() > kBallTrailLength) {
+      ball_trail.pop_back();
+    }
+  }
+  if (ofGetFrameNum() % kPlayerTrailSpacing == 0) {
     player1_top_trail.push_front(OpenFrameworksVector(player1_top->GetPosition()));
     player1_bottom_trail.push_front(OpenFrameworksVector(player1_bottom->GetPosition()));
     player2_top_trail.push_front(OpenFrameworksVector(player2_top->GetPosition()));
     player2_bottom_trail.push_front(OpenFrameworksVector(player2_bottom->GetPosition()));
-    if (ball_trail.size() > kBallTrailLength) {
-      ball_trail.pop_back();
-    }
     if (player1_top_trail.size() > kPlayerTrailLength) {
       player1_top_trail.pop_back();
     }
