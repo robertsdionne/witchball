@@ -39,6 +39,11 @@ void Model::Update() {
   UpdateGravities();
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
   UpdateTrails();
+  if (ball->GetLinearVelocity().Length() < kDampingSpeed) {
+    ball->SetLinearDamping(0.0);
+  } else {
+    ball->SetLinearDamping(kLinearDamping);
+  }
 }
 
 void Model::UpdateTrails() {

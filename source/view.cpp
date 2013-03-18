@@ -34,7 +34,11 @@ void View::DrawBall(const b2Body *ball) const {
   ofTranslate(ball->GetPosition().x, ball->GetPosition().y);
   ofRotateZ(ofRadToDeg(ball->GetAngle()));
   ofScale(kBallRadius, kBallRadius);
-  ofSetColor(ofColor::white);
+  if (ball->GetLinearDamping() == kLinearDamping) {
+    ofSetColor(ofColor::red);
+  } else {
+    ofSetColor(ofColor::white);
+  }
   ofCircle(ofPoint(), 1.0);
   if (!kFixedRotation) {
     ofSetColor(ofColor::black);
