@@ -35,6 +35,7 @@ void Model::CreateBall(ofPoint position, ofVec2f velocity) {
   b2BodyDef ball_definition;
   ball_definition.type = b2_dynamicBody;
   ball_definition.position = Box2dVector(position);
+  ball_definition.fixedRotation = kFixedRotation;
   ball_definition.linearVelocity = Box2dVector(velocity);
   ball_definition.linearDamping = kLinearDamping;
   ball_definition.angularDamping = kAngularDamping;

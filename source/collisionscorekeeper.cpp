@@ -44,16 +44,10 @@ void collisionscorekeeper::EndContact(b2Contact *contact) {
 
     if(((bodyA == model->player1_bottom || bodyA == model->player1_top) && (bodyB == model->ball)) ||
        ((bodyB == model->player1_bottom || bodyB == model->player1_top) && (bodyA == model->ball))) {
-      b2Vec2 ballVelocity = model->ball->GetLinearVelocity();
-      ballVelocity *= kPlayerBallCollisionMultiplier;
-      model->ball->ApplyForceToCenter(ballVelocity);
       model->RotateClockwise();
     }
     else if(((bodyA == model->player2_bottom || bodyA == model->player2_top) && (bodyB == model->ball)) ||
             ((bodyB == model->player2_bottom || bodyB == model->player2_top) && (bodyA == model->ball))) {
-      b2Vec2 ballVelocity = model->ball->GetLinearVelocity();
-      ballVelocity *= kPlayerBallCollisionMultiplier;
-      model->ball->ApplyForceToCenter(ballVelocity);
       model->RotateCounterClockwise();
     }
   }

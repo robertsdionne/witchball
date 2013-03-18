@@ -33,8 +33,10 @@ void View::DrawBall(const b2Body *ball) const {
   ofScale(kBallRadius, kBallRadius);
   ofSetColor(ofColor::white);
   ofCircle(ofPoint(), 1.0);
-  ofSetColor(ofColor::black);
-  ofLine(ofPoint(-1.0, 0.0), ofPoint(1.0, 0.0));
+  if (!kFixedRotation) {
+    ofSetColor(ofColor::black);
+    ofLine(ofPoint(-1.0, 0.0), ofPoint(1.0, 0.0));
+  }
   ofPopMatrix();
   ofPopStyle();
 }

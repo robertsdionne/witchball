@@ -26,7 +26,7 @@ public:
   void RotateCounterClockwise();
 
 private:
-  void CreateBall(ofPoint position = ofPoint(), ofVec2f velocity = ofVec2f());
+  void CreateBall(ofPoint position = ofPoint(), ofVec2f velocity = ofVec2f(-3.0, 0.0));
   
   void CreateBorder();
   

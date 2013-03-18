@@ -32,10 +32,6 @@ void Controller::OnMouseReleased(int x, int y, int button) {
 }
 
 void Controller::Update() {
-  if (MouseButtonIsPressed(0)) {
-    const ofVec2f force = model.mouse_position - OpenFrameworksVector(model.ball->GetPosition());
-    model.ball->ApplyForceToCenter(Box2dVector(force.lengthSquared() * force.normalized()));
-  }
   if (keys[OF_KEY_BACKSPACE] && !previous_keys[OF_KEY_BACKSPACE]) {
     model.draw_gravity = Model::GravityVisual((EnumValue(model.draw_gravity) + 1) % 4);
   }

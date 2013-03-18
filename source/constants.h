@@ -43,17 +43,18 @@ constexpr float kHalfCourtHeight = kCourtHeight / 2.0; // m
 /**
  * Physics properties.
  */
-constexpr float kAngularDamping = 0.1;
+constexpr float kAngularDamping = 0.0;
 const b2Vec2 kAntiGravity = b2Vec2(0.0, 9.81); // m/s^2
 constexpr float kBallRadius = 11.0 * kCourtWidth / kWidth;
 constexpr int kBox2dPositionIterations = 3;
 constexpr int kBox2dVelocityIterations = 8;
 constexpr float kDensity = 1.0; // kg/m^2
-constexpr float kFriction = 0.3;
+constexpr bool kFixedRotation = true;
+constexpr float kFriction = 0.0;
 const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
-constexpr float kLinearDamping = 0.1;
+constexpr float kLinearDamping = 0.001;
 constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
-constexpr float kRestitution = 0.7;
+constexpr float kRestitution = 0.99;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
 const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
 
@@ -90,7 +91,7 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
  */
 constexpr float kPlayerMoveDelta = 0.015;
 constexpr int kPointsToWin = 7;
-constexpr float kPlayerBallCollisionMultiplier = 10;
+constexpr float kPlayerBallCollisionMultiplier = 0.1;
 
 /**
  * Controller properties.
