@@ -113,15 +113,15 @@ void View::DrawCourt(const Model &model) const {
   ofSetColor(ofColor::white);
   // Draw connectors between the players and their nearest vertical walls.
   ofSetColor(color_p1 / 2.0);
-  ofLine(ofPoint(kPlayer1TopForward[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y),
-         ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y));
-  ofLine(ofPoint(kPlayer1BottomForward[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y),
-         ofPoint(kPlayer1BottomBack[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y));
+  ofLine(ofPoint(kPlayer1TopForward[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y - kPlayerRadius),
+         ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y - kPlayerRadius));
+  ofLine(ofPoint(kPlayer1BottomForward[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y - kPlayerRadius),
+         ofPoint(kPlayer1BottomBack[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y - kPlayerRadius));
   ofSetColor(color_p2 / 2.0);
-  ofLine(ofPoint(kPlayer2TopForward[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y),
-         ofPoint(kPlayer2TopBack[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y));
-  ofLine(ofPoint(kPlayer2BottomForward[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y),
-         ofPoint(kPlayer2BottomBack[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y));
+  ofLine(ofPoint(kPlayer2TopForward[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y - kPlayerRadius),
+         ofPoint(kPlayer2TopBack[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y - kPlayerRadius));
+  ofLine(ofPoint(kPlayer2BottomForward[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y - kPlayerRadius),
+         ofPoint(kPlayer2BottomBack[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y - kPlayerRadius));
   ofPopStyle();
   ofSetLineWidth(1.0);
 }
