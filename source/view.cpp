@@ -16,8 +16,10 @@ void View::Draw(const Model &model) const {
   DrawScore(model);
   DrawCourt(model);
   DrawPlayers(model);
-  DrawBallTrail(model, model.ball_trail);
-  DrawBall(model.ball);
+  ofColor ball_color = model.player1_increment_count > 3 ? color_p1 :
+      model.player2_increment_count > 3 ? color_p2 : ofColor::white;
+  DrawBallTrail(model, model.ball_trail, ball_color);
+  DrawBall(model.ball, ball_color);
 }
 
 void View::Setup() {
@@ -29,13 +31,13 @@ void View::Setup() {
   color_p2 = ofColor(0, ofRandom(150,255), ofRandom(150,255));
 }
 
-void View::DrawBall(const b2Body *ball) const {
+void View::DrawBall(const b2Body *ball, ofColor color) const {
   ofPushStyle();
   ofPushMatrix();
   ofTranslate(ball->GetPosition().x, ball->GetPosition().y);
   ofRotateZ(ofRadToDeg(ball->GetAngle()));
   ofScale(kBallRadius, kBallRadius);
-  ofSetColor(ofColor::white);
+  ofSetColor(color);
   ofCircle(ofPoint(), 1.0);
   if (!kFixedRotation) {
     ofSetColor(ofColor::black);
@@ -45,20 +47,20 @@ void View::DrawBall(const b2Body *ball) const {
   ofPopStyle();
 }
 
-void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail) const {
+void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail, ofColor color) const {
   float alpha = kBallTrailAlphaStart;
   float scale = 1.0;
   ofPushStyle();
-  for (const ofVec2f ball : ball_trail) {
-    ofPushMatrix();
-    ofTranslate(ball.x, ball.y);
-    ofScale(scale * kBallRadius, scale * kBallRadius);
-    ofSetColor(ofColor::white, alpha);
-    ofCircle(ofPoint(), 1.0);
-    ofPopMatrix();
-    scale *= 1.05;
-    alpha *= kBallTrailFadeCoefficient;
-  }
+//  for (const ofVec2f ball : ball_trail) {
+//    ofPushMatrix();
+//    ofTranslate(ball.x, ball.y);
+//    ofScale(scale * kBallRadius, scale * kBallRadius);
+//    ofSetColor(color, alpha);
+//    ofCircle(ofPoint(), 1.0);
+//    ofPopMatrix();
+//    scale *= 1.0;
+//    alpha *= kBallTrailFadeCoefficient;
+//  }
   alpha = kBallTrailAlphaStart;
   scale = 1.0;
   Model temp_model;
@@ -82,6 +84,10 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   temp_model.mouse_pressed = model.mouse_pressed;
   temp_model.court_position = model.court_position;
   temp_model.gravity_angle = model.gravity_angle;
+  temp_model.player1_top->SetActive(false);
+  temp_model.player1_bottom->SetActive(false);
+  temp_model.player2_top->SetActive(false);
+  temp_model.player2_bottom->SetActive(false);
   collisionscorekeeper keeper;
   temp_model.world.SetContactListener(&keeper);
   for (int i = 0; i < kBallTrailLength * kBallTrailSpacing; ++i) {
@@ -90,10 +96,10 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
       ofPushMatrix();
       ofTranslate(temp_model.ball->GetPosition().x, temp_model.ball->GetPosition().y);
       ofScale(scale * kBallRadius, scale * kBallRadius);
-      ofSetColor(ofColor::white, alpha);
+      ofSetColor(color, alpha);
       ofCircle(ofPoint(), 1.0);
       ofPopMatrix();
-      scale *= 1.05;
+      scale *= 1.0;
       alpha *= kBallTrailFadeCoefficient;
     }
   }
@@ -153,7 +159,7 @@ void View::DrawGravityAt(ofPoint position, const Model &model) const {
   ofPushMatrix();
   ofTranslate(position.x, position.y);
   ofScale(0.5, 0.5);
-  ofSetColor(ofColor::slateGrey, 128.0);
+  ofSetColor(ofColor::slateGrey, 64.0);
   const ofVec2f arrowhead = gravity / 9.81;
   ofTriangle(arrowhead, kBallRadius * arrowhead.perpendiculared(),
              -kBallRadius * arrowhead.perpendiculared());

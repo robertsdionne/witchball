@@ -19,9 +19,9 @@ public:
   void Setup();
   
 private:
-  void DrawBall(const b2Body *ball) const;
+  void DrawBall(const b2Body *ball, ofColor color) const;
   
-  void DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail) const;
+  void DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail, ofColor color) const;
 
   void DrawCourt(const Model &model) const;
   

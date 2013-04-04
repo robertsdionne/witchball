@@ -159,7 +159,7 @@ b2Vec2 Model::GravityAt(b2Vec2 position) const {
 }
 
 void Model::IncrementPlayerOneCount() {
-  if(player1_increment_count == 3) {
+  if(player1_increment_count >= 3) {
     player1_score++;
 
     if(player1_score == kPointsToWin) {
@@ -168,16 +168,14 @@ void Model::IncrementPlayerOneCount() {
       player1_increment_count = 0;
     }
   }
-  else {
-    player1_increment_count++;
-  }
+  player1_increment_count++;
   player2_increment_count = 0;
 
   printf("P1 Score: %d\n",player1_score);
 }
 
 void Model::IncrementPlayerTwoCount() {
-  if(player2_increment_count == 3) {
+  if(player2_increment_count >= 3) {
     player2_score++;
     if(player2_score == kPointsToWin) {
       printf("P2 Wins\n");
@@ -185,9 +183,7 @@ void Model::IncrementPlayerTwoCount() {
       player2_increment_count = 0;
     }
   }
-  else {
-    player2_increment_count++;
-  }
+  player2_increment_count++;
   player1_increment_count = 0;
   printf("P2 Score: %d\n",player2_score);
 }
