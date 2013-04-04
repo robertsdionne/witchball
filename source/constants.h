@@ -58,6 +58,7 @@ constexpr float kLinearDamping = 0.1;
 constexpr float kMouseDensity = 10.0;
 constexpr float kMouseMass = 50.0;
 constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
+constexpr float kPlayerHitRadius = 33.0 * kCourtWidth / kWidth;
 constexpr float kRestitution = 0.99;
 constexpr float kSmoothGravityDiscontinuityXRange = 10.0 * kBallRadius;
 constexpr float kSmoothGravityDiscontinuityYRange = 10.0 * kBallRadius;
@@ -108,7 +109,7 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
  * Model Properties
  */
 constexpr float kBallTrailAlphaStart = 128.0;
-constexpr float kBallTrailFadeCoefficient = 0.9;
+constexpr float kBallTrailFadeCoefficient = 0.65;
 constexpr int kBallTrailLength = 30;
 constexpr int kBallTrailSpacing = 1;
 

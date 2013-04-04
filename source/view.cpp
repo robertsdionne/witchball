@@ -27,8 +27,8 @@ void View::Setup() {
   ofSetVerticalSync(true);
   ofEnableAlphaBlending();
   
-  color_p1 = ofColor(ofRandom(150,255), 0, ofRandom(150,255));
-  color_p2 = ofColor(0, ofRandom(150,255), ofRandom(150,255));
+  color_p1 = ofColor(ofRandom(150, 255), 0, ofRandom(150, 255));
+  color_p2 = ofColor(0, ofRandom(150, 255), ofRandom(150, 255));
 }
 
 void View::DrawBall(const b2Body *ball, ofColor color) const {
@@ -49,20 +49,9 @@ void View::DrawBall(const b2Body *ball, ofColor color) const {
 
 void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail, ofColor color) const {
   float alpha = kBallTrailAlphaStart;
+  float player_alpha = kPlayerTrailAlphaStart;
   float scale = 1.0;
   ofPushStyle();
-//  for (const ofVec2f ball : ball_trail) {
-//    ofPushMatrix();
-//    ofTranslate(ball.x, ball.y);
-//    ofScale(scale * kBallRadius, scale * kBallRadius);
-//    ofSetColor(color, alpha);
-//    ofCircle(ofPoint(), 1.0);
-//    ofPopMatrix();
-//    scale *= 1.0;
-//    alpha *= kBallTrailFadeCoefficient;
-//  }
-  alpha = kBallTrailAlphaStart;
-  scale = 1.0;
   Model temp_model;
   temp_model.Setup();
   temp_model.ball->SetTransform(model.ball->GetPosition(), model.ball->GetAngle());
@@ -99,8 +88,33 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
       ofSetColor(color, alpha);
       ofCircle(ofPoint(), 1.0);
       ofPopMatrix();
+      ofPushMatrix();
+      ofTranslate(temp_model.player1_top->GetPosition().x, temp_model.player1_top->GetPosition().y);
+      ofScale(scale * kPlayerRadius, scale * kPlayerRadius);
+      ofSetColor(color_p1, player_alpha);
+      ofCircle(ofPoint(), 1.0);
+      ofPopMatrix();
+      ofPushMatrix();
+      ofTranslate(temp_model.player1_bottom->GetPosition().x, temp_model.player1_bottom->GetPosition().y);
+      ofScale(scale * kPlayerRadius, scale * kPlayerRadius);
+      ofSetColor(color_p1, player_alpha);
+      ofCircle(ofPoint(), 1.0);
+      ofPopMatrix();
+      ofPushMatrix();
+      ofTranslate(temp_model.player2_top->GetPosition().x, temp_model.player2_top->GetPosition().y);
+      ofScale(scale * kPlayerRadius, scale * kPlayerRadius);
+      ofSetColor(color_p2, player_alpha);
+      ofCircle(ofPoint(), 1.0);
+      ofPopMatrix();
+      ofPushMatrix();
+      ofTranslate(temp_model.player2_bottom->GetPosition().x, temp_model.player2_bottom->GetPosition().y);
+      ofScale(scale * kPlayerRadius, scale * kPlayerRadius);
+      ofSetColor(color_p2, player_alpha);
+      ofCircle(ofPoint(), 1.0);
+      ofPopMatrix();
       scale *= 1.0;
       alpha *= kBallTrailFadeCoefficient;
+      player_alpha *= kPlayerTrailFadeCoefficient;
     }
   }
   ofPopStyle();
@@ -178,26 +192,7 @@ void View::DrawPlayer(const b2Body *player, ofColor color) const {
   ofPopStyle();
 }
 
-void View::DrawPlayerTrail(const std::list<ofVec2f> player_trail, ofColor color) const {
-  float alpha = kPlayerTrailAlphaStart;
-  ofPushStyle();
-  for (const ofVec2f player : player_trail) {
-    ofPushMatrix();
-    ofTranslate(player.x, player.y);
-    ofScale(kPlayerRadius, kPlayerRadius);
-    ofSetColor(color, alpha);
-    ofCircle(ofPoint(), 1.0);
-    ofPopMatrix();
-    alpha *= kPlayerTrailFadeCoefficient;
-  }
-  ofPopStyle();
-}
-
 void View::DrawPlayers(const Model &model) const {
-  DrawPlayerTrail(model.player1_top_trail, color_p1);
-  DrawPlayerTrail(model.player1_bottom_trail, color_p1);
-  DrawPlayerTrail(model.player2_top_trail, color_p2);
-  DrawPlayerTrail(model.player2_bottom_trail, color_p2);
   DrawPlayer(model.player1_top, color_p1);
   DrawPlayer(model.player1_bottom, color_p1);
   DrawPlayer(model.player2_top, color_p2);

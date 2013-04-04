@@ -37,8 +37,8 @@ void CollisionSoundPlayer::BeginContact(b2Contact *contact) {
 }
 
 void CollisionSoundPlayer::PlaySound(const b2Body *body, ofSoundPlayer *sound, int &next_index) {
-  const float speed = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.1f, 2.0f);
-  const float volume = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.1f, 1.0f);
+  const float speed = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.8f, 1.0f);
+  const float volume = 1.0;//ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.8f, 1.0f);
   sound[next_index].setSpeed(speed + 0.1 * ofRandomf());
   sound[next_index].setVolume(volume);
   sound[next_index].setPan(body->GetPosition().x / kHalfCourtWidth);

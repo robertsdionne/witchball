@@ -135,7 +135,7 @@ b2Body *Model::CreatePlayer(ofPoint position) {
   b2Body *player = world.CreateBody(&player_definition);
   player->SetUserData(this);
   b2CircleShape player_shape;
-  player_shape.m_radius = kPlayerRadius;
+  player_shape.m_radius = kPlayerHitRadius;
   b2FixtureDef player_fixture_definition;
   player_fixture_definition.shape = &player_shape;
   player_fixture_definition.friction = kFriction;
