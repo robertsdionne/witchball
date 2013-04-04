@@ -12,6 +12,7 @@ Model::Model()
   bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
+  last_hit_player(0), strike_position(), strike_alpha(0.0),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
   elapsed_time(ofGetElapsedTimef()), last_collision_time(ofGetElapsedTimef() + kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
@@ -33,6 +34,9 @@ void Model::Update() {
     player1_bottom->SetActive(false);
     player2_top->SetActive(false);
     player2_bottom->SetActive(false);
+  }
+  if (strike_alpha >= kStrikeAlphaRate) {
+    strike_alpha -= kStrikeAlphaRate;
   }
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   UpdatePlayerPosition(player1_top,
@@ -191,6 +195,8 @@ void Model::IncrementPlayerOneCount() {
     player1_increment_count++;
     player2_increment_count = 0;
     last_hit_player = 1;
+    strike_position = OpenFrameworksVector(ball->GetPosition());
+    strike_alpha = kStrikeAlphaStart;
 
     printf("P1 Score: %d\n",player1_score);
   }
@@ -212,6 +218,8 @@ void Model::IncrementPlayerTwoCount() {
     player2_increment_count++;
     player1_increment_count = 0;
     last_hit_player = 2;
+    strike_position = OpenFrameworksVector(ball->GetPosition());
+    strike_alpha = kStrikeAlphaStart;
     
     printf("P2 Score: %d\n",player2_score);
   }

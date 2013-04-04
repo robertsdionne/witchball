@@ -19,6 +19,7 @@ void View::Draw(const Model &model) const {
   ofColor ball_color = model.player1_increment_count > 2 ? color_p1 :
       model.player2_increment_count > 2 ? color_p2 : ofColor::white;
   DrawBallTrail(model, model.ball_trail, ball_color);
+  DrawStrikeIndicator(model);
   DrawBall(model.ball, ball_color);
 }
 
@@ -29,6 +30,16 @@ void View::Setup() {
   
   color_p1 = ofColor(ofRandom(150, 255), 0, ofRandom(150, 255));
   color_p2 = ofColor(0, ofRandom(150, 255), ofRandom(150, 255));
+}
+
+void View::DrawStrikeIndicator(const Model &model) const {
+  ofPushMatrix();
+  ofTranslate(model.strike_position.x, model.strike_position.y);
+  ofScale(model.strike_alpha * kPlayerRadius, model.strike_alpha * kPlayerRadius);
+  ofSetColor(model.last_hit_player == 1 ? color_p1 : model.last_hit_player == 2 ? color_p2 : ofColor::white,
+             model.strike_alpha * 255.0);
+  ofCircle(ofPoint(), 1.0);
+  ofPopMatrix();
 }
 
 void View::DrawBall(const b2Body *ball, ofColor color) const {

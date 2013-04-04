@@ -126,6 +126,9 @@ constexpr float kPlayerTrailFadeCoefficient = 0.65;
 constexpr int kPlayerTrailLength = 10;
 constexpr int kPlayerTrailSpacing = 1;
 
+constexpr float kStrikeAlphaRate = 0.01;
+constexpr float kStrikeAlphaStart = 1.0;
+
 /**
  * Controller properties.
  */
