@@ -29,7 +29,7 @@ public:
   void RotateCounterClockwise();
 
 private:
-  void CreateBall(ofPoint position = ofPoint(1, 0), ofVec2f velocity = ofVec2f(0.0, 3.0));
+  void CreateBall(ofPoint position = ofPoint(1, 0), ofVec2f velocity = ofVec2f(3.5, 3.5));
   
   void CreateBorder();
   
@@ -71,6 +71,7 @@ public:
   float gravity_angle;
 
   CourtPosition court_position;
+  bool play_gravity;
 	
   int player1_score = 0;
   int player2_score = 0;

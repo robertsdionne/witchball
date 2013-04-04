@@ -11,7 +11,7 @@ Model::Model()
   top_right_quadrant_gravity(kTopRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
-  gravity_angle(0.0), court_position(CourtPosition::POSITION_1),
+  gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
   player2_top_trail(), player2_bottom_trail() {}
@@ -74,7 +74,6 @@ void Model::UpdateTrails() {
 }
 
 void Model::UpdateGravities() {
-  gravity_angle = ofLerpDegrees(gravity_angle, kGravityAngle[EnumValue(court_position)], kGravityMixerRate);
   mouse_mass_scale = ofLerp(mouse_mass_scale, mouse_pressed, kGravityMixerRate);
   mouse_gravity_position = Lerp(mouse_gravity_position, mouse_position, kGravityMixerRate);
   top_left_quadrant_gravity = Lerp(top_left_quadrant_gravity,
@@ -151,11 +150,17 @@ void Model::CreatePlayers() {
 }
 
 b2Vec2 Model::GravityAt(b2Vec2 position) const {
+  constexpr float x_range = kSmoothGravityDiscontinuityXRange;
+  constexpr float y_range = kSmoothGravityDiscontinuityYRange;
+  const float xt = (ofClamp(position.x, -x_range, x_range) / x_range + 1.0) / 2.0;
+  const float yt = (ofClamp(position.y, -y_range, y_range) / y_range + 1.0) / 2.0;
   const ofVec2f radius = mouse_gravity_position - OpenFrameworksVector(position);
-  const b2Vec2 mouse_gravity = Box2dVector(mouse_mass_scale * kMouseMass *
-                                           radius.normalized() / radius.lengthSquared());
-  const b2Vec2 gravity = Box2dVector(-9.81 * OpenFrameworksVector(position).normalized().rotate(gravity_angle));
-  return gravity + mouse_gravity;
+  if (play_gravity) {
+    return Lerp(Lerp(bottom_left_quadrant_gravity, bottom_right_quadrant_gravity, xt),
+                Lerp(top_left_quadrant_gravity, top_right_quadrant_gravity, xt), yt);
+  } else {
+    return Box2dVector(-9.81 * OpenFrameworksVector(position).normalized());
+  }
 }
 
 void Model::IncrementPlayerOneCount() {
@@ -190,10 +195,12 @@ void Model::IncrementPlayerTwoCount() {
 
 void Model::RotateClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 1) % 4);
+  play_gravity = true;
 }
 
 void Model::RotateCounterClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
+  play_gravity = true;
 }
 
 void Model::UpdatePlayerPosition(b2Body *player, ofPoint target) {

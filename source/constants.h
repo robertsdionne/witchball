@@ -54,12 +54,12 @@ constexpr float kDensity = 1.0; // kg/m^2
 constexpr bool kFixedRotation = true;
 constexpr float kFriction = 0.0;
 const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
-constexpr float kLinearDamping = 0.1;
+constexpr float kLinearDamping = 0.0;
 constexpr float kMouseDensity = 10.0;
 constexpr float kMouseMass = 50.0;
 constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
 constexpr float kPlayerHitRadius = 33.0 * kCourtWidth / kWidth;
-constexpr float kRestitution = 0.99;
+constexpr float kRestitution = 1.0;
 constexpr float kSmoothGravityDiscontinuityXRange = 10.0 * kBallRadius;
 constexpr float kSmoothGravityDiscontinuityYRange = 10.0 * kBallRadius;
 constexpr float kTimeStep = 1.0 / 60.0; // seconds
@@ -70,6 +70,9 @@ const b2Vec2 kTopRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, 1.0).normalized
 const b2Vec2 kBottomLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, -1.0).normalized());
 const b2Vec2 kBottomRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, -1.0).normalized());
 
+const b2Vec2 kTopGravity = Box2dVector(-9.81 * ofVec2f(0.0, 1.0).normalized());
+const b2Vec2 kBottomGravity = Box2dVector(-9.81 * ofVec2f(0.0, -1.0).normalized());
+
 const float kGravityAngle[] = {
   0.0,
   90.0,
@@ -78,31 +81,31 @@ const float kGravityAngle[] = {
 };
 
 const b2Vec2 kTopLeftQuadrantGravity[] = {
-  kTopLeftGravity,
-  kTopRightGravity,
-  kBottomRightGravity,
-  kBottomLeftGravity
+  kTopGravity,
+  kTopGravity,
+  kBottomGravity,
+  kTopGravity
 };
 
 const b2Vec2 kTopRightQuadrantGravity[] = {
-  kTopRightGravity,
-  kBottomRightGravity,
-  kBottomLeftGravity,
-  kTopLeftGravity
+  kTopGravity,
+  kTopGravity,
+  kBottomGravity,
+  kTopGravity
 };
 
 const b2Vec2 kBottomLeftQuadrantGravity[] = {
-  kBottomLeftGravity,
-  kTopLeftGravity,
-  kTopRightGravity,
-  kBottomRightGravity
+  kBottomGravity,
+  kBottomGravity,
+  kTopGravity,
+  kBottomGravity
 };
 
 const b2Vec2 kBottomRightQuadrantGravity[] = {
-  kBottomRightGravity,
-  kBottomLeftGravity,
-  kTopLeftGravity,
-  kTopRightGravity
+  kBottomGravity,
+  kBottomGravity,
+  kTopGravity,
+  kBottomGravity
 };
 
 /**
@@ -125,8 +128,8 @@ constexpr int kPlayerTrailSpacing = 1;
 /**
  * Controller properties.
  */
-constexpr float kControllerRateX = 1.0 / 5.0;
-constexpr float kControllerRateY = 1.0 / 40.0;
+constexpr float kControllerRateX = 1.0 / 20.0;
+constexpr float kControllerRateY = 1.0 / 20.0;
 
 const ofPoint kPlayer1TopBack[] = {
   ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius),
