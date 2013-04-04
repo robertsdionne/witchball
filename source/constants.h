@@ -128,6 +128,8 @@ constexpr int kPlayerTrailSpacing = 1;
 
 constexpr float kStrikeAlphaRate = 0.01;
 constexpr float kStrikeAlphaStart = 1.0;
+constexpr float kRotateAlphaRate = 0.01;
+constexpr float kRotateAlphaStart = 1.0;
 
 /**
  * Controller properties.

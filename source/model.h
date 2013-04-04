@@ -76,6 +76,9 @@ public:
   int last_hit_player = 0;
   ofVec2f strike_position;
   float strike_alpha;
+
+  float counter_clockwise_alpha;
+  float clockwise_alpha;
 	
   int player1_score = 0;
   int player2_score = 0;

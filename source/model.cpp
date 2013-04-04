@@ -12,7 +12,8 @@ Model::Model()
   bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
-  last_hit_player(0), strike_position(), strike_alpha(0.0),
+  last_hit_player(0), strike_position(), strike_alpha(0.0), counter_clockwise_alpha(0.0),
+  clockwise_alpha(0.0),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
   elapsed_time(ofGetElapsedTimef()), last_collision_time(ofGetElapsedTimef() + kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
@@ -37,6 +38,12 @@ void Model::Update() {
   }
   if (strike_alpha >= kStrikeAlphaRate) {
     strike_alpha -= kStrikeAlphaRate;
+  }
+  if (counter_clockwise_alpha >= kRotateAlphaRate) {
+    counter_clockwise_alpha -= kRotateAlphaRate;
+  }
+  if (clockwise_alpha >= kRotateAlphaRate) {
+    clockwise_alpha -= kRotateAlphaRate;
   }
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   UpdatePlayerPosition(player1_top,
@@ -227,11 +234,13 @@ void Model::IncrementPlayerTwoCount() {
 
 void Model::RotateClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 1) % 4);
+  clockwise_alpha = kRotateAlphaStart;
   play_gravity = true;
 }
 
 void Model::RotateCounterClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
+  counter_clockwise_alpha = kRotateAlphaStart;
   play_gravity = true;
 }
 

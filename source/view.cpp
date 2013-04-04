@@ -40,6 +40,56 @@ void View::DrawStrikeIndicator(const Model &model) const {
              model.strike_alpha * 255.0);
   ofCircle(ofPoint(), 1.0);
   ofPopMatrix();
+  if (model.counter_clockwise_alpha) {
+    ofPushMatrix();
+    ofTranslate(-kCourtWidth / 4.0, kCourtHeight / 4.0);
+    ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
+    ofPopMatrix();
+    ofPushMatrix();
+    ofTranslate(-kCourtWidth / 4.0, -kCourtHeight / 4.0);
+    ofRotateZ(90);
+    ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
+    ofPopMatrix();
+    ofPushMatrix();
+    ofTranslate(kCourtWidth / 4.0, -kCourtHeight / 4.0);
+    ofRotateZ(180);
+    ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
+    ofPopMatrix();
+    ofPushMatrix();
+    ofTranslate(kCourtWidth / 4.0, kCourtHeight / 4.0);
+    ofRotateZ(270);
+    ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
+    ofPopMatrix();
+  }
+  if (model.clockwise_alpha) {
+    ofPushMatrix();
+    ofTranslate(-kCourtWidth / 4.0, kCourtHeight / 4.0);
+    ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
+    ofPopMatrix();
+    ofPushMatrix();
+    ofTranslate(-kCourtWidth / 4.0, -kCourtHeight / 4.0);
+    ofRotateZ(90);
+    ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
+    ofPopMatrix();
+    ofPushMatrix();
+    ofTranslate(kCourtWidth / 4.0, -kCourtHeight / 4.0);
+    ofRotateZ(180);
+    ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
+    ofPopMatrix();
+    ofPushMatrix();
+    ofTranslate(kCourtWidth / 4.0, kCourtHeight / 4.0);
+    ofRotateZ(270);
+    ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
+    ofPopMatrix();
+  }
 }
 
 void View::DrawBall(const b2Body *ball, ofColor color) const {
