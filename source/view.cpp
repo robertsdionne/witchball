@@ -16,8 +16,8 @@ void View::Draw(const Model &model) const {
   DrawScore(model);
   DrawCourt(model);
   DrawPlayers(model);
-  ofColor ball_color = model.player1_increment_count > 3 ? color_p1 :
-      model.player2_increment_count > 3 ? color_p2 : ofColor::white;
+  ofColor ball_color = model.player1_increment_count > 2 ? color_p1 :
+      model.player2_increment_count > 2 ? color_p2 : ofColor::white;
   DrawBallTrail(model, model.ball_trail, ball_color);
   DrawBall(model.ball, ball_color);
 }
@@ -54,6 +54,7 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   ofPushStyle();
   Model temp_model;
   temp_model.Setup();
+  temp_model.elapsed_time = ofGetElapsedTimef();
   temp_model.ball->SetTransform(model.ball->GetPosition(), model.ball->GetAngle());
   temp_model.ball->SetLinearVelocity(model.ball->GetLinearVelocity());
   temp_model.ball->SetAngularVelocity(model.ball->GetAngularVelocity());
@@ -80,6 +81,7 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   collisionscorekeeper keeper;
   temp_model.world.SetContactListener(&keeper);
   for (int i = 0; i < kBallTrailLength * kBallTrailSpacing; ++i) {
+    temp_model.elapsed_time += kTimeStep;
     temp_model.Update();
     if ((ofGetFrameNum() + i) % kBallTrailSpacing == 0) {
       ofPushMatrix();

@@ -13,6 +13,7 @@ Model::Model()
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT),
+  elapsed_time(ofGetElapsedTimef()), last_collision_time(ofGetElapsedTimef() + kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
   player2_top_trail(), player2_bottom_trail() {}
 
@@ -23,6 +24,16 @@ void Model::Setup() {
 }
 
 void Model::Update() {
+  if (elapsed_time > last_collision_time + kCollisionDelay) {
+    player1_top->SetActive(true);
+    player1_bottom->SetActive(true);
+    player2_top->SetActive(true);
+    player2_bottom->SetActive(true);
+  } else {    player1_top->SetActive(false);
+    player1_bottom->SetActive(false);
+    player2_top->SetActive(false);
+    player2_bottom->SetActive(false);
+  }
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   UpdatePlayerPosition(player1_top,
                        Lerp(kPlayer1TopBack[EnumValue(court_position)],
@@ -164,33 +175,40 @@ b2Vec2 Model::GravityAt(b2Vec2 position) const {
 }
 
 void Model::IncrementPlayerOneCount() {
-  if(player1_increment_count >= 3) {
-    player1_score++;
+  if (elapsed_time > last_collision_time + kCollisionDelay) {
+    last_collision_time = elapsed_time;
+    if(player1_increment_count >= 2) {
+      player1_score++;
 
-    if(player1_score == kPointsToWin) {
-      printf("P1 Wins\n");
-      player1_score = 0;
-      player1_increment_count = 0;
+      if(player1_score == kPointsToWin) {
+        printf("P1 Wins\n");
+        player1_score = 0;
+        player1_increment_count = 0;
+      }
     }
-  }
-  player1_increment_count++;
-  player2_increment_count = 0;
+    player1_increment_count++;
+    player2_increment_count = 0;
 
-  printf("P1 Score: %d\n",player1_score);
+    printf("P1 Score: %d\n",player1_score);
+  }
 }
 
 void Model::IncrementPlayerTwoCount() {
-  if(player2_increment_count >= 3) {
-    player2_score++;
-    if(player2_score == kPointsToWin) {
-      printf("P2 Wins\n");
-      player2_score = 0;
-      player2_increment_count = 0;
+  if (elapsed_time > last_collision_time + kCollisionDelay) {
+    last_collision_time = elapsed_time;
+    if(player2_increment_count >= 2) {
+      player2_score++;
+      if(player2_score == kPointsToWin) {
+        printf("P2 Wins\n");
+        player2_score = 0;
+        player2_increment_count = 0;
+      }
     }
+    player2_increment_count++;
+    player1_increment_count = 0;
+    
+    printf("P2 Score: %d\n",player2_score);
   }
-  player2_increment_count++;
-  player1_increment_count = 0;
-  printf("P2 Score: %d\n",player2_score);
 }
 
 void Model::RotateClockwise() {

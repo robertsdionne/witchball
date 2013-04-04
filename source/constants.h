@@ -49,12 +49,13 @@ const b2Vec2 kAntiGravity = b2Vec2(0.0, 9.81); // m/s^2
 constexpr float kBallRadius = 11.0 * kCourtWidth / kWidth;
 constexpr int kBox2dPositionIterations = 3;
 constexpr int kBox2dVelocityIterations = 8;
-constexpr float kDampingSpeed = 10.0;
+constexpr float kCollisionDelay = 0.4;
+constexpr float kDampingSpeed = 12.0;
 constexpr float kDensity = 1.0; // kg/m^2
 constexpr bool kFixedRotation = true;
 constexpr float kFriction = 0.0;
 const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
-constexpr float kLinearDamping = 0.0;
+constexpr float kLinearDamping = 0.1;
 constexpr float kMouseDensity = 10.0;
 constexpr float kMouseMass = 50.0;
 constexpr float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
@@ -128,7 +129,7 @@ constexpr int kPlayerTrailSpacing = 1;
 /**
  * Controller properties.
  */
-constexpr float kControllerRateX = 1.0 / 20.0;
+constexpr float kControllerRateX = 1.0 / 5.0;
 constexpr float kControllerRateY = 1.0 / 20.0;
 
 const ofPoint kPlayer1TopBack[] = {

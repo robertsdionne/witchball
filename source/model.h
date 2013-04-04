@@ -84,6 +84,8 @@ public:
   
   GravityVisual draw_gravity;
 
+  float elapsed_time, last_collision_time;
+
   std::list<ofVec2f> ball_trail;
   std::list<ofVec2f> player1_top_trail, player1_bottom_trail;
   std::list<ofVec2f> player2_top_trail, player2_bottom_trail;

@@ -24,6 +24,7 @@ void WitchBall::setup() {
 
 void WitchBall::update() {
   controller.Update();
+  model.elapsed_time = ofGetElapsedTimef();
   model.Update();
 }
 
