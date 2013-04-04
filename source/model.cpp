@@ -12,7 +12,7 @@ Model::Model()
   bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
   gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
-  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT),
+  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
   elapsed_time(ofGetElapsedTimef()), last_collision_time(ofGetElapsedTimef() + kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
   player2_top_trail(), player2_bottom_trail() {}
@@ -183,11 +183,14 @@ void Model::IncrementPlayerOneCount() {
       if(player1_score == kPointsToWin) {
         printf("P1 Wins\n");
         player1_score = 0;
+        player2_score = 0;
         player1_increment_count = 0;
+        player2_increment_count = 0;
       }
     }
     player1_increment_count++;
     player2_increment_count = 0;
+    last_hit_player = 1;
 
     printf("P1 Score: %d\n",player1_score);
   }
@@ -200,12 +203,15 @@ void Model::IncrementPlayerTwoCount() {
       player2_score++;
       if(player2_score == kPointsToWin) {
         printf("P2 Wins\n");
+        player1_score = 0;
         player2_score = 0;
+        player1_increment_count = 0;
         player2_increment_count = 0;
       }
     }
     player2_increment_count++;
     player1_increment_count = 0;
+    last_hit_player = 2;
     
     printf("P2 Score: %d\n",player2_score);
   }

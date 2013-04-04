@@ -72,6 +72,8 @@ public:
 
   CourtPosition court_position;
   bool play_gravity;
+
+  int last_hit_player = 0;
 	
   int player1_score = 0;
   int player2_score = 0;

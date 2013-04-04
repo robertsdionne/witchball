@@ -125,19 +125,31 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
 void View::DrawCourt(const Model &model) const {
   ofPushStyle();
   // Draw a horizontal or vertical court line depending on the current gravity configuration.
-  ofSetLineWidth(2.0);
+  ofSetLineWidth(10.0);
   ofSetColor(ofColor::white);
+  ofLine(-kCourtWidth / 2.0, 0.0, kCourtWidth / 2.0, 0.0);
+  ofSetColor(model.last_hit_player == 1 ? color_p1 : model.last_hit_player == 2 ? color_p2 : ofColor::white);
+  ofLine(0.0, 2.0 * kPlayerRadius, 0.0, -2.0 * kPlayerRadius);
   // Draw connectors between the players and their nearest vertical walls.
-  ofSetColor(color_p1 / 2.0);
-  ofLine(ofPoint(kPlayer1TopForward[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y - kPlayerRadius),
-         ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y - kPlayerRadius));
-  ofLine(ofPoint(kPlayer1BottomForward[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y - kPlayerRadius),
-         ofPoint(kPlayer1BottomBack[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y - kPlayerRadius));
-  ofSetColor(color_p2 / 2.0);
-  ofLine(ofPoint(kPlayer2TopForward[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y - kPlayerRadius),
-         ofPoint(kPlayer2TopBack[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y - kPlayerRadius));
-  ofLine(ofPoint(kPlayer2BottomForward[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y - kPlayerRadius),
-         ofPoint(kPlayer2BottomBack[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y - kPlayerRadius));
+  ofSetLineWidth(3.0);
+  ofSetColor(color_p1);
+  float player1_top_offset = -0.8 * kPlayerRadius;
+  float player1_bottom_offset = 0.8 * kPlayerRadius;
+  float player2_top_offset = -0.8 * kPlayerRadius;
+  float player2_bottom_offset = 0.8 * kPlayerRadius;
+  ofLine(ofPoint(kPlayer1TopForward[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y + player1_top_offset),
+         ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y + player1_top_offset));
+  ofLine(ofPoint(kPlayer1BottomForward[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y +
+                 player1_bottom_offset),
+         ofPoint(kPlayer1BottomBack[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y +
+                 player1_bottom_offset));
+  ofSetColor(color_p2);
+  ofLine(ofPoint(kPlayer2TopForward[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y + player2_top_offset),
+         ofPoint(kPlayer2TopBack[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y + player2_top_offset));
+  ofLine(ofPoint(kPlayer2BottomForward[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y +
+                 player2_bottom_offset),
+         ofPoint(kPlayer2BottomBack[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y +
+                 player2_bottom_offset));
   ofPopStyle();
   ofSetLineWidth(1.0);
 }
