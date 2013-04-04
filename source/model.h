@@ -4,6 +4,7 @@
 #include <Box2D/Box2D.h>
 #include <list>
 
+#include "ofChaser.h"
 #include "ofMain.h"
 
 class Model {
@@ -96,6 +97,15 @@ public:
   std::list<ofVec2f> ball_trail;
   std::list<ofVec2f> player1_top_trail, player1_bottom_trail;
   std::list<ofVec2f> player2_top_trail, player2_bottom_trail;
+
+  ofPoint testPoint;
+
+  ofChaser** topChaser;
+  ofChaser** botChaser;
+  ofChaser** leftChaser;
+  ofChaser** rightChaser;
+
+  int nChasers;
 };
 
 #endif  // WITCHBALL_MODEL_H_

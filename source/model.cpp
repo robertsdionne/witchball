@@ -1,6 +1,7 @@
 #include "constants.h"
 #include "utilities.h"
 #include "model.h"
+#include "ofChaser.h"
 
 Model::Model()
 : world(kZeroGravity), ball(nullptr), border(nullptr),
@@ -23,9 +24,92 @@ void Model::Setup() {
   CreateBall();
   CreateBorder();
   CreatePlayers();
+  //CHASERS
+  nChasers=99;
+  testPoint.set(0, 0);
+
+  topChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = ofRandom(-kCourtWidth / 2.0, kCourtWidth / 2.0);
+    float b = kCourtHeight / 2.0;
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX= ball->GetPosition().x;
+    float extY= ball->GetPosition().y;
+
+    topChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+  botChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = ofRandom(-kCourtWidth / 2.0, kCourtWidth / 2.0);
+    float b = -kCourtHeight / 2.0;
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX= ball->GetPosition().x;
+    float extY= ball->GetPosition().y;
+
+    botChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+  leftChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = -kCourtWidth / 2.0;
+    float b = ofRandom(-kCourtHeight / 2.0, kCourtHeight / 2.0);
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX= ball->GetPosition().x;
+    float extY= ball->GetPosition().y;
+
+    leftChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+  rightChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = kCourtWidth / 2.0;
+    float b = ofRandom(-kCourtHeight / 2.0, kCourtHeight / 2.0);
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX = ball->GetPosition().x;
+    float extY = ball->GetPosition().y;
+
+    rightChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
 }
 
 void Model::Update() {
+  //CHASERS----------------
+  for (int i = 0; i < nChasers; i++){
+    topChaser[i]->targX=testPoint.x;
+    topChaser[i]->targY=testPoint.y;
+    topChaser[i]->extX=ball->GetPosition().x;
+    topChaser[i]->extY=ball->GetPosition().y;
+
+    botChaser[i]->targX=testPoint.x;
+    botChaser[i]->targY=testPoint.y;
+    botChaser[i]->extX=ball->GetPosition().x;
+    botChaser[i]->extY=ball->GetPosition().y;
+
+    rightChaser[i]->targX=testPoint.x;
+    rightChaser[i]->targY=testPoint.y;
+    rightChaser[i]->extX=ball->GetPosition().x;
+    rightChaser[i]->extY=ball->GetPosition().y;
+
+    leftChaser[i]->targX=testPoint.x;
+    leftChaser[i]->targY=testPoint.y;
+    leftChaser[i]->extX=ball->GetPosition().x;
+    leftChaser[i]->extY=ball->GetPosition().y;
+
+    topChaser[i]->update();
+    botChaser[i]->update();
+    rightChaser[i]->update();
+    leftChaser[i]->update();
+  }
   if (elapsed_time > last_collision_time + kCollisionDelay) {
     player1_top->SetActive(true);
     player1_bottom->SetActive(true);

@@ -12,6 +12,13 @@ void View::Draw(const Model &model) const {
   DrawFramesPerSecond();
   SetupViewpoint();
   ofBackground(ofColor::black);
+  //CHASERS-------------------
+  for (int i = 0; i < model.nChasers; i++){
+    model.topChaser[i]->draw();
+    model.botChaser[i]->draw();
+    model.rightChaser[i]->draw();
+    model.leftChaser[i]->draw();
+  }
   DrawGravity(model);
   DrawScore(model);
   DrawCourt(model);
