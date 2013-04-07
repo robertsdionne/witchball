@@ -70,6 +70,7 @@ const b2Vec2 kTopLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, 1.0).normalized
 const b2Vec2 kTopRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, 1.0).normalized());
 const b2Vec2 kBottomLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, -1.0).normalized());
 const b2Vec2 kBottomRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, -1.0).normalized());
+const b2Vec2 kBumperForce = b2Vec2(0.2,0.0); //force applied to ball when it gets too close to the sides of the field
 
 const b2Vec2 kTopGravity = Box2dVector(-9.81 * ofVec2f(0.0, 1.0).normalized());
 const b2Vec2 kBottomGravity = Box2dVector(-9.81 * ofVec2f(0.0, -1.0).normalized());

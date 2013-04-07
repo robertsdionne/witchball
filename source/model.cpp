@@ -80,6 +80,8 @@ void Model::Setup() {
 
     rightChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
   }
+    
+    
 }
 
 void Model::Update() {
@@ -143,6 +145,12 @@ void Model::Update() {
                        Lerp(kPlayer2BottomBack[EnumValue(court_position)],
                             kPlayer2BottomForward[EnumValue(court_position)], player2_position));
   UpdateGravities();
+  if (ball->GetPosition().x >= kCourtWidth-2*kBallRadius){
+    ball->ApplyForceToCenter(-kBumperForce);
+  }else if (ball->GetPosition().x <= -kCourtWidth/2+2*kBallRadius){
+    ball->ApplyForceToCenter(kBumperForce);
+  }
+  
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
   UpdateTrails();
   if (ball->GetLinearVelocity().Length() < kDampingSpeed) {
