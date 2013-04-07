@@ -51,24 +51,31 @@ void View::DrawStrikeIndicator(const Model &model) const {
     ofPushMatrix();
     ofTranslate(-kCourtWidth / 4.0, kCourtHeight / 4.0);
     ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTranslate(0, 5*model.counter_clockwise_alpha);
     ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
     ofPopMatrix();
+    
     ofPushMatrix();
     ofTranslate(-kCourtWidth / 4.0, -kCourtHeight / 4.0);
     ofRotateZ(90);
     ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTranslate(0, 10*model.counter_clockwise_alpha);
     ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
     ofPopMatrix();
+    
     ofPushMatrix();
     ofTranslate(kCourtWidth / 4.0, -kCourtHeight / 4.0);
     ofRotateZ(180);
     ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTranslate(0, 5*model.counter_clockwise_alpha);
     ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
     ofPopMatrix();
+    
     ofPushMatrix();
     ofTranslate(kCourtWidth / 4.0, kCourtHeight / 4.0);
     ofRotateZ(270);
     ofSetColor(color_p2, model.counter_clockwise_alpha * 255.0);
+    ofTranslate(0, 10*model.counter_clockwise_alpha);
     ofTriangle(-0.5, 0.5, 0.5, 0.5, 0, -1);
     ofPopMatrix();
   }
@@ -76,24 +83,31 @@ void View::DrawStrikeIndicator(const Model &model) const {
     ofPushMatrix();
     ofTranslate(-kCourtWidth / 4.0, kCourtHeight / 4.0);
     ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTranslate(0, -10*model.clockwise_alpha);
     ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
     ofPopMatrix();
+    
     ofPushMatrix();
     ofTranslate(-kCourtWidth / 4.0, -kCourtHeight / 4.0);
     ofRotateZ(90);
     ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTranslate(0, -5*model.clockwise_alpha);
     ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
     ofPopMatrix();
+    
     ofPushMatrix();
     ofTranslate(kCourtWidth / 4.0, -kCourtHeight / 4.0);
     ofRotateZ(180);
     ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTranslate(0, -10*model.clockwise_alpha);
     ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
     ofPopMatrix();
+    
     ofPushMatrix();
     ofTranslate(kCourtWidth / 4.0, kCourtHeight / 4.0);
     ofRotateZ(270);
     ofSetColor(color_p1, model.clockwise_alpha * 255.0);
+    ofTranslate(0, -5*model.clockwise_alpha);
     ofTriangle(-0.5, -0.5, 0.5, -0.5, 0, 1);
     ofPopMatrix();
   }
