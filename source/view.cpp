@@ -146,6 +146,7 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   temp_model.player1_bottom->SetActive(false);
   temp_model.player2_top->SetActive(false);
   temp_model.player2_bottom->SetActive(false);
+  temp_model.play_gravity = model.play_gravity;
   collisionscorekeeper keeper;
   temp_model.world.SetContactListener(&keeper);
   for (int i = 0; i < kBallTrailLength * kBallTrailSpacing; ++i) {

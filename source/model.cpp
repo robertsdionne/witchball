@@ -329,8 +329,7 @@ void Model::RotateCounterClockwise() {
 }
 
 void Model::UpdatePlayerPosition(b2Body *player, ofPoint target) {
-  const ofVec2f position = OpenFrameworksVector(player->GetPosition());
-  const ofVec2f delta = (target - position) * ofVec2f(kControllerRateX, kControllerRateY);
-  const ofVec2f new_position = position + delta;
-  player->SetTransform(Box2dVector(new_position), 0.0);
+  const b2Vec2 new_position = b2Vec2(ofLerp(player->GetPosition().x, target.x, kControllerRateX),
+                                     ofLerp(player->GetPosition().y, target.y, kControllerRateY));
+  player->SetTransform(new_position, 0.0);
 }
