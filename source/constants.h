@@ -4,6 +4,7 @@
 #include <Box2D/Box2D.h>
 
 #include "ofMain.h"
+#include "parameter.h"
 #include "utilities.h"
 
 /**

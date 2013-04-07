@@ -10,6 +10,7 @@
 
 void View::Draw(const Model &model) const {
   DrawFramesPerSecond();
+  ofPushMatrix();
   SetupViewpoint();
   ofBackground(ofColor::black);
   //CHASERS-------------------
@@ -28,6 +29,7 @@ void View::Draw(const Model &model) const {
   DrawBallTrail(model, model.ball_trail, ball_color);
   DrawStrikeIndicator(model);
   DrawBall(model.ball, ball_color);
+  ofPopMatrix();
 }
 
 void View::Setup() {

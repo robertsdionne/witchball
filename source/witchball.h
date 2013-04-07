@@ -10,13 +10,14 @@
 #include "controller.h"
 #include "model.h"
 #include "ofMain.h"
+#include "ofxGui.h"
 #include "view.h"
 
 class WitchBall : public ofBaseApp {
 public:
   WitchBall();
   
-  virtual ~WitchBall() {}
+  virtual ~WitchBall();
   
   void setup();
   
@@ -51,6 +52,8 @@ private:
   collisionscorekeeper score_keeper_collision;
   CompositeContactListener contact_listener;
   ofSoundPlayer sound_background_music, sound_background_music_2;
+  ofxPanel float_panel;
+  ofxPanel int_panel;
 };
 
 #endif  // WITCHBALL_WITCHBALL

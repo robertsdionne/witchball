@@ -106,6 +106,8 @@ public:
   ofChaser** rightChaser;
 
   int nChasers;
+
+  bool show_sliders = false;
 };
 
 #endif  // WITCHBALL_MODEL_H_

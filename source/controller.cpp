@@ -42,6 +42,9 @@ void Controller::Update() {
   if (keys[OF_KEY_BACKSPACE] && !previous_keys[OF_KEY_BACKSPACE]) {
     model.draw_gravity = Model::GravityVisual((EnumValue(model.draw_gravity) + 1) % 2);
   }
+  if (keys['`'] && !previous_keys['`']) {
+    model.show_sliders = !model.show_sliders;
+  }
   if (keys['q']) {
     model.player1_position = ofClamp(model.player1_position + kPlayerMoveDelta, 0.0, 1.0);
   } else {
