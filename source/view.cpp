@@ -155,8 +155,6 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   temp_model.top_right_quadrant_gravity = model.top_right_quadrant_gravity;
   temp_model.bottom_left_quadrant_gravity = model.bottom_left_quadrant_gravity;
   temp_model.bottom_right_quadrant_gravity = model.bottom_right_quadrant_gravity;
-  temp_model.mouse_gravity_position = model.mouse_gravity_position;
-  temp_model.mouse_mass_scale = model.mouse_mass_scale;
   temp_model.mouse_position = model.mouse_position;
   temp_model.mouse_pressed = model.mouse_pressed;
   temp_model.court_position = model.court_position;

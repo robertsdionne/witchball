@@ -9,6 +9,8 @@ DEFINE_PARAMETER_RANGE(int, kBallTrailSpacing, 1, 1, 128);
 DEFINE_PARAMETER_RANGE(float, kControllerRateX, 1.0 / 5.0, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kControllerRateY, 1.0 / 40.0, 0.0, 1.0);
 
+DEFINE_PARAMETER_RANGE(float, kGravityMixerRate, 0.05, 0.0, 1.0);
+
 DEFINE_PARAMETER_RANGE(float, kPlayerTrailAlphaStart, 128.0, 0.0, 255.0);
 DEFINE_PARAMETER_RANGE(float, kPlayerTrailFadeCoefficient, 0.65, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(int, kPlayerTrailLength, 10, 0, 128);

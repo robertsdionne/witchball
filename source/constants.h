@@ -119,6 +119,8 @@ extern Parameter<int> kBallTrailSpacing;
 extern Parameter<float> kControllerRateX;
 extern Parameter<float> kControllerRateY;
 
+extern Parameter<float> kGravityMixerRate;
+
 extern Parameter<float> kPlayerTrailAlphaStart;
 extern Parameter<float> kPlayerTrailFadeCoefficient;
 extern Parameter<int> kPlayerTrailLength;
@@ -128,7 +130,6 @@ extern Parameter<int> kPlayerTrailSpacing;
  * Model Properties
  */
 
-constexpr float kGravityMixerRate = 0.05;
 constexpr float kPlayerMoveDelta = 0.015;
 constexpr int kPointsToWin = 7;
 constexpr float kPlayerBallCollisionMultiplier = 0.1;

@@ -31,9 +31,6 @@ void Controller::OnMouseReleased(int x, int y, int button) {
 }
 
 void Controller::Update() {
-  if (buttons[0] && !previous_buttons[0]) {
-    model.mouse_gravity_position = model.mouse_position;
-  }
   if (MouseButtonIsPressed(0)) {
     model.mouse_pressed = true;
   } else {
