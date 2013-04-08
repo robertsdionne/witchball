@@ -7,6 +7,30 @@
 #include "parameter.h"
 #include "utilities.h"
 
+extern Parameter<float> kAngularDamping;
+
+extern Parameter<float> kBallTrailAlphaStart;
+extern Parameter<float> kBallTrailFadeCoefficient;
+extern Parameter<int> kBallTrailLength;
+extern Parameter<int> kBallTrailSpacing;
+
+extern Parameter<float> kControllerRateX;
+extern Parameter<float> kControllerRateY;
+
+extern Parameter<float> kGravityMixerRate;
+
+extern Parameter<float> kPlayerMoveDelta;
+extern Parameter<float> kPlayerTrailAlphaStart;
+extern Parameter<float> kPlayerTrailFadeCoefficient;
+extern Parameter<int> kPlayerTrailLength;
+extern Parameter<int> kPlayerTrailSpacing;
+extern Parameter<int> kPointsToWin;
+
+extern Parameter<float> kStrikeAlphaRate;
+extern Parameter<float> kStrikeAlphaStart;
+extern Parameter<float> kRotateAlphaRate;
+extern Parameter<float> kRotateAlphaStart;
+
 /**
  * Audio properties.
  */
@@ -45,7 +69,6 @@ constexpr float kHalfCourtHeight = kCourtHeight / 2.0; // m
 /**
  * Physics properties.
  */
-constexpr float kAngularDamping = 0.0;
 const b2Vec2 kAntiGravity = b2Vec2(0.0, 9.81); // m/s^2
 constexpr float kBallRadius = 11.0 * kCourtWidth / kWidth;
 constexpr int kBox2dPositionIterations = 3;
@@ -111,33 +134,9 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
   kBottomGravity
 };
 
-extern Parameter<float> kBallTrailAlphaStart;
-extern Parameter<float> kBallTrailFadeCoefficient;
-extern Parameter<int> kBallTrailLength;
-extern Parameter<int> kBallTrailSpacing;
-
-extern Parameter<float> kControllerRateX;
-extern Parameter<float> kControllerRateY;
-
-extern Parameter<float> kGravityMixerRate;
-
-extern Parameter<float> kPlayerTrailAlphaStart;
-extern Parameter<float> kPlayerTrailFadeCoefficient;
-extern Parameter<int> kPlayerTrailLength;
-extern Parameter<int> kPlayerTrailSpacing;
-
 /**
  * Model Properties
  */
-
-constexpr float kPlayerMoveDelta = 0.015;
-constexpr int kPointsToWin = 7;
-constexpr float kPlayerBallCollisionMultiplier = 0.1;
-
-constexpr float kStrikeAlphaRate = 0.01;
-constexpr float kStrikeAlphaStart = 1.0;
-constexpr float kRotateAlphaRate = 0.01;
-constexpr float kRotateAlphaStart = 1.0;
 
 const ofPoint kPlayer1TopBack[] = {
   ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius),
