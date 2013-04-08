@@ -111,33 +111,32 @@ const b2Vec2 kBottomRightQuadrantGravity[] = {
   kBottomGravity
 };
 
+extern Parameter<float> kBallTrailAlphaStart;
+extern Parameter<float> kBallTrailFadeCoefficient;
+extern Parameter<int> kBallTrailLength;
+extern Parameter<int> kBallTrailSpacing;
+
+extern Parameter<float> kControllerRateX;
+extern Parameter<float> kControllerRateY;
+
+extern Parameter<float> kPlayerTrailAlphaStart;
+extern Parameter<float> kPlayerTrailFadeCoefficient;
+extern Parameter<int> kPlayerTrailLength;
+extern Parameter<int> kPlayerTrailSpacing;
+
 /**
  * Model Properties
  */
-constexpr float kBallTrailAlphaStart = 128.0;
-constexpr float kBallTrailFadeCoefficient = 0.65;
-constexpr int kBallTrailLength = 30;
-constexpr int kBallTrailSpacing = 1;
 
 constexpr float kGravityMixerRate = 0.05;
 constexpr float kPlayerMoveDelta = 0.015;
 constexpr int kPointsToWin = 7;
 constexpr float kPlayerBallCollisionMultiplier = 0.1;
-constexpr float kPlayerTrailAlphaStart = 128.0;
-constexpr float kPlayerTrailFadeCoefficient = 0.65;
-constexpr int kPlayerTrailLength = 10;
-constexpr int kPlayerTrailSpacing = 1;
 
 constexpr float kStrikeAlphaRate = 0.01;
 constexpr float kStrikeAlphaStart = 1.0;
 constexpr float kRotateAlphaRate = 0.01;
 constexpr float kRotateAlphaStart = 1.0;
-
-/**
- * Controller properties.
- */
-constexpr float kControllerRateX = 1.0 / 5.0;
-constexpr float kControllerRateY = 1.0 / 20.0;
 
 const ofPoint kPlayer1TopBack[] = {
   ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius),

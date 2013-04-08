@@ -257,16 +257,6 @@ void View::DrawGravity(const Model &model) const {
       }
     }
   }
-  // Draw the source of mouse gravity.
-  ofPushStyle();
-  ofPushMatrix();
-  ofTranslate(model.mouse_gravity_position.x, model.mouse_gravity_position.y);
-  const float radius = sqrt(model.mouse_mass_scale * kMouseMass / M_PI / kMouseDensity);
-  ofScale(radius, radius);
-  ofSetColor(ofColor::slateGrey, 128.0);
-  ofCircle(ofPoint(), 1.0);
-  ofPopMatrix();
-  ofPopStyle();
 }
 
 void View::DrawGravityAt(ofPoint position, const Model &model) const {
