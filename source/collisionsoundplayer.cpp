@@ -10,11 +10,11 @@
 CollisionSoundPlayer::CollisionSoundPlayer()
 : sound_wallbounce(), sound_hit1(), play_next_index_wallbounce(0), play_next_index_hit1(0) {
   for (int i = 0; i < kConcurrentSounds; ++i) {
-    sound_wallbounce[i].loadSound(kWallBounceFilename);
+    sound_wallbounce[i].loadSound("wallbounce.wav");
     sound_wallbounce[i].setMultiPlay(true);
   }
   for (int i = 0; i < kConcurrentSounds; ++i) {
-    sound_hit1[i].loadSound(kHit1);
+    sound_hit1[i].loadSound("hit1.wav");
     sound_hit1[i].setMultiPlay(true);
   }
 }

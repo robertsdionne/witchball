@@ -27,8 +27,8 @@ void WitchBall::setup() {
   contact_listener.AddContactListener(&score_keeper_collision);
   model.world.SetContactListener(&contact_listener);
   view.Setup();
-  sound_background_music.loadSound(kBackgroundMusicFilename);
-  sound_background_music_2.loadSound(kBackgroundMusicTwoFilename);
+  sound_background_music.loadSound("bgm.wav");
+  sound_background_music_2.loadSound("bgm2.wav");
   sound_background_music.play();
   sound_background_music_2.setLoop(true);
   sound_background_music_2.play();

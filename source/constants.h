@@ -36,18 +36,6 @@ extern Parameter<float> kRotateAlphaStart;
  */
 constexpr int kConcurrentSounds = 10;
 
-constexpr const char *kBackgroundMusicFilename = "bgm.wav";
-constexpr const char *kBackgroundMusicTwoFilename = "bgm2.wav";
-constexpr const char *kBackhit1 = "backhit1.wav";
-constexpr const char *kBackhit2 = "backhit2.wav";
-constexpr const char *kBackhit3 = "backhit3.wav";
-constexpr const char *kBackhit4 = "backhit4.wav";
-constexpr const char *kHit1 = "hit1.wav";
-constexpr const char *kHit2 = "hit2.wav";
-constexpr const char *kHit3 = "hit3.wav";
-constexpr const char *kHit4 = "hit4.wav";
-constexpr const char *kWallBounceFilename = "wallbounce.wav";
-
 /**
  * Video properties.
  */
