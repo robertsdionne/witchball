@@ -226,17 +226,24 @@ void Model::CreateBorder() {
   border_definition.position.Set(0.0, 0.0);
   border = world.CreateBody(&border_definition);
   border->SetUserData(this);
-  b2Vec2 vertex[4];
-  vertex[0].Set(-kHalfCourtWidth, -kHalfCourtHeight);
-  vertex[1].Set(kHalfCourtWidth, -kHalfCourtHeight);
-  vertex[2].Set(kHalfCourtWidth, kHalfCourtHeight);
-  vertex[3].Set(-kHalfCourtWidth, kHalfCourtHeight);
-  b2ChainShape border_shape;
-  border_shape.CreateLoop(vertex, 4);
-  b2FixtureDef border_fixture_definition;
-  border_fixture_definition.shape = &border_shape;
-  border_fixture_definition.friction = kFriction;
-  border->CreateFixture(&border_fixture_definition);
+  b2PolygonShape border_bottom_shape, border_top_shape, border_left_shape, border_right_shape;
+  border_bottom_shape.SetAsBox(kHalfCourtWidth + 2.0, 1.0, b2Vec2(0.0, -kHalfCourtHeight - 1.0), 0.0);
+  border_top_shape.SetAsBox(kHalfCourtWidth + 2.0, 1.0, b2Vec2(0.0, kHalfCourtHeight + 1.0), 0.0);
+  border_left_shape.SetAsBox(1.0, kHalfCourtHeight, b2Vec2(-kHalfCourtWidth - 1.0, 0.0), 0.0);
+  border_right_shape.SetAsBox(1.0, kHalfCourtHeight, b2Vec2(kHalfCourtWidth + 1.0, 0.0), 0.0);
+  b2FixtureDef border_bottom_fixture, border_top_fixture, border_left_fixture, border_right_fixture;
+  border_bottom_fixture.shape = &border_bottom_shape;
+  border_bottom_fixture.friction = kFriction;
+  border_top_fixture.shape = &border_top_shape;
+  border_top_fixture.friction = kFriction;
+  border_left_fixture.shape = &border_left_shape;
+  border_left_fixture.friction = kFriction;
+  border_right_fixture.shape = &border_right_shape;
+  border_right_fixture.friction = kFriction;
+  border->CreateFixture(&border_bottom_fixture);
+  border->CreateFixture(&border_top_fixture);
+  border->CreateFixture(&border_left_fixture);
+  border->CreateFixture(&border_right_fixture);
 }
 
 b2Body *Model::CreatePlayer(ofPoint position) {

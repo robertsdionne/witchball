@@ -83,7 +83,7 @@ void ofChaser::update(){
 }
 
 void ofChaser::draw(){
-    ofSetColor(20, 40, 20);
+    ofSetColor(10, 20, 10);
     ofLine(a, b, c, d);
     
     

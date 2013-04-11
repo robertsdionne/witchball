@@ -44,9 +44,10 @@ void View::Setup() {
 void View::DrawStrikeIndicator(const Model &model) const {
   ofPushMatrix();
   ofTranslate(model.strike_position.x, model.strike_position.y);
-  ofScale(model.strike_alpha * kPlayerRadius, model.strike_alpha * kPlayerRadius);
+  ofScale(model.strike_alpha * model.strike_alpha * kPlayerRadius,
+          model.strike_alpha * model.strike_alpha * kPlayerRadius);
   ofSetColor(model.last_hit_player == 1 ? color_p1 : model.last_hit_player == 2 ? color_p2 : ofColor::white,
-             model.strike_alpha * 255.0);
+             model.strike_alpha * model.strike_alpha * 255.0);
   ofCircle(ofPoint(), 1.0);
   ofPopMatrix();
   if (model.counter_clockwise_alpha) { //green triangle
