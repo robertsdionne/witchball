@@ -2,81 +2,78 @@
 
 #include "constants.h"
 #include "controller.h"
+#include "playscreen.h"
+#include "screen.h"
 #include "slider.h"
 #include "utilities.h"
 #include "witchball.h"
 
-WitchBall::WitchBall()
-: model(), view(), controller(model), sound_collision(), score_keeper_collision(),
-  contact_listener(), sound_background_music(), sound_background_music_2() {}
+WitchBall::WitchBall() : current_screen(nullptr) {}
 
 WitchBall::~WitchBall() {
-  for (int i = 0; i < float_panel.getNumControls(); ++i) {
-    delete float_panel.getControl(i);
+  if (current_screen) {
+    delete current_screen;
+    current_screen = nullptr;
   }
-  float_panel.clear();
-  for (int i = 0; i < int_panel.getNumControls(); ++i) {
-    delete int_panel.getControl(i);
-  }
-  int_panel.clear();
 }
 
 void WitchBall::setup() {
-  model.Setup();
-  contact_listener.AddContactListener(&sound_collision);
-  contact_listener.AddContactListener(&score_keeper_collision);
-  model.world.SetContactListener(&contact_listener);
-  view.Setup();
-  sound_background_music.loadSound("bgm.wav");
-  sound_background_music_2.loadSound("bgm2.wav");
-  sound_background_music.play();
-  sound_background_music_2.setLoop(true);
-  sound_background_music_2.play();
-  float_panel.setup("float parameters");
-  for (auto parameter : Parameter<float>::GetParameters()) {
-    float_panel.add(new Slider<float>(parameter));
-  }
-  int_panel.setup("int parameters", "settings.xml",
-                  float_panel.getPosition().x + float_panel.getWidth() + 1);
-  for (auto parameter : Parameter<int>::GetParameters()) {
-    int_panel.add(new Slider<int>(parameter));
-  }
+  current_screen = new PlayScreen();
+  current_screen->Setup();
 }
 
 void WitchBall::update() {
-  controller.Update();
-  model.elapsed_time = ofGetElapsedTimef();
-  model.Update();
+  if (current_screen) {
+    current_screen->Update();
+  }
 }
 
 void WitchBall::draw() {
-  view.Draw(model);
-  if (model.show_sliders) {
-    float_panel.draw();
-    int_panel.draw();
+  if (current_screen) {
+    current_screen->Draw();
   }
 }
 
 void WitchBall::keyPressed(int key) {
-  controller.OnKeyPressed(key);
+  if (current_screen) {
+    current_screen->KeyPressed(key);
+  }
 }
 
 void WitchBall::keyReleased(int key) {
-  controller.OnKeyReleased(key);
+  if (current_screen) {
+    current_screen->KeyReleased(key);
+  }
 }
 
 void WitchBall::mouseMoved(int x, int y) {
-  controller.OnMouseMoved(x, y);
+  if (current_screen) {
+    current_screen->MouseMoved(x, y);
+  }
 }
 
 void WitchBall::mouseDragged(int x, int y, int button) {
-  controller.OnMouseDragged(x, y, button);
+  if (current_screen) {
+    current_screen->MouseDragged(x, y, button);
+  }
 }
 
 void WitchBall::mousePressed(int x, int y, int button) {
-  controller.OnMousePressed(x, y, button);
+  if (current_screen) {
+    current_screen->MousePressed(x, y, button);
+  }
 }
 
 void WitchBall::mouseReleased(int x, int y, int button) {
-  controller.OnMouseReleased(x, y, button);
+  if (current_screen) {
+    current_screen->MouseReleased(x, y, button);
+  }
+}
+
+void WitchBall::RestartScene() {
+  if (current_screen) {
+    delete current_screen;
+    current_screen = nullptr;
+  }
+  setup();
 }

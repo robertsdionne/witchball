@@ -2,7 +2,6 @@
 #define WITCHBALL_WITCHBALL_H_
 
 #include <Box2D/Box2D.h>
-#include <map>
 
 #include "collisionsoundplayer.h"
 #include "collisionscorekeeper.h"
@@ -12,6 +11,8 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "view.h"
+
+class Screen;
 
 class WitchBall : public ofBaseApp {
 public:
@@ -25,7 +26,6 @@ public:
   
   void draw();
 
-  
   void keyPressed(int key);
   
   void keyReleased(int key);
@@ -43,17 +43,11 @@ public:
   void dragEvent(ofDragInfo dragInfo) {}
   
   void gotMessage(ofMessage msg) {}
+
+  void RestartScene();
   
 private:
-  Model model;
-  View view;
-  Controller controller;
-  CollisionSoundPlayer sound_collision;
-  collisionscorekeeper score_keeper_collision;
-  CompositeContactListener contact_listener;
-  ofSoundPlayer sound_background_music, sound_background_music_2;
-  ofxPanel float_panel;
-  ofxPanel int_panel;
+  Screen *current_screen;
 };
 
 #endif  // WITCHBALL_WITCHBALL

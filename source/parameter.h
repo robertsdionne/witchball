@@ -1,6 +1,7 @@
 #ifndef TEXTTENNIS_PARAMETER_H_
 #define TEXTTENNIS_PARAMETER_H_
 
+#include <iostream>
 #include <set>
 #include <string>
 #include <tr1/functional>
@@ -29,6 +30,12 @@ protected:
 
   bool stale;
 };
+
+template <typename T>
+class Parameter;
+
+template <typename T>
+std::vector<Parameter<T> *> &GetParameters();
 
 template <typename T>
 class Parameter : public Dependent {
@@ -98,17 +105,10 @@ public:
   const T min;
   const T max;
 
-public:
-  static const std::vector<Parameter<T> *> &GetParameters() {
-    return parameters;
-  }
-
 private:
   static void AddParameter(Parameter<T> *parameter) {
-    parameters.push_back(parameter);
+    GetParameters<T>().push_back(parameter);
   }
-
-  static std::vector<Parameter<T> *> parameters;
 
   void NotifyDependents() {
     for (auto dependent : dependents) {
@@ -122,7 +122,5 @@ private:
   T value;
   std::set<Dependent *> dependents;
 };
-
-template <typename T> std::vector<Parameter<T> *> Parameter<T>::parameters;
 
 #endif  // TEXTTENNIS_PARAMETER_H_

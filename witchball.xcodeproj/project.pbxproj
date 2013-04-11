@@ -21,6 +21,8 @@
 		460129F61711E85100E544BE /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 460129EB1711E85100E544BE /* ofxXmlSettings.cpp */; };
 		460129F81711E89700E544BE /* constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 460129F71711E89700E544BE /* constants.cpp */; };
 		46066AFD170DCBA8004D15A9 /* ofChaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46066AFB170DCBA8004D15A9 /* ofChaser.cpp */; };
+		460875D517170307002AC1EF /* screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 460875D317170307002AC1EF /* screen.cpp */; };
+		460875D81717042F002AC1EF /* playscreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 460875D61717042F002AC1EF /* playscreen.cpp */; };
 		46E96B3A16F6A69300B4AF71 /* collisionscorekeeper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E96B2816F6A69300B4AF71 /* collisionscorekeeper.cpp */; };
 		46E96B3B16F6A69300B4AF71 /* collisionsoundplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E96B2A16F6A69300B4AF71 /* collisionsoundplayer.cpp */; };
 		46E96B3C16F6A69300B4AF71 /* compositecontactlistener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E96B2C16F6A69300B4AF71 /* compositecontactlistener.cpp */; };
@@ -158,6 +160,10 @@
 		460129F71711E89700E544BE /* constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = constants.cpp; sourceTree = "<group>"; };
 		46066AFB170DCBA8004D15A9 /* ofChaser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofChaser.cpp; sourceTree = "<group>"; };
 		46066AFC170DCBA8004D15A9 /* ofChaser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofChaser.h; sourceTree = "<group>"; };
+		460875D317170307002AC1EF /* screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = screen.cpp; sourceTree = "<group>"; };
+		460875D417170307002AC1EF /* screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
+		460875D61717042F002AC1EF /* playscreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playscreen.cpp; sourceTree = "<group>"; };
+		460875D71717042F002AC1EF /* playscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playscreen.h; sourceTree = "<group>"; };
 		46E96B2816F6A69300B4AF71 /* collisionscorekeeper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisionscorekeeper.cpp; sourceTree = "<group>"; };
 		46E96B2916F6A69300B4AF71 /* collisionscorekeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisionscorekeeper.h; sourceTree = "<group>"; };
 		46E96B2A16F6A69300B4AF71 /* collisionsoundplayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisionsoundplayer.cpp; sourceTree = "<group>"; };
@@ -633,6 +639,10 @@
 				46066AFC170DCBA8004D15A9 /* ofChaser.h */,
 				460129CC1711E75C00E544BE /* parameter.cpp */,
 				460129CD1711E75C00E544BE /* parameter.h */,
+				460875D61717042F002AC1EF /* playscreen.cpp */,
+				460875D71717042F002AC1EF /* playscreen.h */,
+				460875D317170307002AC1EF /* screen.cpp */,
+				460875D417170307002AC1EF /* screen.h */,
 				460129CE1711E75C00E544BE /* slider.cpp */,
 				460129CF1711E75C00E544BE /* slider.h */,
 				46E96B3416F6A69300B4AF71 /* utilities.cpp */,
@@ -1328,6 +1338,8 @@
 				460129F51711E85100E544BE /* tinyxmlparser.cpp in Sources */,
 				460129F61711E85100E544BE /* ofxXmlSettings.cpp in Sources */,
 				460129F81711E89700E544BE /* constants.cpp in Sources */,
+				460875D517170307002AC1EF /* screen.cpp in Sources */,
+				460875D81717042F002AC1EF /* playscreen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

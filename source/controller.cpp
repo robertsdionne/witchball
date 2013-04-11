@@ -3,6 +3,7 @@
 #include "model.h"
 #include "ofMain.h"
 #include "utilities.h"
+#include "witchball.h"
 
 Controller::Controller(Model &model)
 : model(model), keys(), previous_keys() {}
@@ -51,6 +52,10 @@ void Controller::Update() {
     model.player2_position = ofClamp(model.player2_position + kPlayerMoveDelta, 0.0, 1.0);
   } else {
     model.player2_position = ofClamp(model.player2_position - kPlayerMoveDelta, 0.0, 1.0);
+  }
+  if (keys['R'] && !previous_keys['R']) {
+    dynamic_cast<WitchBall *>(ofGetAppPtr())->RestartScene();
+    return;
   }
   previous_buttons = buttons;
   previous_keys = keys;
