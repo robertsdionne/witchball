@@ -13,6 +13,8 @@ extern Parameter<float> kBallTrailAlphaStart;
 extern Parameter<float> kBallTrailFadeCoefficient;
 extern Parameter<int> kBallTrailLength;
 extern Parameter<int> kBallTrailSpacing;
+extern Parameter<int> kBox2dPositionIterations;
+extern Parameter<int> kBox2dVelocityIterations;
 
 extern Parameter<float> kControllerRateX;
 extern Parameter<float> kControllerRateY;
@@ -34,7 +36,6 @@ extern Parameter<float> kRotateAlphaStart;
 /**
  * Audio properties.
  */
-constexpr int kConcurrentSounds = 10;
 
 /**
  * Video properties.
@@ -59,8 +60,6 @@ constexpr float kHalfCourtHeight = kCourtHeight / 2.0; // m
  */
 const b2Vec2 kAntiGravity = b2Vec2(0.0, 9.81); // m/s^2
 constexpr float kBallRadius = 11.0 * kCourtWidth / kWidth;
-constexpr int kBox2dPositionIterations = 3;
-constexpr int kBox2dVelocityIterations = 8;
 constexpr float kCollisionDelay = 0.4;
 constexpr float kDampingSpeed = 12.0;
 constexpr float kDensity = 1.0; // kg/m^2

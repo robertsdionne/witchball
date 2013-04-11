@@ -12,7 +12,7 @@ class Slider : public ofxBaseGui {
 
 public:
   Slider() {}
-  Slider(Parameter<T> *parameter, float width = defaultWidth, float height = defaultHeight);
+  Slider(Parameter<T> *parameter, float width = 1.5 * defaultWidth, float height = defaultHeight);
 
   virtual void mouseMoved(ofMouseEventArgs &args);
   virtual void mousePressed(ofMouseEventArgs &args);
