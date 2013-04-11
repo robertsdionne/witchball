@@ -30,7 +30,6 @@ void PlayScreen::Setup() {
   sound_background_music_2.setLoop(true);
   sound_background_music_2.play();
   float_panel.setup("float parameters");
-  std::cout << GetParameters<float>().size() << std::endl;
   for (auto parameter : GetParameters<float>()) {
     float_panel.add(new Slider<float>(parameter));
   }
