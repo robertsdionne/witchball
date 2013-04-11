@@ -33,7 +33,7 @@ void View::Draw(const Model &model) const {
 }
 
 void View::Setup() {
-  ofSetFrameRate(60);
+  ofSetFrameRate(kFrameRate);
   ofSetVerticalSync(true);
   ofEnableAlphaBlending();
   

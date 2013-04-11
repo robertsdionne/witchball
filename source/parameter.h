@@ -10,7 +10,8 @@
   auto name = Parameter<type>(#name, [] (Dependent *dependent) -> type {return (value);});
 
 #define DEFINE_PARAMETER_RANGE(type, name, value, min, max) \
-  auto name = Parameter<type>(#name, [] (Dependent *dependent) -> type {return (value);}, min, max);
+  auto name = Parameter<type>( \
+      #name, [] (Dependent *dependent) -> type {return (value);}, true, min, max);
 
 #define DEPENDENCY(dependency) \
   dependency.GetValue(dependent)
@@ -34,9 +35,11 @@ class Parameter : public Dependent {
 public:
   typedef std::tr1::function<T(Dependent *)> Getter;
 
-  Parameter(const std::string name, Getter get_value, T min = T(), T max = T())
+  Parameter(const std::string name, Getter get_value, bool ranged = false, T min = T(), T max = T())
   : Dependent(), name(name), get_value(get_value), value(), dependents(), min(min), max(max) {
-    AddParameter(this);
+    if (ranged) {
+      AddParameter(this);
+    }
   }
 
   virtual ~Parameter() {}
