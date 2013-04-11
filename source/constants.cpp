@@ -70,4 +70,12 @@ DEFINE_PARAMETER_RANGE(float, kTimeStep, 1.0 / DEPENDENCY(kFrameRate), 1.0 / 100
 
 DEFINE_PARAMETER_RANGE(int, kWidth, 1200, 1, 1920);
 
+DEFINE_PARAMETER(ofMatrix4x4, kViewMatrix,
+                 ofMatrix4x4::newScaleMatrix(DEPENDENCY(kWidth) / DEPENDENCY(kCourtWidth),
+                                             -DEPENDENCY(kWidth) / DEPENDENCY(kCourtWidth), 1) *
+                 ofMatrix4x4::newTranslationMatrix(DEPENDENCY(kHalfWidth),
+                                                   DEPENDENCY(kHalfHeight), 0.0));
+DEFINE_PARAMETER(ofMatrix4x4, kViewMatrixInverse,
+                 ofMatrix4x4::getInverseOf(DEPENDENCY(kViewMatrix)));
+
 DEFINE_PARAMETER(b2Vec2, kZeroGravity, b2Vec2(0.0, 0.0));

@@ -67,6 +67,9 @@ extern Parameter<float> kStrikeAlphaStart;
 
 extern Parameter<float> kTimeStep;
 
+extern Parameter<ofMatrix4x4> kViewMatrix;
+extern Parameter<ofMatrix4x4> kViewMatrixInverse;
+
 extern Parameter<int> kWidth;
 
 extern Parameter<b2Vec2> kZeroGravity;
@@ -231,13 +234,5 @@ inline ofVec2f GetPlayer2BottomBack(int position) {
 inline ofVec2f GetPlayer2BottomForward(int position) {
   return -GetPlayer2TopForward(position);
 }
-
-/**
- * View properties.
- */
-const ofMatrix4x4 kViewMatrix =
-    ofMatrix4x4::newScaleMatrix(/*kWidth*/ 1200 / /*kCourtWidth*/ 20, -/*kWidth*/ 1200 / /*kCourtWidth*/ 20, 1) *
-        ofMatrix4x4::newTranslationMatrix(/*kHalfWidth*/ 600, /*kHalfHeight*/ 300, 0.0);
-const ofMatrix4x4 kViewMatrixInverse = ofMatrix4x4::getInverseOf(kViewMatrix);
 
 #endif  // WITCHBALL_CONSTANTS_H_
