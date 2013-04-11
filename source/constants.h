@@ -148,57 +148,89 @@ inline b2Vec2 GetBottomRightQuadrantGravity(int position) {
  * Model Properties
  */
 
-const ofPoint kPlayer1TopBack[] = {
-  ofPoint(-/*kHalfCourtWidth*/10 + /*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0),
-  ofPoint(/*kHalfCourtWidth*/10 - /*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0),
-  ofPoint(/*kHalfCourtWidth*/10 - /*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0),
-  ofPoint(-/*kHalfCourtWidth*/10 + /*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0)
-};
-const ofPoint kPlayer1TopForward[] = {
-  ofPoint(-/*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0),
-  ofPoint(/*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0),
-  ofPoint(/*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0),
-  ofPoint(-/*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0)
-};
+inline ofVec2f GetPlayer1TopBack(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+  }
+}
 
-const ofPoint kPlayer2TopBack[] = {
-  ofPoint(/*kHalfCourtWidth*/10 - /*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0),
-  ofPoint(/*kHalfCourtWidth*/10 - /*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0),
-  ofPoint(-/*kHalfCourtWidth*/10 + /*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0),
-  ofPoint(-/*kHalfCourtWidth*/10 + /*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0)
-};
-const ofPoint kPlayer2TopForward[] = {
-  ofPoint(/*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0),
-  ofPoint(/*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0),
-  ofPoint(-/*kPlayerRadius*/17.0/60.0, -/*kHalfCourtHeight*/5 + /*kPlayerRadius*/17.0/60.0),
-  ofPoint(-/*kPlayerRadius*/17.0/60.0, /*kPlayerRadius*/17.0/60.0)
-};
+inline ofVec2f GetPlayer1TopForward(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(-kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kPlayerRadius, kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+  }
+}
 
-const ofPoint kPlayer1BottomBack[] = {
-  -kPlayer1TopBack[0],
-  -kPlayer1TopBack[1],
-  -kPlayer1TopBack[2],
-  -kPlayer1TopBack[3]
-};
-const ofPoint kPlayer1BottomForward[] = {
-  -kPlayer1TopForward[0],
-  -kPlayer1TopForward[1],
-  -kPlayer1TopForward[2],
-  -kPlayer1TopForward[3]
-};
+inline ofVec2f GetPlayer2TopBack(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
+      break;
+  }
+}
 
-const ofPoint kPlayer2BottomBack[] = {
-  -kPlayer2TopBack[0],
-  -kPlayer2TopBack[1],
-  -kPlayer2TopBack[2],
-  -kPlayer2TopBack[3]
-};
-const ofPoint kPlayer2BottomForward[] = {
-  -kPlayer2TopForward[0],
-  -kPlayer2TopForward[1],
-  -kPlayer2TopForward[2],
-  -kPlayer2TopForward[3]
-};
+inline ofVec2f GetPlayer2TopForward(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kPlayerRadius, kPlayerRadius);
+      break;
+  }
+}
+
+inline ofVec2f GetPlayer1BottomBack(int position) {
+  return -GetPlayer1TopBack(position);
+}
+
+inline ofVec2f GetPlayer1BottomForward(int position) {
+  return -GetPlayer1TopForward(position);
+}
+
+inline ofVec2f GetPlayer2BottomBack(int position) {
+  return -GetPlayer2TopBack(position);
+}
+
+inline ofVec2f GetPlayer2BottomForward(int position) {
+  return -GetPlayer2TopForward(position);
+}
 
 /**
  * View properties.

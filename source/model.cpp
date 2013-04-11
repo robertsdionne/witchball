@@ -132,17 +132,17 @@ void Model::Update() {
   }
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   UpdatePlayerPosition(player1_top,
-                       Lerp(kPlayer1TopBack[EnumValue(court_position)],
-                            kPlayer1TopForward[EnumValue(court_position)], player1_position));
+                       Lerp(GetPlayer1TopBack(EnumValue(court_position)),
+                            GetPlayer1TopForward(EnumValue(court_position)), player1_position));
   UpdatePlayerPosition(player1_bottom,
-                       Lerp(kPlayer1BottomBack[EnumValue(court_position)],
-                            kPlayer1BottomForward[EnumValue(court_position)], player1_position));
+                       Lerp(GetPlayer1BottomBack(EnumValue(court_position)),
+                            GetPlayer1BottomForward(EnumValue(court_position)), player1_position));
   UpdatePlayerPosition(player2_top,
-                       Lerp(kPlayer2TopBack[EnumValue(court_position)],
-                            kPlayer2TopForward[EnumValue(court_position)], player2_position));
+                       Lerp(GetPlayer2TopBack(EnumValue(court_position)),
+                            GetPlayer2TopForward(EnumValue(court_position)), player2_position));
   UpdatePlayerPosition(player2_bottom,
-                       Lerp(kPlayer2BottomBack[EnumValue(court_position)],
-                            kPlayer2BottomForward[EnumValue(court_position)], player2_position));
+                       Lerp(GetPlayer2BottomBack(EnumValue(court_position)),
+                            GetPlayer2BottomForward(EnumValue(court_position)), player2_position));
   UpdateGravities();
   if (ball->GetPosition().x >= kCourtWidth-2*kBallRadius){
     ball->ApplyForceToCenter(-kBumperForce.GetValue());
@@ -261,10 +261,10 @@ b2Body *Model::CreatePlayer(ofPoint position) {
 }
 
 void Model::CreatePlayers() {
-  player1_top = CreatePlayer(kPlayer1TopBack[EnumValue(CourtPosition::POSITION_1)]);
-  player1_bottom = CreatePlayer(kPlayer1BottomBack[EnumValue(CourtPosition::POSITION_1)]);
-  player2_top = CreatePlayer(kPlayer2TopBack[EnumValue(CourtPosition::POSITION_1)]);
-  player2_bottom = CreatePlayer(kPlayer2BottomBack[EnumValue(CourtPosition::POSITION_1)]);
+  player1_top = CreatePlayer(GetPlayer1TopBack(EnumValue(CourtPosition::POSITION_1)));
+  player1_bottom = CreatePlayer(GetPlayer1BottomBack(EnumValue(CourtPosition::POSITION_1)));
+  player2_top = CreatePlayer(GetPlayer2TopBack(EnumValue(CourtPosition::POSITION_1)));
+  player2_bottom = CreatePlayer(GetPlayer2BottomBack(EnumValue(CourtPosition::POSITION_1)));
 }
 
 b2Vec2 Model::GravityAt(b2Vec2 position) const {

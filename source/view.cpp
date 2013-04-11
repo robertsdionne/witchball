@@ -224,18 +224,18 @@ void View::DrawCourt(const Model &model) const {
   float player1_bottom_offset = 0.8 * kPlayerRadius;
   float player2_top_offset = -0.8 * kPlayerRadius;
   float player2_bottom_offset = 0.8 * kPlayerRadius;
-  ofLine(ofPoint(kPlayer1TopForward[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y + player1_top_offset),
-         ofPoint(kPlayer1TopBack[EnumValue(model.court_position)].x, model.player1_top->GetPosition().y + player1_top_offset));
-  ofLine(ofPoint(kPlayer1BottomForward[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y +
+  ofLine(ofPoint(GetPlayer1TopForward(EnumValue(model.court_position)).x, model.player1_top->GetPosition().y + player1_top_offset),
+         ofPoint(GetPlayer1TopBack(EnumValue(model.court_position)).x, model.player1_top->GetPosition().y + player1_top_offset));
+  ofLine(ofPoint(GetPlayer1BottomForward(EnumValue(model.court_position)).x, model.player1_bottom->GetPosition().y +
                  player1_bottom_offset),
-         ofPoint(kPlayer1BottomBack[EnumValue(model.court_position)].x, model.player1_bottom->GetPosition().y +
+         ofPoint(GetPlayer1BottomBack(EnumValue(model.court_position)).x, model.player1_bottom->GetPosition().y +
                  player1_bottom_offset));
   ofSetColor(color_p2);
-  ofLine(ofPoint(kPlayer2TopForward[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y + player2_top_offset),
-         ofPoint(kPlayer2TopBack[EnumValue(model.court_position)].x, model.player2_top->GetPosition().y + player2_top_offset));
-  ofLine(ofPoint(kPlayer2BottomForward[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y +
+  ofLine(ofPoint(GetPlayer2TopForward(EnumValue(model.court_position)).x, model.player2_top->GetPosition().y + player2_top_offset),
+         ofPoint(GetPlayer2TopBack(EnumValue(model.court_position)).x, model.player2_top->GetPosition().y + player2_top_offset));
+  ofLine(ofPoint(GetPlayer2BottomForward(EnumValue(model.court_position)).x, model.player2_bottom->GetPosition().y +
                  player2_bottom_offset),
-         ofPoint(kPlayer2BottomBack[EnumValue(model.court_position)].x, model.player2_bottom->GetPosition().y +
+         ofPoint(GetPlayer2BottomBack(EnumValue(model.court_position)).x, model.player2_bottom->GetPosition().y +
                  player2_bottom_offset));
   ofPopStyle();
   ofSetLineWidth(1.0);
