@@ -15,7 +15,7 @@ Model::Model()
   last_hit_player(0), strike_position(), strike_alpha(0.0), counter_clockwise_alpha(0.0),
   clockwise_alpha(0.0),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
-  elapsed_time(ofGetElapsedTimef()), last_collision_time(ofGetElapsedTimef() + kCollisionDelay),
+  elapsed_time(ofGetElapsedTimef()), last_collision_time(-kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
   player2_top_trail(), player2_bottom_trail() {}
 

@@ -17,14 +17,14 @@ DEFINE_PARAMETER_RANGE(int, kBox2dVelocityIterations, 8, 1, 10);
 DEFINE_PARAMETER(b2Vec2, kBumperForce, b2Vec2(DEPENDENCY(kBumperForceStrength), 0.0));
 DEFINE_PARAMETER_RANGE(float, kBumperForceStrength, 0.2, 0.0, 5.0);
 
-DEFINE_PARAMETER_RANGE(float, kCollisionDelay, 0.4, 0.0, 2.0);
+DEFINE_PARAMETER_RANGE(float, kCollisionDelay, 1.0, 0.0, 2.0);
 DEFINE_PARAMETER_RANGE(float, kControllerRateX, 1.0 / 5.0, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kControllerRateY, 1.0 / 40.0, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kCourtHeight,
                        DEPENDENCY(kCourtWidth) / DEPENDENCY(kAspectRatio), 1.0, 50.0);
 DEFINE_PARAMETER_RANGE(float, kCourtWidth, 20.0, 1.0, 50.0);
 
-DEFINE_PARAMETER_RANGE(float, kDampingSpeed, 12.0, 0.0, 50.0);
+DEFINE_PARAMETER_RANGE(float, kDampingSpeed, 30.0, 0.0, 50.0);
 DEFINE_PARAMETER_RANGE(float, kDensity, 1.0, 0.1, 10.0);
 
 DEFINE_PARAMETER_RANGE(int, kFixedRotation, 1, 0, 1);
