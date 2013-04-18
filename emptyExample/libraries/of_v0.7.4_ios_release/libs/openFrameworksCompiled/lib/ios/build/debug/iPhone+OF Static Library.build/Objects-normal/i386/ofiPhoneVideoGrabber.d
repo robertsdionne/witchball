@@ -1,2 +1,2 @@
 dependencies: \
-  /Users/shervinghazazani/Documents/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../../addons/ofxiPhone/src/video/ofiPhoneVideoGrabber.mm
+  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../../addons/ofxiPhone/src/video/ofiPhoneVideoGrabber.mm

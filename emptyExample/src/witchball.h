@@ -15,7 +15,7 @@
 #include "ofxiPhoneExtras.h"
 #include "view.h"
 
-class WitchBall : public ofBaseApp {
+class WitchBall : public ofxiPhoneApp {
 public:
   WitchBall();
   

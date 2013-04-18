@@ -12,8 +12,8 @@ WitchBall::WitchBall()
 void WitchBall::setup() {
 	
 	// initialize the accelerometer
-	//ofxAccelerometer.setup();
-	
+    ofxAccelerometer.setup();
+
 	//If you want a landscape oreintation
 	iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT);
 	ofSetCircleResolution(50);
@@ -21,7 +21,7 @@ void WitchBall::setup() {
 	
 	
   model.Setup();
-  //contact_listener.AddContactListener(&sound_collision);
+  contact_listener.AddContactListener(&sound_collision);
   contact_listener.AddContactListener(&score_keeper_collision);
   model.world.SetContactListener(&contact_listener);
   view.Setup();
@@ -35,12 +35,12 @@ void WitchBall::setup() {
 }
 
 void WitchBall::update() {
-//  controller.Update();
-//  model.Update();
+  controller.Update();
+  model.Update();
 }
 
 void WitchBall::draw() {
-//  view.Draw(model);
+  view.Draw(model);
 }
 
 void WitchBall::exit(){

@@ -10,6 +10,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		46C18DE7171F871A00590073 /* libofxiPhone_iphoneos_Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C18DE1171F85D400590073 /* libofxiPhone_iphoneos_Debug.a */; };
 		5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5326AEA710A23A0500278DE6 /* CoreLocation.framework */; };
 		53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */; };
 		A9A2E7AC171E17260013CF4E /* constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9A2E7AB171E17260013CF4E /* constants.cpp */; };
@@ -69,7 +70,6 @@
 		A9C43C3A170D78DF0003D86F /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C2E170D78DF0003D86F /* utilities.cpp */; };
 		A9C43C3B170D78DF0003D86F /* view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C30170D78DF0003D86F /* view.cpp */; };
 		A9C43C3C170D78DF0003D86F /* witchball.mm in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C32170D78DF0003D86F /* witchball.mm */; };
-		A9F037EE171680ED0034B7DE /* libofxiPhone_iphoneos_Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B59BB61716675400EA471D /* libofxiPhone_iphoneos_Debug.a */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
@@ -81,14 +81,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A9B59BB51716675400EA471D /* PBXContainerItemProxy */ = {
+		46C18DE0171F85D400590073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A9B59BB11716675300EA471D /* iOS+OFLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BB24DED610DA7A3F00E9C588;
 			remoteInfo = "iPhone+OF Static Library";
 		};
-		A9F037EA17167FE70034B7DE /* PBXContainerItemProxy */ = {
+		46C18DE3171F86D000590073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A9B59BB11716675300EA471D /* iOS+OFLib.xcodeproj */;
 			proxyType = 1;
@@ -106,7 +106,7 @@
 		5326AEA710A23A0500278DE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		A9A2E7AB171E17260013CF4E /* constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = constants.cpp; sourceTree = "<group>"; };
-		A9B59BB11716675300EA471D /* iOS+OFLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "iOS+OFLib.xcodeproj"; path = "../../Documents/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/iOS+OFLib.xcodeproj"; sourceTree = "<group>"; };
+		A9B59BB11716675300EA471D /* iOS+OFLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "iOS+OFLib.xcodeproj"; path = "libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/iOS+OFLib.xcodeproj"; sourceTree = "<group>"; };
 		A9B59BBA1716794200EA471D /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		A9B59BBB1716794200EA471D /* Box2DConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Box2DConfig.cmake; sourceTree = "<group>"; };
 		A9B59BBC1716794200EA471D /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		BB24DDC910DA781C00E9C588 /* ofxiphone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ofxiphone-Info.plist"; sourceTree = "<group>"; };
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E41D3ED613B38FB500A75A5D /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../Documents/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
+		E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E41D400613B39D2100A75A5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E41D400713B39D2100A75A5D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		E41D400813B39D2100A75A5D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -238,7 +238,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9F037EE171680ED0034B7DE /* libofxiPhone_iphoneos_Debug.a in Frameworks */,
+				46C18DE7171F871A00590073 /* libofxiPhone_iphoneos_Debug.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -298,10 +298,10 @@
 			name = "core frameworks";
 			sourceTree = "<group>";
 		};
-		A9B59BB21716675300EA471D /* Products */ = {
+		46C18DDD171F85D400590073 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A9B59BB61716675400EA471D /* libofxiPhone_iphoneos_Debug.a */,
+				46C18DE1171F85D400590073 /* libofxiPhone_iphoneos_Debug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -548,7 +548,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A9F037EB17167FE70034B7DE /* PBXTargetDependency */,
+				46C18DE4171F86D000590073 /* PBXTargetDependency */,
 			);
 			name = emptyExample;
 			productName = iPhone;
@@ -577,7 +577,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A9B59BB21716675300EA471D /* Products */;
+					ProductGroup = 46C18DDD171F85D400590073 /* Products */;
 					ProjectRef = A9B59BB11716675300EA471D /* iOS+OFLib.xcodeproj */;
 				},
 			);
@@ -589,11 +589,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A9B59BB61716675400EA471D /* libofxiPhone_iphoneos_Debug.a */ = {
+		46C18DE1171F85D400590073 /* libofxiPhone_iphoneos_Debug.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libofxiPhone_iphoneos_Debug.a;
-			remoteRef = A9B59BB51716675400EA471D /* PBXContainerItemProxy */;
+			remoteRef = 46C18DE0171F85D400590073 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -693,10 +693,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A9F037EB17167FE70034B7DE /* PBXTargetDependency */ = {
+		46C18DE4171F86D000590073 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "iPhone+OF Static Library";
-			targetProxy = A9F037EA17167FE70034B7DE /* PBXContainerItemProxy */;
+			targetProxy = 46C18DE3171F86D000590073 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
