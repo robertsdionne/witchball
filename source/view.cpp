@@ -21,14 +21,14 @@ void View::Draw(const Model &model) const {
     model.leftChaser[i]->draw();
   }
   DrawGravity(model);
-  DrawScore(model);
-  DrawCourt(model);
   DrawPlayers(model);
+  
   ofColor ball_color = model.player1_increment_count > 2 ? color_p1 :
       model.player2_increment_count > 2 ? color_p2 : ofColor::white;
   DrawBallTrail(model, model.ball_trail, ball_color);
   DrawStrikeIndicator(model);
   DrawBall(model.ball, ball_color);
+  
   for (float x=-10; x<GRID_W; x+=(1.0/6.0)) {
     for (float y=-5; y<GRID_H; y+=(1.0/6.0)) {
       if (ofDist(model.ball->GetPosition().x, model.ball->GetPosition().y, x, y)<0.3) {
@@ -75,10 +75,14 @@ void View::Draw(const Model &model) const {
       }
 
     }
+
+
+
     
   }
+  DrawCourt(model);
+  DrawScore(model);
   ofPopMatrix();
-  
 
   
 }
@@ -344,13 +348,13 @@ void View::DrawPlayers(const Model &model) const {
 void View::DrawScore(const Model &model) const {
   ofPushStyle();
   // Draw a number of rectangles for each player's score.
-  ofSetColor(color_p1 / 3.0, 127.0);
+  ofSetColor(color_p1 / 1.0, 75.0);
   for (int i = 0; i < model.player1_score; ++i) {
     ofPushMatrix();
     ofRect(-kHalfCourtWidth + i * 1.1, -kHalfCourtHeight, 1.0, kCourtHeight);
     ofPopMatrix();
   }
-  ofSetColor(color_p2 / 3.0, 127.0);
+  ofSetColor(color_p2 / 1.0, 75.0);
   for (int i = 0 ; i < model.player2_score; ++i) {
     ofPushMatrix();
     ofRect(kHalfCourtWidth - i * 1.1, -kHalfCourtHeight, -1.0, kCourtHeight);
