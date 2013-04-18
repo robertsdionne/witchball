@@ -1,0 +1,43 @@
+#ifndef WITCHBALL_CONTROLLER_H_
+#define WITCHBALL_CONTROLLER_H_
+
+#include <map>
+
+class b2Body;
+class Model;
+
+class Controller {
+public:
+  Controller(Model &model);
+  
+  virtual ~Controller() {}
+  
+  void OnKeyPressed(int key);
+	
+	void OnTouchDown(ofTouchEventArgs & touch);
+	void OnTouchMoved(ofTouchEventArgs & touch);
+  void OnTouchUp(ofTouchEventArgs & touch);
+	void OnTouchDoubleTap(ofTouchEventArgs & touch);
+	void OnTouchCancelled(ofTouchEventArgs & touch);
+	
+	void OnKeyReleased(int key);
+  
+  void OnMouseDragged(int x, int y, int button);
+  
+  void OnMouseMoved(int x, int y);
+  
+  void OnMousePressed(int x, int y, int button);
+  
+  void OnMouseReleased(int x, int y, int button);
+  
+  void Update();
+  
+private:
+  bool MouseButtonIsPressed(int button);
+  
+private:
+  Model &model;
+  std::map<int, bool> buttons, keys, previous_buttons, previous_keys;
+};
+
+#endif  // WITCHBALL_CONTROLLER_H_
