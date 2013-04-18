@@ -31,8 +31,8 @@ const char *kWallBounceFilename = "wallbounce.wav";
 /**
  * Video properties.
  */
-const int kHeight = 600; // pixels
-const int kWidth = 1200; // pixels
+const int kHeight = 768; // pixels
+const int kWidth = 1024; // pixels
 const char *kGlutDisplayString = "rgba double depth alpha samples>=4";
 const float kHalfHeight = kHeight / 2; // pixels
 const float kHalfWidth = kWidth / 2; // pixels

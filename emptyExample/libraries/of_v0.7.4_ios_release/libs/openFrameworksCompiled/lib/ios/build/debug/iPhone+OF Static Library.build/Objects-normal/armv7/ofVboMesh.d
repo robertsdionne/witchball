@@ -1,17 +1,17 @@
 dependencies: \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofVboMesh.cpp \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofVboMesh.cpp \
   ../../../../libs/openFrameworks/gl/ofVboMesh.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/3d/ofMesh.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofVec3f.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/3d/ofMesh.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofVec3f.h \
   ../../../../libs/openFrameworks/math/ofVec2f.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofConstants.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofConstants.h \
   ../../../../libs/glu/include_ios/glu.h \
   ../../../../libs/tess2/include/tesselator.h \
   ../../../../libs/openFrameworks/math/ofVec4f.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofColor.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofMath.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofPoint.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofUtils.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofColor.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofMath.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofPoint.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofUtils.h \
   ../../../../libs/openFrameworks/utils/ofLog.h \
   ../../../../libs/openFrameworks/utils/ofFileUtils.h \
   ../../../../libs/poco/include/Poco/File.h \
@@ -23,10 +23,10 @@ dependencies: \
   ../../../../libs/poco/include/Poco/Types.h \
   ../../../../libs/poco/include/Poco/Timestamp.h \
   ../../../../libs/poco/include/Poco/File_UNIX.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofTypes.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofTypes.h \
   ../../../../libs/poco/include/Poco/Mutex.h \
   ../../../../libs/poco/include/Poco/Exception.h \
   ../../../../libs/poco/include/Poco/ScopedLock.h \
   ../../../../libs/poco/include/Poco/Mutex_POSIX.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofGLUtils.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofGLUtils.h \
   ../../../../libs/openFrameworks/gl/ofVbo.h

@@ -12,6 +12,12 @@ void Controller::OnKeyPressed(int key) {
 }
 
 void Controller::OnTouchDown(ofTouchEventArgs & touch) {
+	if(touch.x > kWidth * 0.5) {
+		keys['p'] = true;
+	}
+	else if(touch.x < kWidth * 0.5) {
+		keys['q'] = true;
+	}
 	
 }
 
@@ -24,7 +30,12 @@ void Controller::OnTouchDoubleTap(ofTouchEventArgs & touch) {
 }
 
 void Controller::OnTouchUp(ofTouchEventArgs & touch) {
-	
+	if(touch.x > kWidth * 0.5) {
+		keys['p'] = false;
+	}
+	else if(touch.x < kWidth * 0.5) {
+		keys['q'] = false;
+	}
 }
 
 void Controller::OnTouchCancelled(ofTouchEventArgs & touch) {

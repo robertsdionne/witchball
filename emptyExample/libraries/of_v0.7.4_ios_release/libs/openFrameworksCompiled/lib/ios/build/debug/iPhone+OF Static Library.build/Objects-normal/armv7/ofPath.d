@@ -1,18 +1,18 @@
 dependencies: \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/graphics/ofPath.cpp \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/graphics/ofPath.cpp \
   ../../../../libs/openFrameworks/graphics/ofPath.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofConstants.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofConstants.h \
   ../../../../libs/glu/include_ios/glu.h \
   ../../../../libs/tess2/include/tesselator.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofPoint.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofVec3f.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofPoint.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofVec3f.h \
   ../../../../libs/openFrameworks/math/ofVec2f.h \
   ../../../../libs/openFrameworks/math/ofVec4f.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofColor.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofMath.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofColor.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofMath.h \
   ../../../../libs/openFrameworks/graphics/ofPolyline.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofRectangle.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofLog.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofRectangle.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofLog.h \
   ../../../../libs/openFrameworks/utils/ofFileUtils.h \
   ../../../../libs/poco/include/Poco/File.h \
   ../../../../libs/poco/include/Poco/Foundation.h \
@@ -23,18 +23,18 @@ dependencies: \
   ../../../../libs/poco/include/Poco/Types.h \
   ../../../../libs/poco/include/Poco/Timestamp.h \
   ../../../../libs/poco/include/Poco/File_UNIX.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofTypes.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofTypes.h \
   ../../../../libs/poco/include/Poco/Mutex.h \
   ../../../../libs/poco/include/Poco/Exception.h \
   ../../../../libs/poco/include/Poco/ScopedLock.h \
   ../../../../libs/poco/include/Poco/Mutex_POSIX.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofBaseTypes.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/3d/ofMesh.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofUtils.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofGLUtils.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/graphics/ofPixels.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofMatrix4x4.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/types/ofBaseTypes.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/3d/ofMesh.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/utils/ofUtils.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofGLUtils.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/graphics/ofPixels.h \
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/math/ofMatrix4x4.h \
   ../../../../libs/openFrameworks/math/ofQuaternion.h \
   ../../../../libs/openFrameworks/graphics/ofTessellator.h \
   ../../../../libs/openFrameworks/graphics/ofGraphics.h \
-  /Users/robertsdionne/code/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofGLRenderer.h
+  /Users/shervinghazazani/Games/witchball/emptyExample/libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/../../../openFrameworks/gl/ofGLRenderer.h
