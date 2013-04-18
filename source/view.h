@@ -1,5 +1,7 @@
 #ifndef WITCHBALL_VIEW_H_
 #define WITCHBALL_VIEW_H_
+#define GRID_W 10
+#define GRID_H 5
 
 #include <list>
 

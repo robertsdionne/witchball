@@ -12,7 +12,7 @@ void View::Draw(const Model &model) const {
   DrawFramesPerSecond();
   ofPushMatrix();
   SetupViewpoint();
-  ofBackground(ofColor::black);
+  ofBackground(ofColor::white);
   //CHASERS-------------------
   for (int i = 0; i < model.nChasers; i++){
     model.topChaser[i]->draw();
@@ -29,7 +29,56 @@ void View::Draw(const Model &model) const {
   DrawBallTrail(model, model.ball_trail, ball_color);
   DrawStrikeIndicator(model);
   DrawBall(model.ball, ball_color);
+  for (float x=-10; x<GRID_W; x+=(1.0/6.0)) {
+    for (float y=-5; y<GRID_H; y+=(1.0/6.0)) {
+      if (ofDist(model.ball->GetPosition().x, model.ball->GetPosition().y, x, y)<0.3) {
+        if (ball_color==color_p1){
+          ofSetColor(color_p1.r,ofRandom(10,60),color_p1.b, 100);
+        }else if(ball_color==color_p2){
+          ofSetColor(ofRandom(10,60),color_p2.g,color_p2.b, 100);
+        }else{
+          ofSetColor(ofRandom(200,250),ofRandom(200,250),ofRandom(200,250), 200);
+        }
+        ofCircle(x, y, 0.1);
+      }
+      else if (ofDist(model.player1_top->GetPosition().x, model.player1_top->GetPosition().y, x, y)<0.4 ||
+               ofDist(model.player1_bottom->GetPosition().x, model.player1_bottom->GetPosition().y, x, y)<0.4) {
+        ofSetColor(color_p1.r,ofRandom(10,60),color_p1.b, 155);
+        ofCircle(x, y, 0.12);
+      }
+      else if (ofDist(model.player2_top->GetPosition().x, model.player2_top->GetPosition().y, x, y)<0.4 ||
+               ofDist(model.player2_bottom->GetPosition().x, model.player2_bottom->GetPosition().y, x, y)<0.4) {
+        ofSetColor(ofRandom(10,60),color_p2.g,color_p2.b, 155);
+        ofCircle(x, y, 0.12);
+      }
+      else if (ofDist(model.strike_position.x, model.strike_position.y, x, y)< model.p1glowMax
+               && ball_color==color_p1){
+        ofNoFill();
+        ofSetColor(color_p1.r,ofRandom(10,60),color_p1.b, 135);
+        ofCircle(x, y, 0.12);
+        ofFill();
+      }
+      else if (ofDist(model.strike_position.x, model.strike_position.y, x, y)< model.p2glowMax
+               && ball_color==color_p2){
+        ofNoFill();
+        ofSetColor(ofRandom(10,60),color_p2.g,color_p2.b, 135);
+        ofCircle(x, y, 0.12);
+        ofFill();
+      }
+      
+      
+      else{
+        ofFill();
+        ofSetColor(ofRandom(10,20),ofRandom(10,20),ofRandom(0,10), 10);
+        ofTriangle(x, y+0.6, x-0.6, y-0.6, x+0.6, y-0.6);
+//        ofCircle(x, y, 0.09);
+      }
+    }
+  }
   ofPopMatrix();
+  
+
+  
 }
 
 void View::Setup() {

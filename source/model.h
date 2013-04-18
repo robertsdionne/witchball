@@ -28,6 +28,9 @@ public:
   void RotateClockwise();
 
   void RotateCounterClockwise();
+  
+  float p1glowMax, p2glowMax;
+
 
 private:
   void CreateBall(ofPoint position = ofPoint(1, 0), ofVec2f velocity = ofVec2f(3.5, 3.5));

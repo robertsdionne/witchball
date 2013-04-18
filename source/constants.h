@@ -77,7 +77,7 @@ extern Parameter<b2Vec2> kZeroGravity;
 /**
  * Video properties.
  */
-constexpr const char *kGlutDisplayString = "rgba double depth alpha samples>=4";
+constexpr const char *kGlutDisplayString = "rgba double depth alpha ";
 
 inline b2Vec2 GetTopLeftQuadrantGravity(int position) {
   switch (position) {
