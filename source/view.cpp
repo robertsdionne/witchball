@@ -69,11 +69,13 @@ void View::Draw(const Model &model) const {
       
       else{
         ofFill();
-        ofSetColor(ofRandom(10,20),ofRandom(10,20),ofRandom(0,10), 10);
-        ofTriangle(x, y+0.6, x-0.6, y-0.6, x+0.6, y-0.6);
-//        ofCircle(x, y, 0.09);
+        ofSetColor(ofRandom(0,10),ofRandom(0,10),ofRandom(10,20), 20);
+        ofTriangle(x, y+0.7, x-0.6, y-0.6, x+0.6, y-0.6);
+
       }
+
     }
+    
   }
   ofPopMatrix();
   
