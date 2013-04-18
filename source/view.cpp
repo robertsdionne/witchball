@@ -348,13 +348,13 @@ void View::DrawPlayers(const Model &model) const {
 void View::DrawScore(const Model &model) const {
   ofPushStyle();
   // Draw a number of rectangles for each player's score.
-  ofSetColor(color_p1 / 1.0, 75.0);
+  ofSetColor(color_p1 / 1.0, 55.0);
   for (int i = 0; i < model.player1_score; ++i) {
     ofPushMatrix();
     ofRect(-kHalfCourtWidth + i * 1.1, -kHalfCourtHeight, 1.0, kCourtHeight);
     ofPopMatrix();
   }
-  ofSetColor(color_p2 / 1.0, 75.0);
+  ofSetColor(color_p2 / 1.0, 55.0);
   for (int i = 0 ; i < model.player2_score; ++i) {
     ofPushMatrix();
     ofRect(kHalfCourtWidth - i * 1.1, -kHalfCourtHeight, -1.0, kCourtHeight);

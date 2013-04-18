@@ -19,7 +19,7 @@ DEFINE_PARAMETER_RANGE(float, kBumperForceStrength, 0.2, 0.0, 5.0);
 
 DEFINE_PARAMETER_RANGE(float, kCollisionDelay, 1.0, 0.0, 2.0);
 DEFINE_PARAMETER_RANGE(float, kControllerRateX, 1.0 / 5.0, 0.0, 1.0);
-DEFINE_PARAMETER_RANGE(float, kControllerRateY, 1.0 / 40.0, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kControllerRateY, 0.06, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kCourtHeight,
                        DEPENDENCY(kCourtWidth) / DEPENDENCY(kAspectRatio), 1.0, 50.0);
 DEFINE_PARAMETER_RANGE(float, kCourtWidth, 20.0, 1.0, 50.0);
@@ -33,7 +33,7 @@ DEFINE_PARAMETER_RANGE(float, kFriction, 0.0, 0.0, 1.0);
 
 DEFINE_PARAMETER(b2Vec2, kGravity, b2Vec2(0.0, -DEPENDENCY(kGravityStrength)));
 DEFINE_PARAMETER_RANGE(float, kGravityMixerRate, 0.05, 0.0, 1.0);
-DEFINE_PARAMETER_RANGE(float, kGravityStrength, 9.81, 0.0, 25.0);
+DEFINE_PARAMETER_RANGE(float, kGravityStrength, 2.81, 0.0, 25.0);
 
 DEFINE_PARAMETER(float, kHalfCourtHeight, DEPENDENCY(kCourtHeight) / 2.0);
 DEFINE_PARAMETER(float, kHalfCourtWidth, DEPENDENCY(kCourtWidth) / 2.0);
@@ -46,7 +46,7 @@ DEFINE_PARAMETER_RANGE(float, kLinearDamping, 0.1, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kPixelScale, DEPENDENCY(kCourtWidth) / DEPENDENCY(kWidth), 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kPlayerHitRadius,
                        33.0 * DEPENDENCY(kCourtWidth) / DEPENDENCY(kWidth), 0.0, 3.0);
-DEFINE_PARAMETER_RANGE(float, kPlayerMoveDelta, 0.015, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kPlayerMoveDelta, 0.020, 0.0, 1.0);
 DEFINE_PARAMETER_RANGE(float, kPlayerRadius,
                        17.0 * DEPENDENCY(kCourtWidth) / DEPENDENCY(kWidth), 0.0, 2.0);
 DEFINE_PARAMETER_RANGE(float, kPlayerTrailAlphaStart, 128.0, 0.0, 255.0);
