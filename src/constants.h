@@ -1,116 +1,238 @@
 #ifndef WITCHBALL_CONSTANTS_H_
 #define WITCHBALL_CONSTANTS_H_
 
-#include <Box2D.h>
+#include <Box2D/Box2D.h>
 
 #include "ofMain.h"
+#include "parameter.h"
 #include "utilities.h"
 
-/**
- * Audio properties.
- */
-extern const int kConcurrentSounds;
+extern Parameter<float> kAngularDamping;
+extern Parameter<b2Vec2> kAntiGravity;
+extern Parameter<float> kAspectRatio;
 
-extern const char *kBackgroundMusicFilename;
-extern const char *kBackgroundMusicTwoFilename;
-extern const char *kBackhit1;
-extern const char *kBackhit2;
-extern const char *kBackhit3;
-extern const char *kBackhit4;
-extern const char *kHit1;
-extern const char *kHit2;
-extern const char *kHit3;
-extern const char *kHit4;
-extern const char *kWallBounceFilename;
+extern Parameter<float> kBallRadius;
+extern Parameter<float> kBallTrailAlphaStart;
+extern Parameter<float> kBallTrailFadeCoefficient;
+extern Parameter<int> kBallTrailLength;
+extern Parameter<int> kBallTrailSpacing;
+extern Parameter<int> kBox2dPositionIterations;
+extern Parameter<int> kBox2dVelocityIterations;
+extern Parameter<b2Vec2> kBumperForce;
+extern Parameter<float> kBumperForceStrength;
+
+extern Parameter<float> kCollisionDelay;
+extern Parameter<float> kControllerRateX;
+extern Parameter<float> kControllerRateY;
+extern Parameter<float> kCourtHeight;
+extern Parameter<float> kCourtWidth;
+
+extern Parameter<float> kDampingSpeed;
+extern Parameter<float> kDensity;
+
+extern Parameter<int> kFixedRotation;
+extern Parameter<float> kFrameRate;
+extern Parameter<float> kFriction;
+
+extern Parameter<b2Vec2> kGravity;
+extern Parameter<float> kGravityMixerRate;
+extern Parameter<float> kGravityStrength;
+
+extern Parameter<float> kHalfCourtHeight;
+extern Parameter<float> kHalfCourtWidth;
+extern Parameter<float> kHalfHeight;
+extern Parameter<float> kHalfWidth;
+extern Parameter<int> kHeight;
+
+extern Parameter<float> kLinearDamping;
+
+extern Parameter<float> kPixelScale;
+extern Parameter<float> kPlayerHitRadius;
+extern Parameter<float> kPlayerMoveDelta;
+extern Parameter<float> kPlayerRadius;
+extern Parameter<float> kPlayerTrailAlphaStart;
+extern Parameter<float> kPlayerTrailFadeCoefficient;
+extern Parameter<int> kPlayerTrailLength;
+extern Parameter<int> kPlayerTrailSpacing;
+extern Parameter<int> kPointsToWin;
+
+extern Parameter<float> kRestitution;
+extern Parameter<float> kRotateAlphaRate;
+extern Parameter<float> kRotateAlphaStart;
+
+extern Parameter<float> kSmoothGravityDiscontinuityXRange;
+extern Parameter<float> kSmoothGravityDiscontinuityYRange;
+extern Parameter<float> kStrikeAlphaRate;
+extern Parameter<float> kStrikeAlphaStart;
+
+extern Parameter<float> kTimeStep;
+
+extern Parameter<ofMatrix4x4> kViewMatrix;
+extern Parameter<ofMatrix4x4> kViewMatrixInverse;
+
+extern Parameter<int> kWidth;
+
+extern Parameter<b2Vec2> kZeroGravity;
 
 /**
  * Video properties.
  */
-extern const int kHeight;
-extern const int kWidth;
-extern const char *kGlutDisplayString;
-extern const float kHalfHeight;
-extern const float kHalfWidth;
-extern const float kAspectRatio;
+constexpr const char *kGlutDisplayString = "rgba double depth alpha ";
 
-/**
- * Level properties.
- */
-extern const float kCourtWidth;
-extern const float kCourtHeight;
-extern const float kHalfCourtWidth;
-extern const float kHalfCourtHeight;
+inline b2Vec2 GetTopLeftQuadrantGravity(int position) {
+  switch (position) {
+    case 0:
+      return kGravity;
+      break;
+    case 1:
+      return kGravity;
+      break;
+    case 2:
+      return kAntiGravity;
+      break;
+    default:
+      return kGravity;
+      break;
+  }
+}
 
-/**
- * Physics properties.
- */
-extern const float kAngularDamping;
-extern const b2Vec2 kAntiGravity;
-extern const float kBallRadius;
-extern const int kBox2dPositionIterations;
-extern const int kBox2dVelocityIterations;
-extern const float kDampingSpeed;
-extern const float kDensity;
-extern const bool kFixedRotation;
-extern const float kFriction;
-extern const b2Vec2 kGravity;
-extern const float kLinearDamping;
-extern const float kMouseDensity;
-extern const float kMouseMass;
-extern const float kPlayerRadius;
-extern const float kRestitution;
-extern const float kSmoothGravityDiscontinuityXRange;
-extern const float kSmoothGravityDiscontinuityYRange;
-extern const float kTimeStep;
-extern const b2Vec2 kZeroGravity;
+inline b2Vec2 GetTopRightQuadrantGravity(int position) {
+  switch (position) {
+    case 0:
+      return kGravity;
+      break;
+    case 1:
+      return kGravity;
+      break;
+    case 2:
+      return kAntiGravity;
+      break;
+    default:
+      return kGravity;
+      break;
+  }
+}
 
-extern const b2Vec2 kTopLeftGravity;
-extern const b2Vec2 kTopRightGravity;
-extern const b2Vec2 kBottomLeftGravity;
-extern const b2Vec2 kBottomRightGravity;
+inline b2Vec2 GetBottomLeftQuadrantGravity(int position) {
+  switch (position) {
+    case 0:
+      return kAntiGravity;
+      break;
+    case 1:
+      return kAntiGravity;
+      break;
+    case 2:
+      return kGravity;
+      break;
+    default:
+      return kAntiGravity;
+      break;
+  }
+}
 
-extern const float kGravityAngle[];
-extern const b2Vec2 kTopLeftQuadrantGravity[];
-extern const b2Vec2 kTopRightQuadrantGravity[];
-extern const b2Vec2 kBottomLeftQuadrantGravity[];
-extern const b2Vec2 kBottomRightQuadrantGravity[];
+inline b2Vec2 GetBottomRightQuadrantGravity(int position) {
+  switch (position) {
+    case 0:
+      return kAntiGravity;
+      break;
+    case 1:
+      return kAntiGravity;
+      break;
+    case 2:
+      return kGravity;
+      break;
+    default:
+      return kAntiGravity;
+      break;
+  }
+}
 
 /**
  * Model Properties
  */
-extern const float kBallTrailAlphaStart;
-extern const float kBallTrailFadeCoefficient;
-extern const int kBallTrailLength;
-extern const int kBallTrailSpacing;
 
-extern const float kGravityMixerRate;
-extern const float kPlayerMoveDelta;
-extern const int kPointsToWin;
-extern const float kPlayerBallCollisionMultiplier;
-extern const float kPlayerTrailAlphaStart;
-extern const float kPlayerTrailFadeCoefficient;
-extern const int kPlayerTrailLength;
-extern const int kPlayerTrailSpacing;
+inline ofVec2f GetPlayer1TopBack(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+  }
+}
 
-/**
- * Controller properties.
- */
-extern const float kControllerRateX;
-extern const float kControllerRateY;
+inline ofVec2f GetPlayer1TopForward(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(-kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kPlayerRadius, kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+  }
+}
 
-extern const ofPoint kPlayer1TopBack[];
-extern const ofPoint kPlayer1TopForward[];
-extern const ofPoint kPlayer2TopBack[];
-extern const ofPoint kPlayer2TopForward[];
-extern const ofPoint kPlayer1BottomBack[];
-extern const ofPoint kPlayer1BottomForward[];
-extern const ofPoint kPlayer2BottomBack[];
-extern const ofPoint kPlayer2BottomForward[];
+inline ofVec2f GetPlayer2TopBack(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
+      break;
+  }
+}
 
-/**
- * View properties.
- */
-extern const ofMatrix4x4 kViewMatrix;
-extern const ofMatrix4x4 kViewMatrixInverse;
+inline ofVec2f GetPlayer2TopForward(int position) {
+  switch (position) {
+    case 0:
+      return ofVec2f(kPlayerRadius, kPlayerRadius);
+      break;
+    case 1:
+      return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    case 2:
+      return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      break;
+    default:
+      return ofVec2f(-kPlayerRadius, kPlayerRadius);
+      break;
+  }
+}
+
+inline ofVec2f GetPlayer1BottomBack(int position) {
+  return -GetPlayer1TopBack(position);
+}
+
+inline ofVec2f GetPlayer1BottomForward(int position) {
+  return -GetPlayer1TopForward(position);
+}
+
+inline ofVec2f GetPlayer2BottomBack(int position) {
+  return -GetPlayer2TopBack(position);
+}
+
+inline ofVec2f GetPlayer2BottomForward(int position) {
+  return -GetPlayer2TopForward(position);
+}
 
 #endif  // WITCHBALL_CONSTANTS_H_

@@ -25,10 +25,14 @@ void collisionscorekeeper::BeginContact(b2Contact *contact) {
 
     if(((bodyA == model->player1_bottom || bodyA == model->player1_top) && (bodyB == model->ball)) ||
        ((bodyB == model->player1_bottom || bodyB == model->player1_top) && (bodyA == model->ball))) {
-      model->IncrementPlayerOneCount();
+      if (model->player1_top->IsActive()) {
+        model->IncrementPlayerOneCount();
+      }
     } else if(((bodyA == model->player2_bottom || bodyA == model->player2_top) && (bodyB == model->ball)) ||
               ((bodyB == model->player2_bottom || bodyB == model->player2_top) && (bodyA == model->ball))) {
-      model->IncrementPlayerTwoCount();
+      if (model->player2_top->IsActive()) {
+        model->IncrementPlayerTwoCount();
+      }
     }
   }
 }

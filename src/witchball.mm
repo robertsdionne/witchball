@@ -2,45 +2,40 @@
 
 #include "constants.h"
 #include "controller.h"
+#include "playscreen.h"
+#include "screen.h"
+#include "slider.h"
 #include "utilities.h"
 #include "witchball.h"
 
-WitchBall::WitchBall()
-: model(), view(), controller(model), sound_collision(), score_keeper_collision(),
-  contact_listener(), sound_background_music(), sound_background_music_2() {}
+WitchBall::WitchBall() : current_screen(nullptr) {}
+
+WitchBall::~WitchBall() {
+  if (current_screen) {
+    delete current_screen;
+    current_screen = nullptr;
+  }
+}
 
 void WitchBall::setup() {
-	
-	// initialize the accelerometer
-    ofxAccelerometer.setup();
-
+	//ofxAccelerometer.setup();
 	//If you want a landscape oreintation
-	iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT);
-	ofSetCircleResolution(50);
-	ofBackground(255,255,255);
-	
-	
-  model.Setup();
-  contact_listener.AddContactListener(&sound_collision);
-  contact_listener.AddContactListener(&score_keeper_collision);
-  model.world.SetContactListener(&contact_listener);
-  view.Setup();
-	/*
-  sound_background_music.loadSound(kBackgroundMusicFilename);
-  sound_background_music_2.loadSound(kBackgroundMusicTwoFilename);
-  sound_background_music.play();
-  sound_background_music_2.setLoop(true);
-  sound_background_music_2.play();
-	 */
+	//iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT);
+	ofBackground(127,127,127);
+  current_screen = new PlayScreen();
+  current_screen->Setup();
 }
 
 void WitchBall::update() {
-  controller.Update();
-  model.Update();
+  if (current_screen) {
+    current_screen->Update();
+  }
 }
 
 void WitchBall::draw() {
-  view.Draw(model);
+  if (current_screen) {
+    current_screen->Draw();
+  }
 }
 
 void WitchBall::exit(){
@@ -48,24 +43,33 @@ void WitchBall::exit(){
 }
 
 void WitchBall::touchDown(ofTouchEventArgs & touch){
-	controller.OnTouchDown(touch);
+	if (current_screen) {
+    current_screen->touchDown(touch);
+  }
 }
 
-
 void WitchBall::touchMoved(ofTouchEventArgs & touch){
-	controller.OnTouchMoved(touch);
+	if (current_screen) {
+    current_screen->touchMoved(touch);
+  }
 }
 
 void WitchBall::touchUp(ofTouchEventArgs & touch){
-	controller.OnTouchUp(touch);
+	if (current_screen) {
+    current_screen->touchUp(touch);
+  }
 }
 
 void WitchBall::touchDoubleTap(ofTouchEventArgs & touch){
-	controller.OnTouchDoubleTap(touch);
+	if (current_screen) {
+    current_screen->touchDoubleTap(touch);
+  }
 }
 
 void WitchBall::touchCancelled(ofTouchEventArgs & touch){
-	controller.OnTouchCancelled(touch);
+	if (current_screen) {
+    current_screen->touchCancelled(touch);
+  }
 }
 
 void WitchBall::lostFocus(){
@@ -73,7 +77,6 @@ void WitchBall::lostFocus(){
 }
 
 void WitchBall::gotFocus(){
-	printf("Got Focus called");
 	
 }
 
@@ -83,4 +86,12 @@ void WitchBall::gotMemoryWarning(){
 
 void WitchBall::deviceOrientationChanged(int newOrientation){
 	
+}
+
+void WitchBall::RestartScene() {
+  if (current_screen) {
+    delete current_screen;
+    current_screen = nullptr;
+  }
+  setup();
 }

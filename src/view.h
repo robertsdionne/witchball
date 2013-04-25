@@ -1,5 +1,7 @@
 #ifndef WITCHBALL_VIEW_H_
 #define WITCHBALL_VIEW_H_
+#define GRID_W 10
+#define GRID_H 5
 
 #include <list>
 
@@ -19,6 +21,8 @@ public:
   void Setup();
   
 private:
+  void DrawStrikeIndicator(const Model &model) const;
+
   void DrawBall(const b2Body *ball, ofColor color) const;
   
   void DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail, ofColor color) const;
@@ -32,8 +36,6 @@ private:
   void DrawGravityAt(ofPoint position, const Model &model) const;
   
   void DrawPlayer(const b2Body *player, ofColor color) const;
-  
-  void DrawPlayerTrail(const std::list<ofVec2f> player_trail, ofColor color) const;
   
   void DrawPlayers(const Model &model) const;
   

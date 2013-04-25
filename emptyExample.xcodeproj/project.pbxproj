@@ -23,6 +23,11 @@
 		A922FE0D1729907D00DFC9A9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE011729907D00DFC9A9 /* tinyxmlparser.cpp */; };
 		A922FE0E1729907D00DFC9A9 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE031729907D00DFC9A9 /* ofxXmlSettings.cpp */; };
 		A922FE181729934500DFC9A9 /* libofxiPhone_iphoneos_Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A922FE151729926100DFC9A9 /* libofxiPhone_iphoneos_Debug.a */; };
+		A922FE231729993000DFC9A9 /* ofChaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE191729993000DFC9A9 /* ofChaser.cpp */; };
+		A922FE241729993000DFC9A9 /* parameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE1B1729993000DFC9A9 /* parameter.cpp */; };
+		A922FE251729993000DFC9A9 /* playscreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE1D1729993000DFC9A9 /* playscreen.cpp */; };
+		A922FE261729993000DFC9A9 /* screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE1F1729993000DFC9A9 /* screen.cpp */; };
+		A922FE271729993000DFC9A9 /* slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A922FE211729993000DFC9A9 /* slider.cpp */; };
 		A9A2E7AC171E17260013CF4E /* constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9A2E7AB171E17260013CF4E /* constants.cpp */; };
 		A9B59C1E1716794200EA471D /* Box2DConfig.cmake in Resources */ = {isa = PBXBuildFile; fileRef = A9B59BBB1716794200EA471D /* Box2DConfig.cmake */; };
 		A9B59C1F1716794200EA471D /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9B59BBC1716794200EA471D /* CMakeLists.txt */; };
@@ -74,9 +79,8 @@
 		A9C43C34170D78DF0003D86F /* collisionscorekeeper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C21170D78DF0003D86F /* collisionscorekeeper.cpp */; };
 		A9C43C35170D78DF0003D86F /* collisionsoundplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C23170D78DF0003D86F /* collisionsoundplayer.cpp */; };
 		A9C43C36170D78DF0003D86F /* compositecontactlistener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C25170D78DF0003D86F /* compositecontactlistener.cpp */; };
-		A9C43C37170D78DF0003D86F /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C28170D78DF0003D86F /* controller.cpp */; };
+		A9C43C37170D78DF0003D86F /* controller.mm in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C28170D78DF0003D86F /* controller.mm */; };
 		A9C43C38170D78DF0003D86F /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C2A170D78DF0003D86F /* model.cpp */; };
-		A9C43C39170D78DF0003D86F /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C2D170D78DF0003D86F /* testApp.mm */; };
 		A9C43C3A170D78DF0003D86F /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C2E170D78DF0003D86F /* utilities.cpp */; };
 		A9C43C3B170D78DF0003D86F /* view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C30170D78DF0003D86F /* view.cpp */; };
 		A9C43C3C170D78DF0003D86F /* witchball.mm in Sources */ = {isa = PBXBuildFile; fileRef = A9C43C32170D78DF0003D86F /* witchball.mm */; };
@@ -137,6 +141,16 @@
 		A922FE031729907D00DFC9A9 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		A922FE041729907D00DFC9A9 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		A922FE101729926000DFC9A9 /* iOS+OFLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "iOS+OFLib.xcodeproj"; path = "libraries/of_v0.7.4_ios_release/libs/openFrameworksCompiled/project/ios/iOS+OFLib.xcodeproj"; sourceTree = "<group>"; };
+		A922FE191729993000DFC9A9 /* ofChaser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofChaser.cpp; sourceTree = "<group>"; };
+		A922FE1A1729993000DFC9A9 /* ofChaser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofChaser.h; sourceTree = "<group>"; };
+		A922FE1B1729993000DFC9A9 /* parameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parameter.cpp; sourceTree = "<group>"; };
+		A922FE1C1729993000DFC9A9 /* parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parameter.h; sourceTree = "<group>"; };
+		A922FE1D1729993000DFC9A9 /* playscreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playscreen.cpp; sourceTree = "<group>"; };
+		A922FE1E1729993000DFC9A9 /* playscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playscreen.h; sourceTree = "<group>"; };
+		A922FE1F1729993000DFC9A9 /* screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = screen.cpp; sourceTree = "<group>"; };
+		A922FE201729993000DFC9A9 /* screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
+		A922FE211729993000DFC9A9 /* slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = slider.cpp; sourceTree = "<group>"; };
+		A922FE221729993000DFC9A9 /* slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slider.h; sourceTree = "<group>"; };
 		A9A2E7AB171E17260013CF4E /* constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = constants.cpp; sourceTree = "<group>"; };
 		A9B59BBA1716794200EA471D /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		A9B59BBB1716794200EA471D /* Box2DConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Box2DConfig.cmake; sourceTree = "<group>"; };
@@ -238,12 +252,10 @@
 		A9C43C25170D78DF0003D86F /* compositecontactlistener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compositecontactlistener.cpp; sourceTree = "<group>"; };
 		A9C43C26170D78DF0003D86F /* compositecontactlistener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compositecontactlistener.h; sourceTree = "<group>"; };
 		A9C43C27170D78DF0003D86F /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
-		A9C43C28170D78DF0003D86F /* controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = controller.cpp; sourceTree = "<group>"; };
+		A9C43C28170D78DF0003D86F /* controller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = controller.mm; sourceTree = "<group>"; };
 		A9C43C29170D78DF0003D86F /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
 		A9C43C2A170D78DF0003D86F /* model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		A9C43C2B170D78DF0003D86F /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
-		A9C43C2C170D78DF0003D86F /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
-		A9C43C2D170D78DF0003D86F /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testApp.mm; sourceTree = "<group>"; };
 		A9C43C2E170D78DF0003D86F /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		A9C43C2F170D78DF0003D86F /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		A9C43C30170D78DF0003D86F /* view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = view.cpp; sourceTree = "<group>"; };
@@ -602,6 +614,16 @@
 		E4D8936A11527B74007E1F53 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A922FE191729993000DFC9A9 /* ofChaser.cpp */,
+				A922FE1A1729993000DFC9A9 /* ofChaser.h */,
+				A922FE1B1729993000DFC9A9 /* parameter.cpp */,
+				A922FE1C1729993000DFC9A9 /* parameter.h */,
+				A922FE1D1729993000DFC9A9 /* playscreen.cpp */,
+				A922FE1E1729993000DFC9A9 /* playscreen.h */,
+				A922FE1F1729993000DFC9A9 /* screen.cpp */,
+				A922FE201729993000DFC9A9 /* screen.h */,
+				A922FE211729993000DFC9A9 /* slider.cpp */,
+				A922FE221729993000DFC9A9 /* slider.h */,
 				A9C43C21170D78DF0003D86F /* collisionscorekeeper.cpp */,
 				A9C43C22170D78DF0003D86F /* collisionscorekeeper.h */,
 				A9C43C23170D78DF0003D86F /* collisionsoundplayer.cpp */,
@@ -609,12 +631,10 @@
 				A9C43C25170D78DF0003D86F /* compositecontactlistener.cpp */,
 				A9C43C26170D78DF0003D86F /* compositecontactlistener.h */,
 				A9C43C27170D78DF0003D86F /* constants.h */,
-				A9C43C28170D78DF0003D86F /* controller.cpp */,
+				A9C43C28170D78DF0003D86F /* controller.mm */,
 				A9C43C29170D78DF0003D86F /* controller.h */,
 				A9C43C2A170D78DF0003D86F /* model.cpp */,
 				A9C43C2B170D78DF0003D86F /* model.h */,
-				A9C43C2C170D78DF0003D86F /* testApp.h */,
-				A9C43C2D170D78DF0003D86F /* testApp.mm */,
 				A9C43C2E170D78DF0003D86F /* utilities.cpp */,
 				A9C43C2F170D78DF0003D86F /* utilities.h */,
 				A9C43C30170D78DF0003D86F /* view.cpp */,
@@ -729,9 +749,8 @@
 				A9C43C34170D78DF0003D86F /* collisionscorekeeper.cpp in Sources */,
 				A9C43C35170D78DF0003D86F /* collisionsoundplayer.cpp in Sources */,
 				A9C43C36170D78DF0003D86F /* compositecontactlistener.cpp in Sources */,
-				A9C43C37170D78DF0003D86F /* controller.cpp in Sources */,
+				A9C43C37170D78DF0003D86F /* controller.mm in Sources */,
 				A9C43C38170D78DF0003D86F /* model.cpp in Sources */,
-				A9C43C39170D78DF0003D86F /* testApp.mm in Sources */,
 				A9C43C3A170D78DF0003D86F /* utilities.cpp in Sources */,
 				A9C43C3B170D78DF0003D86F /* view.cpp in Sources */,
 				A9C43C3C170D78DF0003D86F /* witchball.mm in Sources */,
@@ -791,6 +810,11 @@
 				A922FE0C1729907D00DFC9A9 /* tinyxmlerror.cpp in Sources */,
 				A922FE0D1729907D00DFC9A9 /* tinyxmlparser.cpp in Sources */,
 				A922FE0E1729907D00DFC9A9 /* ofxXmlSettings.cpp in Sources */,
+				A922FE231729993000DFC9A9 /* ofChaser.cpp in Sources */,
+				A922FE241729993000DFC9A9 /* parameter.cpp in Sources */,
+				A922FE251729993000DFC9A9 /* playscreen.cpp in Sources */,
+				A922FE261729993000DFC9A9 /* screen.cpp in Sources */,
+				A922FE271729993000DFC9A9 /* slider.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

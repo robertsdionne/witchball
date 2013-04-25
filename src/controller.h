@@ -11,16 +11,16 @@ public:
   Controller(Model &model);
   
   virtual ~Controller() {}
+	
+	void touchDown(ofTouchEventArgs & touch);
+	void touchMoved(ofTouchEventArgs & touch);
+  void touchUp(ofTouchEventArgs & touch);
+	void touchDoubleTap(ofTouchEventArgs & touch);
+	void touchCancelled(ofTouchEventArgs & touch);
   
   void OnKeyPressed(int key);
-	
-	void OnTouchDown(ofTouchEventArgs & touch);
-	void OnTouchMoved(ofTouchEventArgs & touch);
-  void OnTouchUp(ofTouchEventArgs & touch);
-	void OnTouchDoubleTap(ofTouchEventArgs & touch);
-	void OnTouchCancelled(ofTouchEventArgs & touch);
-	
-	void OnKeyReleased(int key);
+  
+  void OnKeyReleased(int key);
   
   void OnMouseDragged(int x, int y, int button);
   

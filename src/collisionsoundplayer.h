@@ -19,8 +19,10 @@ private:
   void PlaySound(const b2Body *body, ofSoundPlayer *sound, int &next_index);
   
 private:
-  ofSoundPlayer sound_wallbounce[10];
-  ofSoundPlayer sound_hit1[10];
+  static constexpr int kConcurrentSounds = 10;
+
+  ofSoundPlayer sound_wallbounce[kConcurrentSounds];
+  ofSoundPlayer sound_hit1[kConcurrentSounds];
   int play_next_index_wallbounce;
   int play_next_index_hit1;
 };

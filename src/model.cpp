@@ -1,19 +1,21 @@
 #include "constants.h"
 #include "utilities.h"
 #include "model.h"
-
+#include "ofChaser.h"
 
 Model::Model()
 : world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
   mouse_pressed(false), mouse_position(-kHalfCourtWidth, kHalfCourtHeight),
-  mouse_gravity_position(mouse_position), mouse_mass_scale(0.0),
-  top_left_quadrant_gravity(kTopLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
-  top_right_quadrant_gravity(kTopRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
-  bottom_left_quadrant_gravity(kBottomLeftQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
-  bottom_right_quadrant_gravity(kBottomRightQuadrantGravity[EnumValue(CourtPosition::POSITION_1)]),
-  gravity_angle(0.0), court_position(CourtPosition::POSITION_1),
-  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::QUADRANT),
+  top_left_quadrant_gravity(GetTopLeftQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
+  top_right_quadrant_gravity(GetTopRightQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
+  bottom_left_quadrant_gravity(GetBottomLeftQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
+  bottom_right_quadrant_gravity(GetBottomRightQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
+  gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
+  last_hit_player(0), strike_position(), strike_alpha(0.0), counter_clockwise_alpha(0.0),
+  clockwise_alpha(0.0),
+  player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
+  elapsed_time(ofGetElapsedTimef()), last_collision_time(-kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
   player2_top_trail(), player2_bottom_trail() {}
 
@@ -21,24 +23,145 @@ void Model::Setup() {
   CreateBall();
   CreateBorder();
   CreatePlayers();
-	EnumValue(CourtPosition::POSITION_1);
+  //CHASERS
+  nChasers=99;
+  testPoint.set(0, 0);
+
+  topChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = ofRandom(-kCourtWidth / 2.0, kCourtWidth / 2.0);
+    float b = kCourtHeight / 2.0;
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX= ball->GetPosition().x;
+    float extY= ball->GetPosition().y;
+
+    topChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+  botChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = ofRandom(-kCourtWidth / 2.0, kCourtWidth / 2.0);
+    float b = -kCourtHeight / 2.0;
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX= ball->GetPosition().x;
+    float extY= ball->GetPosition().y;
+
+    botChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+  leftChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = -kCourtWidth / 2.0;
+    float b = ofRandom(-kCourtHeight / 2.0, kCourtHeight / 2.0);
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX= ball->GetPosition().x;
+    float extY= ball->GetPosition().y;
+
+    leftChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+  rightChaser = new ofChaser*[nChasers];
+  for (int i = 0; i < nChasers; i++){
+    float a = kCourtWidth / 2.0;
+    float b = ofRandom(-kCourtHeight / 2.0, kCourtHeight / 2.0);
+    float c = a;
+    float d = b;
+    float targX = testPoint.x;
+    float targY = testPoint.y;
+    float extX = ball->GetPosition().x;
+    float extY = ball->GetPosition().y;
+
+    rightChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
+  }
+    
+    
 }
 
 void Model::Update() {
+  
+  if (player1_increment_count >2) {
+    p1glowMax+=0.5;
+  }else if(player1_increment_count<=2){
+    p1glowMax=0;
+  }
+  if (player2_increment_count >2) {
+    p2glowMax+=0.5;
+  }else if(player2_increment_count<=2){
+    p2glowMax=0;
+  }
+  
+  //CHASERS----------------
+  for (int i = 0; i < nChasers; i++){
+    topChaser[i]->targX=testPoint.x;
+    topChaser[i]->targY=testPoint.y;
+    topChaser[i]->extX=ball->GetPosition().x;
+    topChaser[i]->extY=ball->GetPosition().y;
+
+    botChaser[i]->targX=testPoint.x;
+    botChaser[i]->targY=testPoint.y;
+    botChaser[i]->extX=ball->GetPosition().x;
+    botChaser[i]->extY=ball->GetPosition().y;
+
+    rightChaser[i]->targX=testPoint.x;
+    rightChaser[i]->targY=testPoint.y;
+    rightChaser[i]->extX=ball->GetPosition().x;
+    rightChaser[i]->extY=ball->GetPosition().y;
+
+    leftChaser[i]->targX=testPoint.x;
+    leftChaser[i]->targY=testPoint.y;
+    leftChaser[i]->extX=ball->GetPosition().x;
+    leftChaser[i]->extY=ball->GetPosition().y;
+
+    topChaser[i]->update();
+    botChaser[i]->update();
+    rightChaser[i]->update();
+    leftChaser[i]->update();
+  }
+  if (elapsed_time > last_collision_time + kCollisionDelay) {
+    player1_top->SetActive(true);
+    player1_bottom->SetActive(true);
+    player2_top->SetActive(true);
+    player2_bottom->SetActive(true);
+  } else {    player1_top->SetActive(false);
+    player1_bottom->SetActive(false);
+    player2_top->SetActive(false);
+    player2_bottom->SetActive(false);
+  }
+  if (strike_alpha >= kStrikeAlphaRate) {
+    strike_alpha -= kStrikeAlphaRate;
+  }
+  if (counter_clockwise_alpha >= kRotateAlphaRate) {
+    counter_clockwise_alpha -= kRotateAlphaRate;
+  }
+  if (clockwise_alpha >= kRotateAlphaRate) {
+    clockwise_alpha -= kRotateAlphaRate;
+  }
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   UpdatePlayerPosition(player1_top,
-                       Lerp(kPlayer1TopBack[EnumValue(court_position)],
-                            kPlayer1TopForward[EnumValue(court_position)], player1_position));
+                       Lerp(GetPlayer1TopBack(EnumValue(court_position)),
+                            GetPlayer1TopForward(EnumValue(court_position)), player1_position));
   UpdatePlayerPosition(player1_bottom,
-                       Lerp(kPlayer1BottomBack[EnumValue(court_position)],
-                            kPlayer1BottomForward[EnumValue(court_position)], player1_position));
+                       Lerp(GetPlayer1BottomBack(EnumValue(court_position)),
+                            GetPlayer1BottomForward(EnumValue(court_position)), player1_position));
   UpdatePlayerPosition(player2_top,
-                       Lerp(kPlayer2TopBack[EnumValue(court_position)],
-                            kPlayer2TopForward[EnumValue(court_position)], player2_position));
+                       Lerp(GetPlayer2TopBack(EnumValue(court_position)),
+                            GetPlayer2TopForward(EnumValue(court_position)), player2_position));
   UpdatePlayerPosition(player2_bottom,
-                       Lerp(kPlayer2BottomBack[EnumValue(court_position)],
-                            kPlayer2BottomForward[EnumValue(court_position)], player2_position));
+                       Lerp(GetPlayer2BottomBack(EnumValue(court_position)),
+                            GetPlayer2BottomForward(EnumValue(court_position)), player2_position));
   UpdateGravities();
+  if (ball->GetPosition().x >= kCourtWidth-2*kBallRadius){
+    ball->ApplyForceToCenter(-kBumperForce.GetValue());
+  }else if (ball->GetPosition().x <= -kCourtWidth/2+2*kBallRadius){
+    ball->ApplyForceToCenter(kBumperForce);
+  }
+  
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
   UpdateTrails();
   if (ball->GetLinearVelocity().Length() < kDampingSpeed) {
@@ -76,20 +199,17 @@ void Model::UpdateTrails() {
 }
 
 void Model::UpdateGravities() {
-  gravity_angle = ofLerpDegrees(gravity_angle, kGravityAngle[EnumValue(court_position)], kGravityMixerRate);
-  mouse_mass_scale = ofLerp(mouse_mass_scale, mouse_pressed, kGravityMixerRate);
-  mouse_gravity_position = Lerp(mouse_gravity_position, mouse_position, kGravityMixerRate);
   top_left_quadrant_gravity = Lerp(top_left_quadrant_gravity,
-                                   kTopLeftQuadrantGravity[EnumValue(court_position)],
+                                   GetTopLeftQuadrantGravity(EnumValue(court_position)),
                                    kGravityMixerRate);
   top_right_quadrant_gravity = Lerp(top_right_quadrant_gravity,
-                                    kTopRightQuadrantGravity[EnumValue(court_position)],
+                                    GetTopRightQuadrantGravity(EnumValue(court_position)),
                                     kGravityMixerRate);
   bottom_left_quadrant_gravity = Lerp(bottom_left_quadrant_gravity,
-                                      kBottomLeftQuadrantGravity[EnumValue(court_position)],
+                                      GetBottomLeftQuadrantGravity(EnumValue(court_position)),
                                       kGravityMixerRate);
   bottom_right_quadrant_gravity = Lerp(bottom_right_quadrant_gravity,
-                                       kBottomRightQuadrantGravity[EnumValue(court_position)],
+                                       GetBottomRightQuadrantGravity(EnumValue(court_position)),
                                        kGravityMixerRate);
 }
 
@@ -118,17 +238,24 @@ void Model::CreateBorder() {
   border_definition.position.Set(0.0, 0.0);
   border = world.CreateBody(&border_definition);
   border->SetUserData(this);
-  b2Vec2 vertex[4];
-  vertex[0].Set(-kHalfCourtWidth, -kHalfCourtHeight);
-  vertex[1].Set(kHalfCourtWidth, -kHalfCourtHeight);
-  vertex[2].Set(kHalfCourtWidth, kHalfCourtHeight);
-  vertex[3].Set(-kHalfCourtWidth, kHalfCourtHeight);
-  b2ChainShape border_shape;
-  border_shape.CreateLoop(vertex, 4);
-  b2FixtureDef border_fixture_definition;
-  border_fixture_definition.shape = &border_shape;
-  border_fixture_definition.friction = kFriction;
-  border->CreateFixture(&border_fixture_definition);
+  b2PolygonShape border_bottom_shape, border_top_shape, border_left_shape, border_right_shape;
+  border_bottom_shape.SetAsBox(kHalfCourtWidth + 2.0, 1.0, b2Vec2(0.0, -kHalfCourtHeight - 1.0), 0.0);
+  border_top_shape.SetAsBox(kHalfCourtWidth + 2.0, 1.0, b2Vec2(0.0, kHalfCourtHeight + 1.0), 0.0);
+  border_left_shape.SetAsBox(1.0, kHalfCourtHeight, b2Vec2(-kHalfCourtWidth - 1.0, 0.0), 0.0);
+  border_right_shape.SetAsBox(1.0, kHalfCourtHeight, b2Vec2(kHalfCourtWidth + 1.0, 0.0), 0.0);
+  b2FixtureDef border_bottom_fixture, border_top_fixture, border_left_fixture, border_right_fixture;
+  border_bottom_fixture.shape = &border_bottom_shape;
+  border_bottom_fixture.friction = kFriction;
+  border_top_fixture.shape = &border_top_shape;
+  border_top_fixture.friction = kFriction;
+  border_left_fixture.shape = &border_left_shape;
+  border_left_fixture.friction = kFriction;
+  border_right_fixture.shape = &border_right_shape;
+  border_right_fixture.friction = kFriction;
+  border->CreateFixture(&border_bottom_fixture);
+  border->CreateFixture(&border_top_fixture);
+  border->CreateFixture(&border_left_fixture);
+  border->CreateFixture(&border_right_fixture);
 }
 
 b2Body *Model::CreatePlayer(ofPoint position) {
@@ -137,7 +264,7 @@ b2Body *Model::CreatePlayer(ofPoint position) {
   b2Body *player = world.CreateBody(&player_definition);
   player->SetUserData(this);
   b2CircleShape player_shape;
-  player_shape.m_radius = kPlayerRadius;
+  player_shape.m_radius = kPlayerHitRadius;
   b2FixtureDef player_fixture_definition;
   player_fixture_definition.shape = &player_shape;
   player_fixture_definition.friction = kFriction;
@@ -146,61 +273,86 @@ b2Body *Model::CreatePlayer(ofPoint position) {
 }
 
 void Model::CreatePlayers() {
-  player1_top = CreatePlayer(kPlayer1TopBack[EnumValue(CourtPosition::POSITION_1)]);
-  player1_bottom = CreatePlayer(kPlayer1BottomBack[EnumValue(CourtPosition::POSITION_1)]);
-  player2_top = CreatePlayer(kPlayer2TopBack[EnumValue(CourtPosition::POSITION_1)]);
-  player2_bottom = CreatePlayer(kPlayer2BottomBack[EnumValue(CourtPosition::POSITION_1)]);
+  player1_top = CreatePlayer(GetPlayer1TopBack(EnumValue(CourtPosition::POSITION_1)));
+  player1_bottom = CreatePlayer(GetPlayer1BottomBack(EnumValue(CourtPosition::POSITION_1)));
+  player2_top = CreatePlayer(GetPlayer2TopBack(EnumValue(CourtPosition::POSITION_1)));
+  player2_bottom = CreatePlayer(GetPlayer2BottomBack(EnumValue(CourtPosition::POSITION_1)));
 }
 
 b2Vec2 Model::GravityAt(b2Vec2 position) const {
-  const ofVec2f radius = mouse_gravity_position - OpenFrameworksVector(position);
-  const b2Vec2 mouse_gravity = Box2dVector(mouse_mass_scale * kMouseMass *
-                                           radius.normalized() / radius.lengthSquared());
-  const b2Vec2 gravity = Box2dVector(-9.81 * OpenFrameworksVector(position).normalized().rotate(gravity_angle));
-  return gravity + mouse_gravity;
+  const float x_range = kSmoothGravityDiscontinuityXRange;
+  const float y_range = kSmoothGravityDiscontinuityYRange;
+  const float xt = (ofClamp(position.x, -x_range, x_range) / x_range + 1.0) / 2.0;
+  const float yt = (ofClamp(position.y, -y_range, y_range) / y_range + 1.0) / 2.0;
+  if (play_gravity) {
+    return Lerp(Lerp(bottom_left_quadrant_gravity, bottom_right_quadrant_gravity, xt),
+                Lerp(top_left_quadrant_gravity, top_right_quadrant_gravity, xt), yt);
+  } else {
+    return Box2dVector(-9.81 * OpenFrameworksVector(position).normalized());
+  }
 }
 
 void Model::IncrementPlayerOneCount() {
-  if(player1_increment_count >= 3) {
-    player1_score++;
+  if (elapsed_time > last_collision_time + kCollisionDelay) {
+    last_collision_time = elapsed_time;
+    if(player1_increment_count >= 2) {
+      player1_score++;
 
-    if(player1_score == kPointsToWin) {
-      printf("P1 Wins\n");
-      player1_score = 0;
-      player1_increment_count = 0;
+      if(player1_score == kPointsToWin) {
+        printf("P1 Wins\n");
+        player1_score = 0;
+        player2_score = 0;
+        player1_increment_count = 0;
+        player2_increment_count = 0;
+      }
     }
-  }
-  player1_increment_count++;
-  player2_increment_count = 0;
+    player1_increment_count++;
+    player2_increment_count = 0;
+    last_hit_player = 1;
+    strike_position = OpenFrameworksVector(ball->GetPosition());
+    strike_alpha = kStrikeAlphaStart;
 
-  printf("P1 Score: %d\n",player1_score);
+    printf("P1 Score: %d\n",player1_score);
+  }
 }
 
 void Model::IncrementPlayerTwoCount() {
-  if(player2_increment_count >= 3) {
-    player2_score++;
-    if(player2_score == kPointsToWin) {
-      printf("P2 Wins\n");
-      player2_score = 0;
-      player2_increment_count = 0;
+  if (elapsed_time > last_collision_time + kCollisionDelay) {
+    last_collision_time = elapsed_time;
+    if(player2_increment_count >= 2) {
+      player2_score++;
+      if(player2_score == kPointsToWin) {
+        printf("P2 Wins\n");
+        player1_score = 0;
+        player2_score = 0;
+        player1_increment_count = 0;
+        player2_increment_count = 0;
+      }
     }
+    player2_increment_count++;
+    player1_increment_count = 0;
+    last_hit_player = 2;
+    strike_position = OpenFrameworksVector(ball->GetPosition());
+    strike_alpha = kStrikeAlphaStart;
+    
+    printf("P2 Score: %d\n",player2_score);
   }
-  player2_increment_count++;
-  player1_increment_count = 0;
-  printf("P2 Score: %d\n",player2_score);
 }
 
 void Model::RotateClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 1) % 4);
+  clockwise_alpha = kRotateAlphaStart;
+  play_gravity = true;
 }
 
 void Model::RotateCounterClockwise() {
   court_position = Model::CourtPosition((EnumValue(court_position) + 3) % 4);
+  counter_clockwise_alpha = kRotateAlphaStart;
+  play_gravity = true;
 }
 
 void Model::UpdatePlayerPosition(b2Body *player, ofPoint target) {
-  const ofVec2f position = OpenFrameworksVector(player->GetPosition());
-  const ofVec2f delta = (target - position) * ofVec2f(kControllerRateX, kControllerRateY);
-  const ofVec2f new_position = position + delta;
-  player->SetTransform(Box2dVector(new_position), 0.0);
+  const b2Vec2 new_position = b2Vec2(ofLerp(player->GetPosition().x, target.x, kControllerRateX),
+                                     ofLerp(player->GetPosition().y, target.y, kControllerRateY));
+  player->SetTransform(new_position, 0.0);
 }

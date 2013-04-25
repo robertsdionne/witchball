@@ -9,16 +9,17 @@
 
 CollisionSoundPlayer::CollisionSoundPlayer()
 : sound_wallbounce(), sound_hit1(), play_next_index_wallbounce(0), play_next_index_hit1(0) {
-  /*
+  
+	/*
 	for (int i = 0; i < kConcurrentSounds; ++i) {
-    sound_wallbounce[i].loadSound(kWallBounceFilename);
+    sound_wallbounce[i].loadSound("wallbounce.wav");
     sound_wallbounce[i].setMultiPlay(true);
   }
   for (int i = 0; i < kConcurrentSounds; ++i) {
-    sound_hit1[i].loadSound(kHit1);
+    sound_hit1[i].loadSound("hit1.wav");
     sound_hit1[i].setMultiPlay(true);
   }
-	 */
+	*/
 }
 
 void CollisionSoundPlayer::BeginContact(b2Contact *contact) {
@@ -39,9 +40,9 @@ void CollisionSoundPlayer::BeginContact(b2Contact *contact) {
 }
 
 void CollisionSoundPlayer::PlaySound(const b2Body *body, ofSoundPlayer *sound, int &next_index) {
-  const float speed = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.1f, 2.0f);
-  const float volume = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.1f, 1.0f);
-  sound[next_index].setSpeed(speed + 0.1 * ofRandomf());
+  const float speed = ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.8f, 1.0f);
+  const float volume = 1.0;//ofClamp(body->GetLinearVelocity().Length() / 10.0, 0.8f, 1.0f);
+  sound[next_index].setSpeed(speed + 0.01 * ofRandomf());
   sound[next_index].setVolume(volume);
   sound[next_index].setPan(body->GetPosition().x / kHalfCourtWidth);
   sound[next_index].play();

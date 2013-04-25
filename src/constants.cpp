@@ -1,193 +1,81 @@
-//
-//  constants.cpp
-//  emptyExample
-//
-//  Created by Shervin Ghazazani on 4/16/13.
-//
-//
-
 #include "constants.h"
-#include <Box2D.h>
-#include "ofMain.h"
-#include "utilities.h"
+#include "parameter.h"
 
-/**
- * Audio properties.
- */
-const int kConcurrentSounds = 10;
+DEFINE_PARAMETER_RANGE(float, kAngularDamping, 0.0, 0.0, 1.0);
+DEFINE_PARAMETER(b2Vec2, kAntiGravity, b2Vec2(0.0, DEPENDENCY(kGravityStrength)));
+DEFINE_PARAMETER(float, kAspectRatio,
+                 static_cast<float>(DEPENDENCY(kWidth)) / static_cast<float>(DEPENDENCY(kHeight)));
 
-const char *kBackgroundMusicFilename = "bgm.wav";
-const char *kBackgroundMusicTwoFilename = "bgm2.wav";
-const char *kBackhit1 = "backhit1.wav";
-const char *kBackhit2 = "backhit2.wav";
-const char *kBackhit3 = "backhit3.wav";
-const char *kBackhit4 = "backhit4.wav";
-const char *kHit1 = "hit1.wav";
-const char *kHit2 = "hit2.wav";
-const char *kHit3 = "hit3.wav";
-const char *kHit4 = "hit4.wav";
-const char *kWallBounceFilename = "wallbounce.wav";
+DEFINE_PARAMETER_RANGE(float, kBallRadius, 11.0 * DEPENDENCY(kPixelScale), 0.0, 1.0);
 
-/**
- * Video properties.
- */
-const int kHeight = 768; // pixels
-const int kWidth = 1024; // pixels
-const char *kGlutDisplayString = "rgba double depth alpha samples>=4";
-const float kHalfHeight = kHeight / 2; // pixels
-const float kHalfWidth = kWidth / 2; // pixels
-const float kAspectRatio = static_cast<float>(kWidth) / static_cast<float>(kHeight);
+DEFINE_PARAMETER_RANGE(float, kBallTrailAlphaStart, 128.0, 0.0, 255.0);
+DEFINE_PARAMETER_RANGE(float, kBallTrailFadeCoefficient, 0.65, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(int, kBallTrailLength, 30, 0, 128);
+DEFINE_PARAMETER_RANGE(int, kBallTrailSpacing, 1, 1, 128);
+DEFINE_PARAMETER_RANGE(int, kBox2dPositionIterations, 3, 1, 10);
+DEFINE_PARAMETER_RANGE(int, kBox2dVelocityIterations, 8, 1, 10);
+DEFINE_PARAMETER(b2Vec2, kBumperForce, b2Vec2(DEPENDENCY(kBumperForceStrength), 0.0));
+DEFINE_PARAMETER_RANGE(float, kBumperForceStrength, 0.2, 0.0, 5.0);
 
-/**
- * Level properties.
- */
-const float kCourtWidth = 20.0; // m
-const float kCourtHeight = kCourtWidth / kAspectRatio; // m
-const float kHalfCourtWidth = kCourtWidth / 2.0; // m
-const float kHalfCourtHeight = kCourtHeight / 2.0; // m
+DEFINE_PARAMETER_RANGE(float, kCollisionDelay, 1.0, 0.0, 2.0);
+DEFINE_PARAMETER_RANGE(float, kControllerRateX, 1.0 / 5.0, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kControllerRateY, 0.06, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kCourtHeight,
+                       DEPENDENCY(kCourtWidth) / DEPENDENCY(kAspectRatio), 1.0, 50.0);
+DEFINE_PARAMETER_RANGE(float, kCourtWidth, 20.0, 1.0, 50.0);
 
-/**
- * Physics properties.
- */
-const float kAngularDamping = 0.0;
-const b2Vec2 kAntiGravity = b2Vec2(0.0, 9.81); // m/s^2
-const float kBallRadius = 11.0 * kCourtWidth / kWidth;
-const int kBox2dPositionIterations = 3;
-const int kBox2dVelocityIterations = 8;
-const float kDampingSpeed = 10.0;
-const float kDensity = 1.0; // kg/m^2
-const bool kFixedRotation = true;
-const float kFriction = 0.0;
-const b2Vec2 kGravity = b2Vec2(0.0, -9.81); // m/s^2
-const float kLinearDamping = 0.1;
-const float kMouseDensity = 10.0;
-const float kMouseMass = 50.0;
-const float kPlayerRadius = 17.0 * kCourtWidth / kWidth;
-const float kRestitution = 0.99;
-const float kSmoothGravityDiscontinuityXRange = 10.0 * kBallRadius;
-const float kSmoothGravityDiscontinuityYRange = 10.0 * kBallRadius;
-const float kTimeStep = 1.0 / 60.0; // seconds
-const b2Vec2 kZeroGravity = b2Vec2(0.0, 0.0); // m/s^2
+DEFINE_PARAMETER_RANGE(float, kDampingSpeed, 30.0, 0.0, 50.0);
+DEFINE_PARAMETER_RANGE(float, kDensity, 1.0, 0.1, 10.0);
 
-const b2Vec2 kTopLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, 1.0).normalized());
-const b2Vec2 kTopRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, 1.0).normalized());
-const b2Vec2 kBottomLeftGravity = Box2dVector(-9.81 * ofVec2f(-1.0, -1.0).normalized());
-const b2Vec2 kBottomRightGravity = Box2dVector(-9.81 * ofVec2f(1.0, -1.0).normalized());
+DEFINE_PARAMETER_RANGE(int, kFixedRotation, 1, 0, 1);
+DEFINE_PARAMETER_RANGE(float, kFrameRate, 60.0, 1.0, 100.0);
+DEFINE_PARAMETER_RANGE(float, kFriction, 0.0, 0.0, 1.0);
 
-const float kGravityAngle[] = {
-  0.0,
-  90.0,
-  180.0,
-  270.0
-};
+DEFINE_PARAMETER(b2Vec2, kGravity, b2Vec2(0.0, -DEPENDENCY(kGravityStrength)));
+DEFINE_PARAMETER_RANGE(float, kGravityMixerRate, 0.05, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kGravityStrength, 2.81, 0.0, 25.0);
 
-const b2Vec2 kTopLeftQuadrantGravity[] = {
-  kTopLeftGravity,
-  kTopRightGravity,
-  kBottomRightGravity,
-  kBottomLeftGravity
-};
+DEFINE_PARAMETER(float, kHalfCourtHeight, DEPENDENCY(kCourtHeight) / 2.0);
+DEFINE_PARAMETER(float, kHalfCourtWidth, DEPENDENCY(kCourtWidth) / 2.0);
+DEFINE_PARAMETER(float, kHalfHeight, DEPENDENCY(kHeight) / 2.0);
+DEFINE_PARAMETER(float, kHalfWidth, DEPENDENCY(kWidth) / 2.0);
+DEFINE_PARAMETER_RANGE(int, kHeight, 768, 1, 1080);
 
-const b2Vec2 kTopRightQuadrantGravity[] = {
-  kTopRightGravity,
-  kBottomRightGravity,
-  kBottomLeftGravity,
-  kTopLeftGravity
-};
+DEFINE_PARAMETER_RANGE(float, kLinearDamping, 0.1, 0.0, 1.0);
 
-const b2Vec2 kBottomLeftQuadrantGravity[] = {
-  kBottomLeftGravity,
-  kTopLeftGravity,
-  kTopRightGravity,
-  kBottomRightGravity
-};
+DEFINE_PARAMETER_RANGE(float, kPixelScale, DEPENDENCY(kCourtWidth) / DEPENDENCY(kWidth), 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kPlayerHitRadius,
+                       33.0 * DEPENDENCY(kCourtWidth) / DEPENDENCY(kWidth), 0.0, 3.0);
+DEFINE_PARAMETER_RANGE(float, kPlayerMoveDelta, 0.020, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kPlayerRadius,
+                       17.0 * DEPENDENCY(kCourtWidth) / DEPENDENCY(kWidth), 0.0, 2.0);
+DEFINE_PARAMETER_RANGE(float, kPlayerTrailAlphaStart, 128.0, 0.0, 255.0);
+DEFINE_PARAMETER_RANGE(float, kPlayerTrailFadeCoefficient, 0.65, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(int, kPlayerTrailLength, 10, 0, 128);
+DEFINE_PARAMETER_RANGE(int, kPlayerTrailSpacing, 1, 1, 128);
+DEFINE_PARAMETER_RANGE(int, kPointsToWin, 7, 1, 10);
 
-const b2Vec2 kBottomRightQuadrantGravity[] = {
-  kBottomRightGravity,
-  kBottomLeftGravity,
-  kTopLeftGravity,
-  kTopRightGravity
-};
+DEFINE_PARAMETER_RANGE(float, kRestitution, 1.0, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kRotateAlphaRate, 0.01, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kRotateAlphaStart, 1.0, 0.0, 1.0);
 
-/**
- * Model Properties
- */
-const float kBallTrailAlphaStart = 128.0;
-const float kBallTrailFadeCoefficient = 0.9;
-const int kBallTrailLength = 30;
-const int kBallTrailSpacing = 1;
+DEFINE_PARAMETER_RANGE(float, kStrikeAlphaRate, 0.01, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kStrikeAlphaStart, 1.0, 0.0, 1.0);
+DEFINE_PARAMETER_RANGE(float, kSmoothGravityDiscontinuityXRange,
+                       10.0 * DEPENDENCY(kBallRadius), 0.0, 20.0);
+DEFINE_PARAMETER_RANGE(float, kSmoothGravityDiscontinuityYRange,
+                       10.0 * DEPENDENCY(kBallRadius), 0.0, 20.0);
 
-const float kGravityMixerRate = 0.05;
-const float kPlayerMoveDelta = 0.015;
-const int kPointsToWin = 7;
-const float kPlayerBallCollisionMultiplier = 0.1;
-const float kPlayerTrailAlphaStart = 128.0;
-const float kPlayerTrailFadeCoefficient = 0.65;
-const int kPlayerTrailLength = 10;
-const int kPlayerTrailSpacing = 1;
+DEFINE_PARAMETER_RANGE(float, kTimeStep, 1.0 / DEPENDENCY(kFrameRate), 1.0 / 1000.0, 1.0);
 
-/**
- * Controller properties.
- */
-const float kControllerRateX = 1.0 / 5.0;
-const float kControllerRateY = 1.0 / 40.0;
+DEFINE_PARAMETER_RANGE(int, kWidth, 1024, 1, 1920);
 
-const ofPoint kPlayer1TopBack[] = {
-  ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius),
-  ofPoint(kHalfCourtWidth - kPlayerRadius, kPlayerRadius),
-  ofPoint(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
-  ofPoint(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius)
-};
-const ofPoint kPlayer1TopForward[] = {
-  ofPoint(-kPlayerRadius, kPlayerRadius),
-  ofPoint(kPlayerRadius, kPlayerRadius),
-  ofPoint(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
-  ofPoint(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius)
-};
+DEFINE_PARAMETER(ofMatrix4x4, kViewMatrix,
+                 ofMatrix4x4::newScaleMatrix(DEPENDENCY(kWidth) / DEPENDENCY(kCourtWidth),
+                                             -DEPENDENCY(kWidth) / DEPENDENCY(kCourtWidth), 1) *
+                 ofMatrix4x4::newTranslationMatrix(DEPENDENCY(kHalfWidth),
+                                                   DEPENDENCY(kHalfHeight), 0.0));
+DEFINE_PARAMETER(ofMatrix4x4, kViewMatrixInverse,
+                 ofMatrix4x4::getInverseOf(DEPENDENCY(kViewMatrix)));
 
-const ofPoint kPlayer2TopBack[] = {
-  ofPoint(kHalfCourtWidth - kPlayerRadius, kPlayerRadius),
-  ofPoint(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
-  ofPoint(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
-  ofPoint(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius)
-};
-const ofPoint kPlayer2TopForward[] = {
-  ofPoint(kPlayerRadius, kPlayerRadius),
-  ofPoint(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
-  ofPoint(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius),
-  ofPoint(-kPlayerRadius, kPlayerRadius)
-};
-
-const ofPoint kPlayer1BottomBack[] = {
-  -kPlayer1TopBack[0],
-  -kPlayer1TopBack[1],
-  -kPlayer1TopBack[2],
-  -kPlayer1TopBack[3]
-};
-const ofPoint kPlayer1BottomForward[] = {
-  -kPlayer1TopForward[0],
-  -kPlayer1TopForward[1],
-  -kPlayer1TopForward[2],
-  -kPlayer1TopForward[3]
-};
-
-const ofPoint kPlayer2BottomBack[] = {
-  -kPlayer2TopBack[0],
-  -kPlayer2TopBack[1],
-  -kPlayer2TopBack[2],
-  -kPlayer2TopBack[3]
-};
-const ofPoint kPlayer2BottomForward[] = {
-  -kPlayer2TopForward[0],
-  -kPlayer2TopForward[1],
-  -kPlayer2TopForward[2],
-  -kPlayer2TopForward[3]
-};
-
-/**
- * View properties.
- */
-const ofMatrix4x4 kViewMatrix =
-ofMatrix4x4::newScaleMatrix(kWidth / kCourtWidth, -kWidth / kCourtWidth, 1) *
-ofMatrix4x4::newTranslationMatrix(kHalfWidth, kHalfHeight, 0.0);
-const ofMatrix4x4 kViewMatrixInverse = ofMatrix4x4::getInverseOf(kViewMatrix);
+DEFINE_PARAMETER(b2Vec2, kZeroGravity, b2Vec2(0.0, 0.0));
