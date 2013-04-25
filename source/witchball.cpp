@@ -3,6 +3,7 @@
 #include "constants.h"
 #include "controller.h"
 #include "playscreen.h"
+#include "titlescreen.h"
 #include "screen.h"
 #include "slider.h"
 #include "utilities.h"
@@ -18,8 +19,18 @@ WitchBall::~WitchBall() {
 }
 
 void WitchBall::setup() {
-  current_screen = new PlayScreen();
+	current_screen = new TitleScreen();
   current_screen->Setup();
+}
+
+void WitchBall::RunPlayScreen() {
+	current_screen = new PlayScreen();
+	current_screen->Setup();
+}
+
+void WitchBall::RunTitleScreen() {
+	current_screen = new TitleScreen();
+	current_screen->Setup();
 }
 
 void WitchBall::update() {

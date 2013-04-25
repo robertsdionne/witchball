@@ -45,6 +45,10 @@ public:
   void gotMessage(ofMessage msg) {}
 
   void RestartScene();
+	
+	void RunPlayScreen();
+	
+	void RunTitleScreen();
   
 private:
   Screen *current_screen;
