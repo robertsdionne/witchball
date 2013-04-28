@@ -29,7 +29,8 @@ void TitleScreenView::Setup() {
 }
 
 void TitleScreenView::Draw() const {
-	DrawFramesPerSecond();
+  ofBackground(ofColor::black);
+  DrawFramesPerSecond();
   ofPushMatrix();
   SetupViewpoint();
 

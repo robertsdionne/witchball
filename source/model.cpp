@@ -84,18 +84,23 @@ void Model::Setup() {
 }
 
 void Model::Update() {
-  
-  if (player1_increment_count >2) {
-    p1glowMax+=0.5;
-  }else if(player1_increment_count<=2){
-    p1glowMax=0;
+
+  if (player1_increment_count > 0 && p1glowMax < 1.0) {
+    p1glowMax += 0.1;
+  } else if (player1_increment_count < 1 && p1glowMax > 0.0) {
+    p1glowMax = 0.0;
+  } else if (player1_increment_count > 1 && p1glowMax < 2.0 * kCourtWidth) {
+    p1glowMax += 0.5;
   }
-  if (player2_increment_count >2) {
-    p2glowMax+=0.5;
-  }else if(player2_increment_count<=2){
-    p2glowMax=0;
+
+  if (player2_increment_count > 0 && p2glowMax < 1.0) {
+    p2glowMax += 0.1;
+  } else if (player2_increment_count < 1 && p2glowMax > 0.0) {
+    p2glowMax = 0.0;
+  } else if (player2_increment_count > 1&& p2glowMax < 2.0 * kCourtWidth) {
+    p2glowMax += 0.5;
   }
-  
+
   //CHASERS----------------
   for (int i = 0; i < nChasers; i++){
     topChaser[i]->targX=testPoint.x;

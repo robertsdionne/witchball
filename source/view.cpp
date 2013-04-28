@@ -23,8 +23,8 @@ void View::Draw(const Model &model) const {
   DrawGravity(model);
   DrawPlayers(model);
   
-  ofColor ball_color = model.player1_increment_count > 2 ? color_p1 :
-      model.player2_increment_count > 2 ? color_p2 : ofColor::white;
+  ofColor ball_color = model.last_hit_player == 1 ? color_p1 :
+      model.last_hit_player == 2 ? color_p2 : ofColor::white;
   DrawBallTrail(model, model.ball_trail, ball_color);
   DrawStrikeIndicator(model);
   DrawBall(model.ball, ball_color);
@@ -51,15 +51,13 @@ void View::Draw(const Model &model) const {
         ofSetColor(ofRandom(10,60),color_p2.g,color_p2.b, 155);
         ofCircle(x, y, 0.12);
       }
-      else if (ofDist(model.strike_position.x, model.strike_position.y, x, y)< model.p1glowMax
-               && ball_color==color_p1){
+      else if (ofDist(model.ball->GetPosition().x, model.ball->GetPosition().y, x, y)< model.p1glowMax){
         ofNoFill();
         ofSetColor(color_p1.r,ofRandom(10,60),color_p1.b, 135);
         ofCircle(x, y, 0.12);
         ofFill();
       }
-      else if (ofDist(model.strike_position.x, model.strike_position.y, x, y)< model.p2glowMax
-               && ball_color==color_p2){
+      else if (ofDist(model.ball->GetPosition().x, model.ball->GetPosition().y, x, y)< model.p2glowMax){
         ofNoFill();
         ofSetColor(ofRandom(10,60),color_p2.g,color_p2.b, 135);
         ofCircle(x, y, 0.12);
