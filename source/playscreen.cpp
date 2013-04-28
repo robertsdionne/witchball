@@ -3,7 +3,7 @@
 #include "slider.h"
 
 PlayScreen::PlayScreen()
-: model(), view(), controller(model), sound_collision(), score_keeper_collision(),
+: model(false), view(), controller(model), sound_collision(), score_keeper_collision(),
   contact_listener(), sound_background_music(), sound_background_music_2() {}
 
 

@@ -9,7 +9,7 @@
 
 class Model {
 public:
-  Model();
+  Model(bool fake);
   
   virtual ~Model() {}
   
@@ -57,6 +57,8 @@ public:
     NONE,
     QUADRANT
   };
+
+  bool fake;
   
   b2World world;
   

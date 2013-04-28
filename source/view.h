@@ -29,7 +29,7 @@ private:
 
   void DrawCourt(const Model &model) const;
   
-  void DrawFramesPerSecond() const;
+  void DrawFramesPerSecond(const Model &model) const;
   
   void DrawGravity(const Model &model) const;
   

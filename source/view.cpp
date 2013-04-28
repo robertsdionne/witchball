@@ -9,7 +9,6 @@
 #include "view.h"
 
 void View::Draw(const Model &model) const {
-  DrawFramesPerSecond();
   ofPushMatrix();
   SetupViewpoint();
   ofBackground(ofColor::white);
@@ -82,7 +81,7 @@ void View::Draw(const Model &model) const {
   DrawScore(model);
   ofPopMatrix();
 
-  
+  DrawFramesPerSecond(model);
 }
 
 void View::Setup() {
@@ -193,7 +192,7 @@ void View::DrawBallTrail(const Model &model, const std::list<ofVec2f> ball_trail
   float player_alpha = kPlayerTrailAlphaStart;
   float scale = 1.0;
   ofPushStyle();
-  Model temp_model;
+  Model temp_model(true);
   temp_model.Setup();
   temp_model.elapsed_time = ofGetElapsedTimef();
   temp_model.ball->SetTransform(model.ball->GetPosition(), model.ball->GetAngle());
@@ -294,9 +293,11 @@ void View::DrawCourt(const Model &model) const {
   ofSetLineWidth(1.0);
 }
 
-void View::DrawFramesPerSecond() const {
+void View::DrawFramesPerSecond(const Model &model) const {
   ofPushStyle();
-  ofDrawBitmapString(ofToString(ofGetFrameRate()), ofPoint(0, 10));
+  ofSetColor(ofColor::white);
+  ofDrawBitmapString(ofToString(kDampingSpeed.GetValue()), ofPoint(10, 10));
+  ofDrawBitmapString(ofToString(model.ball->GetLinearVelocity().Length()), ofPoint(10, 30));
   ofPopStyle();
 }
 
