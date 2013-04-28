@@ -12,8 +12,8 @@ Model::Model()
   bottom_left_quadrant_gravity(GetBottomLeftQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
   bottom_right_quadrant_gravity(GetBottomRightQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
   gravity_angle(0.0), court_position(CourtPosition::POSITION_1), play_gravity(false),
-  last_hit_player(0), strike_position(), strike_alpha(0.0), counter_clockwise_alpha(0.0),
-  clockwise_alpha(0.0),
+  last_hit_player(0), strike_position(), strike_alpha(0.0), p1_score_alpha(0.0), p2_score_alpha(0.0),
+  counter_clockwise_alpha(0.0), clockwise_alpha(0.0),
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
   elapsed_time(ofGetElapsedTimef()), last_collision_time(-kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
@@ -140,6 +140,12 @@ void Model::Update() {
   }
   if (strike_alpha >= kStrikeAlphaRate) {
     strike_alpha -= kStrikeAlphaRate;
+  }
+  if (p1_score_alpha >= kStrikeAlphaRate) {
+    p1_score_alpha -= kStrikeAlphaRate;
+  }
+  if (p2_score_alpha >= kStrikeAlphaRate) {
+    p2_score_alpha -= kStrikeAlphaRate;
   }
   if (counter_clockwise_alpha >= kRotateAlphaRate) {
     counter_clockwise_alpha -= kRotateAlphaRate;
@@ -302,6 +308,7 @@ void Model::IncrementPlayerOneCount() {
     last_collision_time = elapsed_time;
     if(player1_increment_count >= 2) {
       player1_score++;
+      p1_score_alpha = kStrikeAlphaStart;
 
       if(player1_score == kPointsToWin) {
         printf("P1 Wins\n");
@@ -326,6 +333,8 @@ void Model::IncrementPlayerTwoCount() {
     last_collision_time = elapsed_time;
     if(player2_increment_count >= 2) {
       player2_score++;
+      p2_score_alpha = kStrikeAlphaStart;
+
       if(player2_score == kPointsToWin) {
         printf("P2 Wins\n");
         player1_score = 0;
