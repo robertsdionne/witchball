@@ -160,10 +160,10 @@ inline ofVec2f GetPlayer1TopBack(int position) {
       return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
       break;
     case 1:
-      return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
+      return ofVec2f(kPlayerRadius, kPlayerRadius);
       break;
     case 2:
-      return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
       break;
     default:
       return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
@@ -177,10 +177,10 @@ inline ofVec2f GetPlayer1TopForward(int position) {
       return ofVec2f(-kPlayerRadius, kPlayerRadius);
       break;
     case 1:
-      return ofVec2f(kPlayerRadius, kPlayerRadius);
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
       break;
     case 2:
-      return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
       break;
     default:
       return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
@@ -197,10 +197,10 @@ inline ofVec2f GetPlayer2TopBack(int position) {
       return ofVec2f(kHalfCourtWidth - kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
       break;
     case 2:
-      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
       break;
     default:
-      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
+      return ofVec2f(-kPlayerRadius, kPlayerRadius);
       break;
   }
 }
@@ -214,10 +214,10 @@ inline ofVec2f GetPlayer2TopForward(int position) {
       return ofVec2f(kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
       break;
     case 2:
-      return ofVec2f(-kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, -kHalfCourtHeight + kPlayerRadius);
       break;
     default:
-      return ofVec2f(-kPlayerRadius, kPlayerRadius);
+      return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
       break;
   }
 }

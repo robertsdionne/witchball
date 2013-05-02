@@ -158,16 +158,16 @@ void Model::Update() {
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
   UpdatePlayerPosition(player1_top,
                        Lerp(GetPlayer1TopBack(EnumValue(court_position)),
-                            GetPlayer1TopForward(EnumValue(court_position)), player1_position));
+                            GetPlayer1TopForward(EnumValue(court_position)), Player1Position()));
   UpdatePlayerPosition(player1_bottom,
                        Lerp(GetPlayer1BottomBack(EnumValue(court_position)),
-                            GetPlayer1BottomForward(EnumValue(court_position)), player1_position));
+                            GetPlayer1BottomForward(EnumValue(court_position)), Player1Position()));
   UpdatePlayerPosition(player2_top,
                        Lerp(GetPlayer2TopBack(EnumValue(court_position)),
-                            GetPlayer2TopForward(EnumValue(court_position)), player2_position));
+                            GetPlayer2TopForward(EnumValue(court_position)), Player2Position()));
   UpdatePlayerPosition(player2_bottom,
                        Lerp(GetPlayer2BottomBack(EnumValue(court_position)),
-                            GetPlayer2BottomForward(EnumValue(court_position)), player2_position));
+                            GetPlayer2BottomForward(EnumValue(court_position)), Player2Position()));
   UpdateGravities();
   if (ball->GetPosition().x >= kCourtWidth-2*kBallRadius){
     ball->ApplyForceToCenter(-kBumperForce.GetValue());
@@ -181,6 +181,34 @@ void Model::Update() {
     ball->SetLinearDamping(0.0);
   } else {
     ball->SetLinearDamping(kLinearDamping);
+  }
+}
+
+float Model::Player1Position() {
+  switch (court_position) {
+      break;
+    case CourtPosition::POSITION_2:
+    case CourtPosition::POSITION_3:
+      return 1.0 - player1_position;
+      break;
+    case CourtPosition::POSITION_1:
+    case CourtPosition::POSITION_4:
+      return player1_position;
+      break;
+  }
+}
+
+float Model::Player2Position() {
+  switch (court_position) {
+      break;
+    case CourtPosition::POSITION_3:
+    case CourtPosition::POSITION_4:
+      return 1.0 - player2_position;
+      break;
+    case CourtPosition::POSITION_1:
+    case CourtPosition::POSITION_2:
+      return player2_position;
+      break;
   }
 }
 

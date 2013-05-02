@@ -45,6 +45,10 @@ private:
   void UpdatePlayerPosition(b2Body *player, ofPoint target);
   
   void UpdateTrails();
+
+  float Player1Position();
+
+  float Player2Position();
     
 public:
   enum class CourtPosition {
