@@ -3,9 +3,10 @@
 
 #include <Box2D/Box2D.h>
 #include "ofMain.h"
-#include "controller.h"
+#include "titlescreencontroller.h"
 #include "ofxGui.h"
 #include "screen.h"
+#include "titlescreenmodel.h"
 #include "titlescreenview.h"
 
 
@@ -42,6 +43,8 @@ class TitleScreen : public Screen {
 	
 private:
 	TitleScreenView view;
+	TitleScreenModel model;
+	TitleScreenController controller;
 	
 };
 

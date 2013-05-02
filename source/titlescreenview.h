@@ -5,7 +5,7 @@
 #define GRID_H 5
 
 #include "ofMain.h"
-#include "model.h"
+#include "titlescreenmodel.h"
 
 class TitleScreenView {
 public:
@@ -13,16 +13,16 @@ public:
 	
 	virtual ~TitleScreenView();
 	
-	void Draw() const;
+	void Draw(const TitleScreenModel &model) const;
 	
 	void Setup();
 	
 private:
 	void DrawCourt() const;
-	void DrawPlayer() const;
+	void DrawPlayer(const b2Body *player, ofColor color) const;
+  void DrawPlayers(const TitleScreenModel &model) const;
 	void DrawPlayer(ofPoint playerPosition, ofColor color) const;
-	void DrawPlayers() const;
-	
+	void DrawTriangles(float player1_position, float player2_position) const;
 	void DrawFramesPerSecond() const;
 	void SetupViewpoint() const;
 	
