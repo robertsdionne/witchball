@@ -154,7 +154,7 @@ inline b2Vec2 GetBottomRightQuadrantGravity(int position) {
  * Model Properties
  */
 
-inline ofVec2f GetPlayer1TopBack(int position) {
+inline ofVec2f GetPlayer1TopLeft(int position) {
   switch (position) {
     case 0:
       return ofVec2f(-kHalfCourtWidth + kPlayerRadius, kPlayerRadius);
@@ -171,7 +171,7 @@ inline ofVec2f GetPlayer1TopBack(int position) {
   }
 }
 
-inline ofVec2f GetPlayer1TopForward(int position) {
+inline ofVec2f GetPlayer1TopRight(int position) {
   switch (position) {
     case 0:
       return ofVec2f(-kPlayerRadius, kPlayerRadius);
@@ -188,7 +188,7 @@ inline ofVec2f GetPlayer1TopForward(int position) {
   }
 }
 
-inline ofVec2f GetPlayer2TopBack(int position) {
+inline ofVec2f GetPlayer2TopLeft(int position) {
   switch (position) {
     case 0:
       return ofVec2f(kHalfCourtWidth - kPlayerRadius, kPlayerRadius);
@@ -205,7 +205,7 @@ inline ofVec2f GetPlayer2TopBack(int position) {
   }
 }
 
-inline ofVec2f GetPlayer2TopForward(int position) {
+inline ofVec2f GetPlayer2TopRight(int position) {
   switch (position) {
     case 0:
       return ofVec2f(kPlayerRadius, kPlayerRadius);
@@ -222,20 +222,20 @@ inline ofVec2f GetPlayer2TopForward(int position) {
   }
 }
 
-inline ofVec2f GetPlayer1BottomBack(int position) {
-  return -GetPlayer1TopBack(position);
+inline ofVec2f GetPlayer1BottomLeft(int position) {
+  return -GetPlayer1TopLeft(position);
 }
 
-inline ofVec2f GetPlayer1BottomForward(int position) {
-  return -GetPlayer1TopForward(position);
+inline ofVec2f GetPlayer1BottomRight(int position) {
+  return -GetPlayer1TopRight(position);
 }
 
-inline ofVec2f GetPlayer2BottomBack(int position) {
-  return -GetPlayer2TopBack(position);
+inline ofVec2f GetPlayer2BottomLeft(int position) {
+  return -GetPlayer2TopLeft(position);
 }
 
-inline ofVec2f GetPlayer2BottomForward(int position) {
-  return -GetPlayer2TopForward(position);
+inline ofVec2f GetPlayer2BottomRight(int position) {
+  return -GetPlayer2TopRight(position);
 }
 
 #endif  // WITCHBALL_CONSTANTS_H_

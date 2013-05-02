@@ -23,6 +23,17 @@ void Model::Setup() {
   CreateBall();
   CreateBorder();
   CreatePlayers();
+
+  // Create platforms
+  p1_top_platform_left = GetPlayer1TopLeft(EnumValue(court_position));
+  p1_top_platform_right = GetPlayer1TopRight(EnumValue(court_position));
+  p1_bottom_platform_left = GetPlayer1BottomLeft(EnumValue(court_position));
+  p1_bottom_platform_right = GetPlayer1BottomRight(EnumValue(court_position));
+  p2_top_platform_left = GetPlayer2TopLeft(EnumValue(court_position));
+  p2_top_platform_right = GetPlayer2TopRight(EnumValue(court_position));
+  p2_bottom_platform_left = GetPlayer2BottomLeft(EnumValue(court_position));
+  p2_bottom_platform_right = GetPlayer2BottomRight(EnumValue(court_position));
+
   //CHASERS
   nChasers=99;
   testPoint.set(0, 0);
@@ -79,7 +90,7 @@ void Model::Setup() {
 
     rightChaser[i] = new ofChaser(a,b,c,d, targX, targY, extX, extY);
   }
-    
+
     
 }
 
@@ -156,18 +167,35 @@ void Model::Update() {
     clockwise_alpha -= kRotateAlphaRate;
   }
   ball->ApplyForceToCenter(ball->GetMass() * GravityAt(ball->GetPosition()));
+
+  UpdatePlatformPositions(&p1_top_platform_left, &p1_top_platform_right,
+                          GetPlayer1TopLeft(EnumValue(court_position)),
+                          GetPlayer1TopRight(EnumValue(court_position)));
+
+  UpdatePlatformPositions(&p1_bottom_platform_left, &p1_bottom_platform_right,
+                          GetPlayer1BottomLeft(EnumValue(court_position)),
+                          GetPlayer1BottomRight(EnumValue(court_position)));
+
+  UpdatePlatformPositions(&p2_top_platform_left, &p2_top_platform_right,
+                          GetPlayer2TopLeft(EnumValue(court_position)),
+                          GetPlayer2TopRight(EnumValue(court_position)));
+
+  UpdatePlatformPositions(&p2_bottom_platform_left, &p2_bottom_platform_right,
+                          GetPlayer2BottomLeft(EnumValue(court_position)),
+                          GetPlayer2BottomRight(EnumValue(court_position)));
+
   UpdatePlayerPosition(player1_top,
-                       Lerp(GetPlayer1TopBack(EnumValue(court_position)),
-                            GetPlayer1TopForward(EnumValue(court_position)), Player1Position()));
+                       Lerp(GetPlayer1TopLeft(EnumValue(court_position)),
+                            GetPlayer1TopRight(EnumValue(court_position)), Player1Position()));
   UpdatePlayerPosition(player1_bottom,
-                       Lerp(GetPlayer1BottomBack(EnumValue(court_position)),
-                            GetPlayer1BottomForward(EnumValue(court_position)), Player1Position()));
+                       Lerp(GetPlayer1BottomLeft(EnumValue(court_position)),
+                            GetPlayer1BottomRight(EnumValue(court_position)), Player1Position()));
   UpdatePlayerPosition(player2_top,
-                       Lerp(GetPlayer2TopBack(EnumValue(court_position)),
-                            GetPlayer2TopForward(EnumValue(court_position)), Player2Position()));
+                       Lerp(GetPlayer2TopLeft(EnumValue(court_position)),
+                            GetPlayer2TopRight(EnumValue(court_position)), Player2Position()));
   UpdatePlayerPosition(player2_bottom,
-                       Lerp(GetPlayer2BottomBack(EnumValue(court_position)),
-                            GetPlayer2BottomForward(EnumValue(court_position)), Player2Position()));
+                       Lerp(GetPlayer2BottomLeft(EnumValue(court_position)),
+                            GetPlayer2BottomRight(EnumValue(court_position)), Player2Position()));
   UpdateGravities();
   if (ball->GetPosition().x >= kCourtWidth-2*kBallRadius){
     ball->ApplyForceToCenter(-kBumperForce.GetValue());
@@ -315,10 +343,10 @@ b2Body *Model::CreatePlayer(ofPoint position) {
 }
 
 void Model::CreatePlayers() {
-  player1_top = CreatePlayer(GetPlayer1TopBack(EnumValue(CourtPosition::POSITION_1)));
-  player1_bottom = CreatePlayer(GetPlayer1BottomBack(EnumValue(CourtPosition::POSITION_1)));
-  player2_top = CreatePlayer(GetPlayer2TopBack(EnumValue(CourtPosition::POSITION_1)));
-  player2_bottom = CreatePlayer(GetPlayer2BottomBack(EnumValue(CourtPosition::POSITION_1)));
+  player1_top = CreatePlayer(GetPlayer1TopLeft(EnumValue(CourtPosition::POSITION_1)));
+  player1_bottom = CreatePlayer(GetPlayer1BottomLeft(EnumValue(CourtPosition::POSITION_1)));
+  player2_top = CreatePlayer(GetPlayer2TopLeft(EnumValue(CourtPosition::POSITION_1)));
+  player2_bottom = CreatePlayer(GetPlayer2BottomLeft(EnumValue(CourtPosition::POSITION_1)));
 }
 
 b2Vec2 Model::GravityAt(b2Vec2 position) const {
@@ -417,7 +445,17 @@ void Model::RotateCounterClockwise() {
 }
 
 void Model::UpdatePlayerPosition(b2Body *player, ofPoint target) {
-  const b2Vec2 new_position = b2Vec2(ofLerp(player->GetPosition().x, target.x, kControllerRateX),
+  const b2Vec2 new_position = b2Vec2(ofLerp(player->GetPosition().x, target.x, kControllerRateY),
                                      ofLerp(player->GetPosition().y, target.y, kControllerRateY));
   player->SetTransform(new_position, 0.0);
+}
+
+void Model::UpdatePlatformPositions(ofPoint *left, ofPoint *right,
+                             ofPoint left_target, ofPoint right_target) {
+  const ofPoint new_left_position = ofPoint(ofLerp(left->x, left_target.x, kControllerRateY),
+                                            ofLerp(left->y, left_target.y, kControllerRateY));
+  const ofPoint new_right_position = ofPoint(ofLerp(right->x, right_target.x, kControllerRateY),
+                                             ofLerp(right->y, right_target.y, kControllerRateY));
+  *left = new_left_position;
+  *right = new_right_position;
 }

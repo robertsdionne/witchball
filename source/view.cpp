@@ -276,19 +276,20 @@ void View::DrawCourt(const Model &model) const {
   float player1_bottom_offset = 0.8 * kPlayerRadius;
   float player2_top_offset = -0.8 * kPlayerRadius;
   float player2_bottom_offset = 0.8 * kPlayerRadius;
-  ofLine(ofPoint(GetPlayer1TopForward(EnumValue(model.court_position)).x, model.player1_top->GetPosition().y + player1_top_offset),
-         ofPoint(GetPlayer1TopBack(EnumValue(model.court_position)).x, model.player1_top->GetPosition().y + player1_top_offset));
-  ofLine(ofPoint(GetPlayer1BottomForward(EnumValue(model.court_position)).x, model.player1_bottom->GetPosition().y +
-                 player1_bottom_offset),
-         ofPoint(GetPlayer1BottomBack(EnumValue(model.court_position)).x, model.player1_bottom->GetPosition().y +
-                 player1_bottom_offset));
+
+  ofLine(model.p1_top_platform_right + ofVec2f(0, player1_top_offset),
+         model.p1_top_platform_left + ofVec2f(0, player1_top_offset));
+
+  ofLine(model.p1_bottom_platform_right + ofVec2f(0, player1_bottom_offset),
+         model.p1_bottom_platform_left + ofVec2f(0, player1_bottom_offset));
+
   ofSetColor(color_p2);
-  ofLine(ofPoint(GetPlayer2TopForward(EnumValue(model.court_position)).x, model.player2_top->GetPosition().y + player2_top_offset),
-         ofPoint(GetPlayer2TopBack(EnumValue(model.court_position)).x, model.player2_top->GetPosition().y + player2_top_offset));
-  ofLine(ofPoint(GetPlayer2BottomForward(EnumValue(model.court_position)).x, model.player2_bottom->GetPosition().y +
-                 player2_bottom_offset),
-         ofPoint(GetPlayer2BottomBack(EnumValue(model.court_position)).x, model.player2_bottom->GetPosition().y +
-                 player2_bottom_offset));
+  ofLine(model.p2_top_platform_right + ofVec2f(0, player2_top_offset),
+         model.p2_top_platform_left + ofVec2f(0, player2_top_offset));
+
+  ofLine(model.p2_bottom_platform_right + ofVec2f(0, player2_bottom_offset),
+         model.p2_bottom_platform_left + ofVec2f(0, player2_bottom_offset));
+  
   ofPopStyle();
   ofSetLineWidth(1.0);
 }

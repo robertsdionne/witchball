@@ -43,6 +43,9 @@ private:
   void CreatePlayers();
   
   void UpdatePlayerPosition(b2Body *player, ofPoint target);
+
+  void UpdatePlatformPositions(ofPoint *left, ofPoint *right,
+                               ofPoint left_target, ofPoint right_target);
   
   void UpdateTrails();
 
@@ -118,6 +121,11 @@ public:
   int nChasers;
 
   bool show_sliders = false;
+
+  ofPoint p1_top_platform_left, p1_top_platform_right;
+  ofPoint p1_bottom_platform_left, p1_bottom_platform_right;
+  ofPoint p2_top_platform_left, p2_top_platform_right;
+  ofPoint p2_bottom_platform_left, p2_bottom_platform_right;
 };
 
 #endif  // WITCHBALL_MODEL_H_
