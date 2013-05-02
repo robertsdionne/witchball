@@ -12,12 +12,12 @@
 
 class TitleScreen : public Screen {
 	
-	public:
-	TitleScreen();
-	
-	virtual ~TitleScreen();
-	
-	virtual void Setup() override;
+public:
+  TitleScreen();
+
+  virtual ~TitleScreen();
+
+  virtual void Setup() override;
 	
   virtual void Update() override;
 	

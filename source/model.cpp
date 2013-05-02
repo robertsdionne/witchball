@@ -3,8 +3,8 @@
 #include "model.h"
 #include "ofChaser.h"
 
-Model::Model()
-: world(kZeroGravity), ball(nullptr), border(nullptr),
+Model::Model(bool fake, CollisionSoundPlayer *sound_player)
+: fake(fake), sound_player(sound_player), world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
   mouse_pressed(false), mouse_position(-kHalfCourtWidth, kHalfCourtHeight),
   top_left_quadrant_gravity(GetTopLeftQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
@@ -84,7 +84,9 @@ void Model::Setup() {
 }
 
 void Model::Update() {
-
+  if (kDampingSpeed > kDampingSpeedMinimum) {
+    kDampingSpeed.Set(ofLerp(kDampingSpeed, kDampingSpeedMinimum, kDampingSpeedRate));
+  }
   if (player1_increment_count > 0 && p1glowMax < 1.0) {
     p1glowMax += 0.1;
   } else if (player1_increment_count < 1 && p1glowMax > 0.0) {
@@ -279,6 +281,7 @@ b2Body *Model::CreatePlayer(ofPoint position) {
   b2FixtureDef player_fixture_definition;
   player_fixture_definition.shape = &player_shape;
   player_fixture_definition.friction = kFriction;
+  player_fixture_definition.restitution = 1.01;
   player->CreateFixture(&player_fixture_definition);
   return player;
 }
@@ -305,6 +308,9 @@ b2Vec2 Model::GravityAt(b2Vec2 position) const {
 
 void Model::IncrementPlayerOneCount() {
   if (elapsed_time > last_collision_time + kCollisionDelay) {
+    if (!fake) {
+      kDampingSpeed.Set(kDampingSpeed * kDampingSpeedBump);
+    }
     last_collision_time = elapsed_time;
     if(player1_increment_count >= 2) {
       player1_score++;
@@ -316,7 +322,14 @@ void Model::IncrementPlayerOneCount() {
         player2_score = 0;
         player1_increment_count = 0;
         player2_increment_count = 0;
+        if (sound_player) {
+          sound_player->PlayPlayer1Win(ball);
+        }
+      } else if (sound_player) {
+        sound_player->PlayPlayer1Score(ball);
       }
+    } else if (sound_player) {
+      sound_player->PlayPlayer1Hit(ball);
     }
     player1_increment_count++;
     player2_increment_count = 0;
@@ -330,6 +343,9 @@ void Model::IncrementPlayerOneCount() {
 
 void Model::IncrementPlayerTwoCount() {
   if (elapsed_time > last_collision_time + kCollisionDelay) {
+    if (!fake) {
+      kDampingSpeed.Set(kDampingSpeed * kDampingSpeedBump);
+    }
     last_collision_time = elapsed_time;
     if(player2_increment_count >= 2) {
       player2_score++;
@@ -341,7 +357,14 @@ void Model::IncrementPlayerTwoCount() {
         player2_score = 0;
         player1_increment_count = 0;
         player2_increment_count = 0;
+        if (sound_player) {
+          sound_player->PlayPlayer2Win(ball);
+        }
+      } else if (sound_player) {
+        sound_player->PlayPlayer2Score(ball);
       }
+    } else if (sound_player) {
+      sound_player->PlayPlayer2Hit(ball);
     }
     player2_increment_count++;
     player1_increment_count = 0;

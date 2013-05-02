@@ -4,12 +4,13 @@
 #include <Box2D/Box2D.h>
 #include <list>
 
+#include "collisionsoundplayer.h"
 #include "ofChaser.h"
 #include "ofMain.h"
 
 class Model {
 public:
-  Model();
+  Model(bool fake, CollisionSoundPlayer *sound_player);
   
   virtual ~Model() {}
   
@@ -57,6 +58,10 @@ public:
     NONE,
     QUADRANT
   };
+
+  bool fake;
+
+  CollisionSoundPlayer *sound_player;
   
   b2World world;
   

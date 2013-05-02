@@ -28,6 +28,9 @@ extern Parameter<float> kCourtHeight;
 extern Parameter<float> kCourtWidth;
 
 extern Parameter<float> kDampingSpeed;
+extern Parameter<float> kDampingSpeedBump;
+extern Parameter<float> kDampingSpeedMinimum;
+extern Parameter<float> kDampingSpeedRate;
 extern Parameter<float> kDensity;
 
 extern Parameter<int> kFixedRotation;
