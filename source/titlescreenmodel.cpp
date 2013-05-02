@@ -15,17 +15,17 @@ void TitleScreenModel::Setup() {
 void TitleScreenModel::Update() {
 	
   UpdatePlayerPosition(player1_top,
-                       Lerp(GetPlayer1TopBack(EnumValue(court_position)),
-                            GetPlayer1TopForward(EnumValue(court_position)), player1_position));
+                       Lerp(GetPlayer1TopLeft(EnumValue(court_position)),
+                            GetPlayer1TopRight(EnumValue(court_position)), Player1Position()));
   UpdatePlayerPosition(player1_bottom,
-                       Lerp(GetPlayer1BottomBack(EnumValue(court_position)),
-                            GetPlayer1BottomForward(EnumValue(court_position)), player1_position));
+                       Lerp(GetPlayer1BottomLeft(EnumValue(court_position)),
+                            GetPlayer1BottomRight(EnumValue(court_position)), Player1Position()));
   UpdatePlayerPosition(player2_top,
-                       Lerp(GetPlayer2TopBack(EnumValue(court_position)),
-                            GetPlayer2TopForward(EnumValue(court_position)), player2_position));
+                       Lerp(GetPlayer2TopLeft(EnumValue(court_position)),
+                            GetPlayer2TopRight(EnumValue(court_position)), Player2Position()));
   UpdatePlayerPosition(player2_bottom,
-                       Lerp(GetPlayer2BottomBack(EnumValue(court_position)),
-                            GetPlayer2BottomForward(EnumValue(court_position)), player2_position));
+                       Lerp(GetPlayer2BottomLeft(EnumValue(court_position)),
+                            GetPlayer2BottomRight(EnumValue(court_position)), Player2Position()));
   
 	if(player1_position == 1.0f && player2_position == 1.0f) {
 		dynamic_cast<WitchBall *>(ofGetAppPtr())->RunPlayScreen();
@@ -33,7 +33,33 @@ void TitleScreenModel::Update() {
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
 }
 
+float TitleScreenModel::Player1Position() {
+  switch (court_position) {
+      break;
+    case CourtPosition::POSITION_2:
+    case CourtPosition::POSITION_3:
+      return 1.0 - player1_position;
+      break;
+    case CourtPosition::POSITION_1:
+    case CourtPosition::POSITION_4:
+      return player1_position;
+      break;
+  }
+}
 
+float TitleScreenModel::Player2Position() {
+  switch (court_position) {
+      break;
+    case CourtPosition::POSITION_3:
+    case CourtPosition::POSITION_4:
+      return 1.0 - player2_position;
+      break;
+    case CourtPosition::POSITION_1:
+    case CourtPosition::POSITION_2:
+      return player2_position;
+      break;
+  }
+}
 
 b2Body *TitleScreenModel::CreatePlayer(ofPoint position) {
   b2BodyDef player_definition;
@@ -50,10 +76,10 @@ b2Body *TitleScreenModel::CreatePlayer(ofPoint position) {
 }
 
 void TitleScreenModel::CreatePlayers() {
-  player1_top = CreatePlayer(GetPlayer1TopBack(EnumValue(CourtPosition::POSITION_1)));
-  player1_bottom = CreatePlayer(GetPlayer1BottomBack(EnumValue(CourtPosition::POSITION_1)));
-  player2_top = CreatePlayer(GetPlayer2TopBack(EnumValue(CourtPosition::POSITION_1)));
-  player2_bottom = CreatePlayer(GetPlayer2BottomBack(EnumValue(CourtPosition::POSITION_1)));
+  player1_top = CreatePlayer(GetPlayer1TopLeft(EnumValue(CourtPosition::POSITION_1)));
+  player1_bottom = CreatePlayer(GetPlayer1BottomLeft(EnumValue(CourtPosition::POSITION_1)));
+  player2_top = CreatePlayer(GetPlayer2TopLeft(EnumValue(CourtPosition::POSITION_1)));
+  player2_bottom = CreatePlayer(GetPlayer2BottomLeft(EnumValue(CourtPosition::POSITION_1)));
 }
 
 void TitleScreenModel::UpdatePlayerPosition(b2Body *player, ofPoint target) {
