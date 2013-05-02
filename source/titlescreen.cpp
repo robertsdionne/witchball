@@ -9,9 +9,7 @@
 #include "titlescreen.h"
 #include "witchball.h"
 
-TitleScreen::TitleScreen() : view() {
-	
-}
+TitleScreen::TitleScreen() : view(), model(), controller(model) {}
 
 TitleScreen::~TitleScreen() {
   
@@ -19,23 +17,24 @@ TitleScreen::~TitleScreen() {
 
 void TitleScreen::Setup() {
 	view.Setup();
-
+	model.Setup();
 }
 
 void TitleScreen::Update() {
-
+  model.Update();
+	controller.Update();
 }
 
 void TitleScreen::Draw() {
-	view.Draw();
+	view.Draw(model);
 }
 
 void TitleScreen::KeyPressed(int key) {
-	dynamic_cast<WitchBall *>(ofGetAppPtr())->RunPlayScreen();
+  controller.OnKeyPressed(key);
 }
 
 void TitleScreen::KeyReleased(int key) {
-  //controller.OnKeyReleased(key);
+  controller.OnKeyReleased(key);
 }
 
 void TitleScreen::MouseMoved(int x, int y) {

@@ -81,6 +81,8 @@
 		46E96CC716F6A6E300B4AF71 /* LinearTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E96C9216F6A6E300B4AF71 /* LinearTexture.cpp */; };
 		46E96CC816F6A6E300B4AF71 /* ofxSpriteSheetRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E96C9416F6A6E300B4AF71 /* ofxSpriteSheetRenderer.cpp */; };
 		46E96CC916F6A6E300B4AF71 /* PixelTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E96C9616F6A6E300B4AF71 /* PixelTexture.cpp */; };
+		A955720B173206F000F34D72 /* titlescreenmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9557209173206F000F34D72 /* titlescreenmodel.cpp */; };
+		A955720E173210D600F34D72 /* titlescreencontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A955720C173210D500F34D72 /* titlescreencontroller.cpp */; };
 		A99053BB1728C39000B0C0E4 /* titlescreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99053B91728C39000B0C0E4 /* titlescreen.cpp */; };
 		A99053BE1728CD2300B0C0E4 /* titlescreenview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99053BC1728CD2200B0C0E4 /* titlescreenview.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -509,6 +511,10 @@
 		46E96C9516F6A6E300B4AF71 /* ofxSpriteSheetRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSpriteSheetRenderer.h; sourceTree = "<group>"; };
 		46E96C9616F6A6E300B4AF71 /* PixelTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelTexture.cpp; sourceTree = "<group>"; };
 		46E96C9716F6A6E300B4AF71 /* PixelTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelTexture.h; sourceTree = "<group>"; };
+		A9557209173206F000F34D72 /* titlescreenmodel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = titlescreenmodel.cpp; sourceTree = "<group>"; };
+		A955720A173206F000F34D72 /* titlescreenmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = titlescreenmodel.h; sourceTree = "<group>"; };
+		A955720C173210D500F34D72 /* titlescreencontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = titlescreencontroller.cpp; sourceTree = "<group>"; };
+		A955720D173210D600F34D72 /* titlescreencontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = titlescreencontroller.h; sourceTree = "<group>"; };
 		A99053B91728C39000B0C0E4 /* titlescreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = titlescreen.cpp; sourceTree = "<group>"; };
 		A99053BA1728C39000B0C0E4 /* titlescreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = titlescreen.h; sourceTree = "<group>"; };
 		A99053BC1728CD2200B0C0E4 /* titlescreenview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = titlescreenview.cpp; sourceTree = "<group>"; };
@@ -661,6 +667,10 @@
 				A99053BA1728C39000B0C0E4 /* titlescreen.h */,
 				A99053BC1728CD2200B0C0E4 /* titlescreenview.cpp */,
 				A99053BD1728CD2300B0C0E4 /* titlescreenview.h */,
+				A9557209173206F000F34D72 /* titlescreenmodel.cpp */,
+				A955720A173206F000F34D72 /* titlescreenmodel.h */,
+				A955720C173210D500F34D72 /* titlescreencontroller.cpp */,
+				A955720D173210D600F34D72 /* titlescreencontroller.h */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -1352,6 +1362,8 @@
 				460875D81717042F002AC1EF /* playscreen.cpp in Sources */,
 				A99053BB1728C39000B0C0E4 /* titlescreen.cpp in Sources */,
 				A99053BE1728CD2300B0C0E4 /* titlescreenview.cpp in Sources */,
+				A955720B173206F000F34D72 /* titlescreenmodel.cpp in Sources */,
+				A955720E173210D600F34D72 /* titlescreencontroller.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
