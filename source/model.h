@@ -126,6 +126,9 @@ public:
   ofPoint p1_bottom_platform_left, p1_bottom_platform_right;
   ofPoint p2_top_platform_left, p2_top_platform_right;
   ofPoint p2_bottom_platform_left, p2_bottom_platform_right;
+
+  int winner = 0;
+  float winning_alpha = 0.0;
 };
 
 #endif  // WITCHBALL_MODEL_H_

@@ -95,6 +95,9 @@ void Model::Setup() {
 }
 
 void Model::Update() {
+  if (winning_alpha >= 1.0 / 60.0 / 3.0) {
+    winning_alpha -= 1.0 / 60.0 / 3.0;
+  }
   if (kDampingSpeed > kDampingSpeedMinimum) {
     kDampingSpeed.Set(ofLerp(kDampingSpeed, kDampingSpeedMinimum, kDampingSpeedRate));
   }
@@ -197,9 +200,9 @@ void Model::Update() {
                        Lerp(GetPlayer2BottomLeft(EnumValue(court_position)),
                             GetPlayer2BottomRight(EnumValue(court_position)), Player2Position()));
   UpdateGravities();
-  if (ball->GetPosition().x >= kCourtWidth-2*kBallRadius){
+  if (ball->GetPosition().x >= kHalfCourtWidth-2*kBallRadius){
     ball->ApplyForceToCenter(-kBumperForce.GetValue());
-  }else if (ball->GetPosition().x <= -kCourtWidth/2+2*kBallRadius){
+  }else if (ball->GetPosition().x <= -kHalfCourtWidth+2*kBallRadius){
     ball->ApplyForceToCenter(kBumperForce);
   }
   
@@ -373,6 +376,8 @@ void Model::IncrementPlayerOneCount() {
       p1_score_alpha = kStrikeAlphaStart;
 
       if(player1_score == kPointsToWin) {
+        winner = 1;
+        winning_alpha = 1.0;
         printf("P1 Wins\n");
         player1_score = 0;
         player2_score = 0;
@@ -408,6 +413,8 @@ void Model::IncrementPlayerTwoCount() {
       p2_score_alpha = kStrikeAlphaStart;
 
       if(player2_score == kPointsToWin) {
+        winner = 2;
+        winning_alpha = 1.0;
         printf("P2 Wins\n");
         player1_score = 0;
         player2_score = 0;

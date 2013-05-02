@@ -79,6 +79,7 @@ void View::Draw(const Model &model) const {
   }
   DrawCourt(model);
   DrawScore(model);
+  DrawTriangles(model);
   ofPopMatrix();
 
   DrawFramesPerSecond(model);
@@ -360,6 +361,19 @@ void View::DrawScore(const Model &model) const {
     ofRect(kHalfCourtWidth - i * 1.1, -kHalfCourtHeight, -1.0, kCourtHeight);
     ofPopMatrix();
   }
+  ofPopStyle();
+}
+
+void View::DrawTriangles(const Model &model) const {
+  ofPushStyle();
+  ofColor winning_color = model.winner == 1 ? color_p1 : color_p2;
+  ofSetColor(winning_color, model.winning_alpha * 255);
+  ofFill();
+  ofTriangle(-kHalfCourtWidth, kHalfCourtHeight, -kHalfCourtWidth * 0.75, -kHalfCourtHeight, -kHalfCourtWidth * 0.5, kCourtHeight);
+  ofTriangle(-kHalfCourtWidth * 0.5, kHalfCourtHeight, -kHalfCourtWidth * 0.25, -kHalfCourtHeight, 0, kCourtHeight);
+  ofSetColor(winning_color, model.winning_alpha * 255);
+  ofTriangle(0, kHalfCourtHeight, kHalfCourtWidth, kHalfCourtHeight * 0.5, 0, 0);
+  ofTriangle(0, 0, kHalfCourtWidth, -kHalfCourtHeight * 0.5, 0, -kHalfCourtHeight);
   ofPopStyle();
 }
 

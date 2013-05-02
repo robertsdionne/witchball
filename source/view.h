@@ -41,6 +41,8 @@ private:
   
   void DrawScore(const Model &model) const;
   
+  void DrawTriangles(const Model &model) const;
+  
   void SetupViewpoint() const;
 
   ofColor color_p1;
