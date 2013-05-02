@@ -3,8 +3,8 @@
 #include "model.h"
 #include "ofChaser.h"
 
-Model::Model(bool fake)
-: fake(fake), world(kZeroGravity), ball(nullptr), border(nullptr),
+Model::Model(bool fake, CollisionSoundPlayer *sound_player)
+: fake(fake), sound_player(sound_player), world(kZeroGravity), ball(nullptr), border(nullptr),
   player1_top(nullptr), player1_bottom(nullptr), player2_top(nullptr), player2_bottom(nullptr),
   mouse_pressed(false), mouse_position(-kHalfCourtWidth, kHalfCourtHeight),
   top_left_quadrant_gravity(GetTopLeftQuadrantGravity(EnumValue(CourtPosition::POSITION_1))),
@@ -322,7 +322,14 @@ void Model::IncrementPlayerOneCount() {
         player2_score = 0;
         player1_increment_count = 0;
         player2_increment_count = 0;
+        if (sound_player) {
+          sound_player->PlayPlayer1Win(ball);
+        }
+      } else if (sound_player) {
+        sound_player->PlayPlayer1Score(ball);
       }
+    } else if (sound_player) {
+      sound_player->PlayPlayer1Hit(ball);
     }
     player1_increment_count++;
     player2_increment_count = 0;
@@ -350,7 +357,14 @@ void Model::IncrementPlayerTwoCount() {
         player2_score = 0;
         player1_increment_count = 0;
         player2_increment_count = 0;
+        if (sound_player) {
+          sound_player->PlayPlayer2Win(ball);
+        }
+      } else if (sound_player) {
+        sound_player->PlayPlayer2Score(ball);
       }
+    } else if (sound_player) {
+      sound_player->PlayPlayer2Hit(ball);
     }
     player2_increment_count++;
     player1_increment_count = 0;

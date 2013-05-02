@@ -3,8 +3,9 @@
 #include "slider.h"
 
 PlayScreen::PlayScreen()
-: model(false), view(), controller(model), sound_collision(), score_keeper_collision(),
-  contact_listener(), sound_background_music(), sound_background_music_2() {}
+: sound_collision(), model(false, &sound_collision), view(), controller(model),
+  score_keeper_collision(&sound_collision), contact_listener(), sound_background_music(),
+  sound_background_music_2() {}
 
 
 PlayScreen::~PlayScreen() {
@@ -20,7 +21,6 @@ PlayScreen::~PlayScreen() {
 
 void PlayScreen::Setup() {
   model.Setup();
-  contact_listener.AddContactListener(&sound_collision);
   contact_listener.AddContactListener(&score_keeper_collision);
   model.world.SetContactListener(&contact_listener);
   view.Setup();

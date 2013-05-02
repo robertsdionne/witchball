@@ -8,14 +8,14 @@
 
 class collisionscorekeeper : public b2ContactListener {
 public:
-  collisionscorekeeper();
+  collisionscorekeeper(b2ContactListener *listener);
   
   virtual ~collisionscorekeeper() {}
   
   virtual void BeginContact(b2Contact *contact);
   virtual void EndContact(b2Contact *contact);
 private:
-  
+  b2ContactListener *listener;
 };
 
 #endif  // WITCHBALL_collisionscorekeeper_H_

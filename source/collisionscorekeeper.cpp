@@ -9,11 +9,12 @@
 #include "collisionscorekeeper.h"
 #include "model.h"
 
-collisionscorekeeper::collisionscorekeeper()  {
-  
-}
+collisionscorekeeper::collisionscorekeeper(b2ContactListener *listener) : listener(listener) {}
 
 void collisionscorekeeper::BeginContact(b2Contact *contact) {
+  if (listener) {
+    listener->BeginContact(contact);
+  }
 
   b2Body *bodyA = contact->GetFixtureA()->GetBody();
   b2Body *bodyB = contact->GetFixtureB()->GetBody();
@@ -38,6 +39,10 @@ void collisionscorekeeper::BeginContact(b2Contact *contact) {
 }
 
 void collisionscorekeeper::EndContact(b2Contact *contact) {
+  if (listener) {
+    listener->EndContact(contact);
+  }
+  
   b2Body *bodyA = contact->GetFixtureA()->GetBody();
   b2Body *bodyB = contact->GetFixtureB()->GetBody();
 
