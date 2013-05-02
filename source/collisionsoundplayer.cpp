@@ -20,11 +20,11 @@ CollisionSoundPlayer::CollisionSoundPlayer()
     backhit_filename << "backhit" << (i + 1) << ".wav";
     backhit[i].loadSound(backhit_filename.str());
   }
-  player1_score.loadSound("p1 score.wav");
-  player1_score7.loadSound("p1 score7.wav");
+  player1_score.loadSound("p1 score new.wav");
+  player1_score7.loadSound("p1 score7 new.wav");
   player1_winfade.loadSound("p1 winfade.wav");
-  player2_score.loadSound("p2 score.wav");
-  player2_score7.loadSound("p2 score7.wav");
+  player2_score.loadSound("p2 score new.wav");
+  player2_score7.loadSound("p2 score7 new.wav");
   player2_winfade.loadSound("p2 winfade.wav");
 }
 
