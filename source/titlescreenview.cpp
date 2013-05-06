@@ -33,10 +33,31 @@ void TitleScreenView::Draw(const TitleScreenModel &model) const {
   DrawFramesPerSecond();
   ofPushMatrix();
   SetupViewpoint();
-
-	DrawTriangles(model.player1_position,model.player2_position);
+  DrawPlayers(model);
+  
+  for (float x=-10; x<GRID_W; x+=(1.0/6.0)) {
+    for (float y=-5; y<GRID_H; y+=(1.0/6.0)) {
+      if (ofDist(model.player1_top->GetPosition().x, model.player1_top->GetPosition().y, x, y)<0.4 ||
+               ofDist(model.player1_bottom->GetPosition().x, model.player1_bottom->GetPosition().y, x, y)<0.4) {
+        ofSetColor(color_p1.r,ofRandom(10,60),color_p1.b, 155);
+        ofCircle(x, y, 0.12);
+      }
+      else if (ofDist(model.player2_top->GetPosition().x, model.player2_top->GetPosition().y, x, y)<0.4 ||
+               ofDist(model.player2_bottom->GetPosition().x, model.player2_bottom->GetPosition().y, x, y)<0.4) {
+        ofSetColor(ofRandom(10,60),color_p2.g,color_p2.b, 155);
+        ofCircle(x, y, 0.12);
+      }
+      else{
+        ofFill();
+        ofSetColor(ofRandom(0,10),ofRandom(0,10),ofRandom(10,20), 20);
+        ofTriangle(x, y+0.7, x-0.6, y-0.6, x+0.6, y-0.6);
+        
+      }
+    }
+  }
+  
+    DrawTriangles(model.player1_position,model.player2_position);
 	DrawCourt();
-	DrawPlayers(model);	
 	ofPopMatrix();
 }
 
