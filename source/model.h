@@ -94,8 +94,8 @@ public:
   float counter_clockwise_alpha;
   float clockwise_alpha;
 	
-  int player1_score = 6;
-  int player2_score = 6;
+  int player1_score = 0;
+  int player2_score = 0;
   
   int player1_increment_count = 0;
   int player2_increment_count = 0;
