@@ -94,8 +94,8 @@ public:
   float counter_clockwise_alpha;
   float clockwise_alpha;
 	
-  int player1_score = 0;
-  int player2_score = 0;
+  int player1_score = 6;
+  int player2_score = 6;
   
   int player1_increment_count = 0;
   int player2_increment_count = 0;
@@ -129,6 +129,10 @@ public:
 
   int winner = 0;
   float winning_alpha = 0.0;
+  bool show_winning_state = false;
+  float win_time = 0.0;
+
+  ofSoundPlayer boom;
 };
 
 #endif  // WITCHBALL_MODEL_H_

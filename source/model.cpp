@@ -17,7 +17,9 @@ Model::Model(bool fake, CollisionSoundPlayer *sound_player)
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
   elapsed_time(ofGetElapsedTimef()), last_collision_time(-kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
-  player2_top_trail(), player2_bottom_trail() {}
+  player2_top_trail(), player2_bottom_trail() {
+    boom.loadSound("boom2.wav");
+}
 
 void Model::Setup() {
   CreateBall();
@@ -95,8 +97,16 @@ void Model::Setup() {
 }
 
 void Model::Update() {
-  if (winning_alpha >= 1.0 / 60.0 / 3.0) {
-    winning_alpha -= 1.0 / 60.0 / 3.0;
+  if (winning_alpha <= 1.0 - 1.0 / 60.0) {
+    winning_alpha += 1.0 / 60.0;
+  }
+  if (show_winning_state && ofGetElapsedTimef() > win_time + 2.0) {
+    show_winning_state = false;
+    court_position = CourtPosition::POSITION_1;
+    last_collision_time = ofGetElapsedTimef();
+    p1glowMax = 0;
+    p2glowMax = 0;
+    boom.play();
   }
   if (kDampingSpeed > kDampingSpeedMinimum) {
     kDampingSpeed.Set(ofLerp(kDampingSpeed, kDampingSpeedMinimum, kDampingSpeedRate));
@@ -202,7 +212,7 @@ void Model::Update() {
   UpdateGravities();
   if (ball->GetPosition().x >= kHalfCourtWidth-2*kBallRadius){
     ball->ApplyForceToCenter(-kBumperForce.GetValue());
-  }else if (ball->GetPosition().x <= -kHalfCourtWidth+2*kBallRadius){
+  } else if (ball->GetPosition().x <= -kHalfCourtWidth+2*kBallRadius){
     ball->ApplyForceToCenter(kBumperForce);
   }
   
@@ -377,7 +387,9 @@ void Model::IncrementPlayerOneCount() {
 
       if(player1_score == kPointsToWin) {
         winner = 1;
-        winning_alpha = 1.0;
+        winning_alpha = 0.0;
+        show_winning_state = true;
+        win_time = ofGetElapsedTimef();
         printf("P1 Wins\n");
         player1_score = 0;
         player2_score = 0;
@@ -414,7 +426,9 @@ void Model::IncrementPlayerTwoCount() {
 
       if(player2_score == kPointsToWin) {
         winner = 2;
-        winning_alpha = 1.0;
+        winning_alpha = 0.0;
+        show_winning_state = true;
+        win_time = ofGetElapsedTimef();
         printf("P2 Wins\n");
         player1_score = 0;
         player2_score = 0;

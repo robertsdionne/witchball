@@ -52,8 +52,8 @@ public:
   
   CourtPosition court_position;
   
-	float player1_position;
-  float player2_position;
+  float player1_position = 0.0;
+  float player2_position = 0.0;
   
   bool show_sliders = false;
 };

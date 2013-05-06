@@ -96,11 +96,19 @@ void TitleScreenView::DrawTriangles(float player1_position, float player2_positi
 	ofPushStyle();
 	ofSetColor(color_p1.r, color_p1.g, color_p1.b,player1_position * 255);
 	ofFill();
-	ofTriangle(-kHalfCourtWidth, kHalfCourtHeight, -kHalfCourtWidth * 0.75, -kHalfCourtHeight, -kHalfCourtWidth * 0.5, kCourtHeight);
-	ofTriangle(-kHalfCourtWidth * 0.5, kHalfCourtHeight, -kHalfCourtWidth * 0.25, -kHalfCourtHeight, 0, kCourtHeight);
+	ofTriangle(-kHalfCourtWidth, kHalfCourtHeight,
+               -kHalfCourtWidth * 0.75, -kHalfCourtHeight,
+               -kHalfCourtWidth * 0.5, kHalfCourtHeight);
+	ofTriangle(-kHalfCourtWidth * 0.5, kHalfCourtHeight,
+               -kHalfCourtWidth * 0.25, -kHalfCourtHeight,
+               0, kHalfCourtHeight);
 	ofSetColor(color_p2.r, color_p2.g, color_p2.b,player2_position * 255);
-	ofTriangle(0, kHalfCourtHeight, kHalfCourtWidth, kHalfCourtHeight * 0.5, 0, 0);
-	ofTriangle(0, 0, kHalfCourtWidth, -kHalfCourtHeight * 0.5, 0, -kHalfCourtHeight);
+	ofTriangle(0, kHalfCourtHeight,
+               kHalfCourtWidth, kHalfCourtHeight * 0.5,
+               0, 0);
+	ofTriangle(0, 0,
+               kHalfCourtWidth, -kHalfCourtHeight * 0.5,
+               0, -kHalfCourtHeight);
 	
 	ofPopStyle();
 }
