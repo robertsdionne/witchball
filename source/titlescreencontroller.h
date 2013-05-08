@@ -15,6 +15,10 @@ public:
   void OnKeyPressed(int key);
   
   void OnKeyReleased(int key);
+
+  void OnMousePressed(int x, int y, int button);
+
+  void OnMouseReleased(int x, int y, int button);
   
   void Update();
   

@@ -1,6 +1,12 @@
 #include "constants.h"
 #include "parameter.h"
 
+/**
+ * MOUSE BUTTONS!!
+ */
+DEFINE_PARAMETER(int, kPlayer1MouseButton, 0);
+DEFINE_PARAMETER(int, kPlayer2MouseButton, 2);
+
 DEFINE_PARAMETER_RANGE(float, kAngularDamping, 0.0, 0.0, 1.0);
 DEFINE_PARAMETER(b2Vec2, kAntiGravity, b2Vec2(0.0, DEPENDENCY(kGravityStrength)));
 DEFINE_PARAMETER(float, kAspectRatio,

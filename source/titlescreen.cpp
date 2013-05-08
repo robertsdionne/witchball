@@ -46,9 +46,9 @@ void TitleScreen::MouseDragged(int x, int y, int button) {
 }
 
 void TitleScreen::MousePressed(int x, int y, int button) {
-  //controller.OnMousePressed(x, y, button);
+  controller.OnMousePressed(x, y, button);
 }
 
 void TitleScreen::MouseReleased(int x, int y, int button) {
-  //controller.OnMouseReleased(x, y, button);
+  controller.OnMouseReleased(x, y, button);
 }

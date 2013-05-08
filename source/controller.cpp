@@ -44,12 +44,12 @@ void Controller::Update() {
     model.show_sliders = !model.show_sliders;
   }
   if (model.elapsed_time > model.last_collision_time + kCollisionDelay) {
-    if (keys['q']) {
+    if (keys['q'] || buttons[kPlayer1MouseButton]) {
       model.player1_position = ofClamp(model.player1_position + kPlayerMoveDelta, 0.0, 1.0);
     } else {
       model.player1_position = ofClamp(model.player1_position - kPlayerMoveDelta, 0.0, 1.0);
     }
-    if (keys['p']) {
+    if (keys['p'] || buttons[kPlayer2MouseButton]) {
       model.player2_position = ofClamp(model.player2_position + kPlayerMoveDelta, 0.0, 1.0);
     } else {
       model.player2_position = ofClamp(model.player2_position - kPlayerMoveDelta, 0.0, 1.0);

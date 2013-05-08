@@ -50,6 +50,8 @@ extern Parameter<int> kHeight;
 extern Parameter<float> kLinearDamping;
 
 extern Parameter<float> kPixelScale;
+extern Parameter<int> kPlayer1MouseButton;
+extern Parameter<int> kPlayer2MouseButton;
 extern Parameter<float> kPlayerHitRadius;
 extern Parameter<float> kPlayerMoveDelta;
 extern Parameter<float> kPlayerRadius;
