@@ -1,3 +1,4 @@
+#include <ApplicationServices/ApplicationServices.h>
 #include <Box2D/Box2D.h>
 
 #include "constants.h"
@@ -21,6 +22,7 @@ WitchBall::~WitchBall() {
 void WitchBall::setup() {
 	current_screen = new TitleScreen();
   current_screen->Setup();
+  CGDisplayHideCursor(kCGDirectMainDisplay);
 }
 
 void WitchBall::RunPlayScreen() {
