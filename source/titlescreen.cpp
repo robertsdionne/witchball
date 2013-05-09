@@ -9,15 +9,18 @@
 #include "titlescreen.h"
 #include "witchball.h"
 
-TitleScreen::TitleScreen() : view(), model(), controller(model) {}
+TitleScreen::TitleScreen() : view(), model(), controller(model) {
+  sound_background_music.loadSound("bgm.wav");
+}
 
 TitleScreen::~TitleScreen() {
   
 }
 
 void TitleScreen::Setup() {
-	view.Setup();
-	model.Setup();
+  view.Setup();
+  model.Setup();
+  sound_background_music.play();
 }
 
 void TitleScreen::Update() {

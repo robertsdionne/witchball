@@ -45,7 +45,7 @@ private:
 	TitleScreenView view;
 	TitleScreenModel model;
 	TitleScreenController controller;
-	
+  ofSoundPlayer sound_background_music;
 };
 
 #endif // WITCHBALL_TITLESCREEN_H_
