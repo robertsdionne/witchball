@@ -84,7 +84,7 @@ void View::Draw(const Model &model) const {
   }
   ofPopMatrix();
 
-  DrawFramesPerSecond(model);
+  //DrawFramesPerSecond(model);
 }
 
 void View::Setup() {

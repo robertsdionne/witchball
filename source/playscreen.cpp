@@ -41,9 +41,9 @@ void PlayScreen::Setup() {
 }
 
 void PlayScreen::Update() {
+  controller.Update();
   model.elapsed_time = ofGetElapsedTimef();
   model.Update();
-  controller.Update();
 }
 
 void PlayScreen::Draw() {

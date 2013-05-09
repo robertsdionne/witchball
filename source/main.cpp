@@ -6,6 +6,6 @@
 int main(const int argument_count, const char *arguments[]) {
   ofAppGlutWindow window;
   window.setGlutDisplayString(kGlutDisplayString);
-  ofSetupOpenGL(&window, kWidth, kHeight, OF_WINDOW);
+  ofSetupOpenGL(&window, kWidth, kHeight, OF_FULLSCREEN);
   ofRunApp(new WitchBall());
 }

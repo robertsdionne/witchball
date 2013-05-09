@@ -28,12 +28,12 @@ void TitleScreenController::Update() {
   if (keys['`'] && !previous_keys['`']) {
     model.show_sliders = !model.show_sliders;
   }
-	if (keys['q'] || buttons[kPlayer1MouseButton]) {
+	if (keys['s'] || keys['S'] || buttons[kPlayer1MouseButton]) {
 		model.player1_position = ofClamp(model.player1_position + kPlayerMoveDelta, 0.0, 1.0);
 	} else {
 		model.player1_position = ofClamp(model.player1_position - kPlayerMoveDelta, 0.0, 1.0);
 	}
-	if (keys['p'] || buttons[kPlayer2MouseButton]) {
+	if (keys['k'] || keys['K'] || buttons[kPlayer2MouseButton]) {
 		model.player2_position = ofClamp(model.player2_position + kPlayerMoveDelta, 0.0, 1.0);
 	} else {
 		model.player2_position = ofClamp(model.player2_position - kPlayerMoveDelta, 0.0, 1.0);
