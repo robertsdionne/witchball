@@ -30,7 +30,7 @@ public:
 
   void RotateCounterClockwise();
   
-  float p1glowMax, p2glowMax;
+  float p1glowMax = 0, p2glowMax = 0;
 
 
 private:
