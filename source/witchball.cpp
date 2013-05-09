@@ -24,13 +24,21 @@ void WitchBall::setup() {
 }
 
 void WitchBall::RunPlayScreen() {
-	current_screen = new PlayScreen();
-	current_screen->Setup();
+  if (current_screen) {
+    delete current_screen;
+    current_screen = nullptr;
+  }
+  current_screen = new PlayScreen();
+  current_screen->Setup();
 }
 
 void WitchBall::RunTitleScreen() {
-	current_screen = new TitleScreen();
-	current_screen->Setup();
+  if (current_screen) {
+    delete current_screen;
+    current_screen = nullptr;
+  }
+  current_screen = new TitleScreen();
+  current_screen->Setup();
 }
 
 void WitchBall::update() {

@@ -28,7 +28,8 @@ void TitleScreenModel::Update() {
                             GetPlayer2BottomRight(EnumValue(court_position)), Player2Position()));
   
 	if(player1_position == 1.0f && player2_position == 1.0f) {
-		dynamic_cast<WitchBall *>(ofGetAppPtr())->RunPlayScreen();
+      dynamic_cast<WitchBall *>(ofGetAppPtr())->RunPlayScreen();
+      return;
 	}
   world.Step(kTimeStep, kBox2dVelocityIterations, kBox2dPositionIterations);
 }

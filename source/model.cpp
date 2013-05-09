@@ -2,6 +2,7 @@
 #include "utilities.h"
 #include "model.h"
 #include "ofChaser.h"
+#include "witchball.h"
 
 Model::Model(bool fake, CollisionSoundPlayer *sound_player)
 : fake(fake), sound_player(sound_player), world(kZeroGravity), ball(nullptr), border(nullptr),
@@ -17,7 +18,7 @@ Model::Model(bool fake, CollisionSoundPlayer *sound_player)
   player1_position(0.0), player2_position(0.0), draw_gravity(GravityVisual::NONE),
   elapsed_time(ofGetElapsedTimef()), last_collision_time(-kCollisionDelay),
   ball_trail(), player1_top_trail(), player1_bottom_trail(),
-  player2_top_trail(), player2_bottom_trail() {
+  player2_top_trail(), player2_bottom_trail(), last_input_time(0) {
     boom.loadSound("boom2.wav");
 }
 
@@ -112,6 +113,10 @@ void Model::Setup() {
 }
 
 void Model::Update() {
+  if (!fake && ofGetElapsedTimef() > last_input_time + 10.0) {
+    dynamic_cast<WitchBall *>(ofGetAppPtr())->RunTitleScreen();
+    return;
+  }
   if (winning_alpha <= 1.0 - 1.0 / 60.0) {
     winning_alpha += 1.0 / 60.0;
   }

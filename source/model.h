@@ -133,6 +133,8 @@ public:
   float win_time = 0.0;
 
   ofSoundPlayer boom;
+
+  float last_input_time;
 };
 
 #endif  // WITCHBALL_MODEL_H_

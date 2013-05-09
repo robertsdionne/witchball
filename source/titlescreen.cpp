@@ -21,8 +21,8 @@ void TitleScreen::Setup() {
 }
 
 void TitleScreen::Update() {
+  controller.Update();
   model.Update();
-	controller.Update();
 }
 
 void TitleScreen::Draw() {

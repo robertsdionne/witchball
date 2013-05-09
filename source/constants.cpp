@@ -9,8 +9,8 @@ DEFINE_PARAMETER(int, kPlayer2MouseButton, 0);
 
 DEFINE_PARAMETER_RANGE(float, kAngularDamping, 0.0, 0.0, 1.0);
 DEFINE_PARAMETER(b2Vec2, kAntiGravity, b2Vec2(0.0, DEPENDENCY(kGravityStrength)));
-DEFINE_PARAMETER(float, kAspectRatio,
-                 static_cast<float>(DEPENDENCY(kWidth)) / static_cast<float>(DEPENDENCY(kHeight)));
+DEFINE_PARAMETER(float, kAspectRatio, 2.0);
+//                 static_cast<float>(DEPENDENCY(kWidth)) / static_cast<float>(DEPENDENCY(kHeight)));
 
 DEFINE_PARAMETER_RANGE(float, kBallRadius, 11.0 * DEPENDENCY(kPixelScale), 0.0, 1.0);
 

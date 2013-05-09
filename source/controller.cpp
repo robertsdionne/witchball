@@ -34,6 +34,7 @@ void Controller::OnMouseReleased(int x, int y, int button) {
 void Controller::Update() {
   if (MouseButtonIsPressed(0)) {
     model.mouse_pressed = true;
+    model.last_input_time = ofGetElapsedTimef();
   } else {
     model.mouse_pressed = false;
   }
@@ -42,15 +43,18 @@ void Controller::Update() {
   }
   if (keys['`'] && !previous_keys['`']) {
     model.show_sliders = !model.show_sliders;
+    model.last_input_time = ofGetElapsedTimef();
   }
   if (model.elapsed_time > model.last_collision_time + kCollisionDelay) {
-    if (keys['q'] || buttons[kPlayer1MouseButton]) {
+    if (keys['s'] || keys['S'] || buttons[kPlayer1MouseButton]) {
       model.player1_position = ofClamp(model.player1_position + kPlayerMoveDelta, 0.0, 1.0);
+      model.last_input_time = ofGetElapsedTimef();
     } else {
       model.player1_position = ofClamp(model.player1_position - kPlayerMoveDelta, 0.0, 1.0);
     }
-    if (keys['p'] || buttons[kPlayer2MouseButton]) {
+    if (keys['k'] || keys['K'] || buttons[kPlayer2MouseButton]) {
       model.player2_position = ofClamp(model.player2_position + kPlayerMoveDelta, 0.0, 1.0);
+      model.last_input_time = ofGetElapsedTimef();
     } else {
       model.player2_position = ofClamp(model.player2_position - kPlayerMoveDelta, 0.0, 1.0);
     }
