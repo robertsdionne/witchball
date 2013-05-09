@@ -12,7 +12,7 @@ class Model {
 public:
   Model(bool fake, CollisionSoundPlayer *sound_player);
   
-  virtual ~Model() {}
+  virtual ~Model();
   
   void Setup();
   

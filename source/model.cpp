@@ -21,6 +21,21 @@ Model::Model(bool fake, CollisionSoundPlayer *sound_player)
     boom.loadSound("boom2.wav");
 }
 
+Model::~Model() {
+  for (int i = 0; i < nChasers; ++i) {
+    delete topChaser[i];
+  }
+  for (int i = 0; i < nChasers; ++i) {
+    delete botChaser[i];
+  }
+  for (int i = 0; i < nChasers; ++i) {
+    delete leftChaser[i];
+  }
+  for (int i = 0; i < nChasers; ++i) {
+    delete rightChaser[i];
+  }
+}
+
 void Model::Setup() {
   CreateBall();
   CreateBorder();
